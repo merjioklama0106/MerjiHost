@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MerjiHost</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #ff0000, #000000);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #a5a5a5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 24px;
+      color: #000;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .menu-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .menu-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .slide-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100%;
+      width: 180px;
+      background: #111;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+      padding: 70px 10px 20px;
+      transition: right 0.4s ease;
+      z-index: 1000;
+    }
+
+    .slide-panel.open {
+      right: 0;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 40px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+
+    .close-button:hover {
+      transform: scale(1.2);
+    }
+
+    .slide-panel button.menu-item {
+      width: 100%;
+      margin: 20px 0;
+      display: block;
+      padding: 12px;
+      background: linear-gradient(to right, #333, #222);
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      transition: 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255,255,255,0.15);
+    }
+
+    .slide-panel button.menu-item:hover {
+      background: #444;
+      transform: scale(1.05);
+    }
+
+    main {
+      padding-top: 100px;
+      text-align: center;
+    }
+
+    .intro-text h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .intro-text p {
+      font-size: 16px;
+      color: #cccccc;
+      max-width: 90%;
+      margin: 0 auto 30px;
+      font-weight: 400;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .custom-btn {
+      width: 260px;
+      padding: 18px 0;
+      font-size: 20px;
+      font-weight: 600;
+      background: linear-gradient(to right, #007bff, #3399ff);
+      border: 2px solid #000;
+      color: white;
+      border-radius: 50px;
+      box-shadow: 0 10px 20px rgba(0, 123, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-shadow: 1px 1px 2px black;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .custom-btn:active {
+      transform: scale(0.96);
+      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.5);
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .box-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 35px;
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .feature-box {
+      width: 90%;
+      max-width: 320px;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      transition: 0.3s ease;
+      border: 2px solid black;
+      box-shadow: 5px 5px 15px rgba(0,0,0,0.8);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .feature-box:hover {
+      box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    }
+
+    .feature-box:nth-child(1) {
+      background-color: #222a3f;
+    }
+
+    .feature-box:nth-child(2) {
+      background-color: #3f2a2a;
+    }
+
+    .feature-box:nth-child(3) {
+      background-color: #1d3f2a;
+    }
+
+    .feature-box:nth-child(4) {
+      background-color: #3c2f45;
+    }
+
+    .feature-box img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 15px;
+    }
+
+    .feature-box h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .feature-box p {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 100px;
+      font-size: 14px;
+      padding-bottom: 20px;
+      color: #ccc;
+    }
+
+    @media screen and (max-width: 600px) {
+      .slide-panel {
+        width: 70%;
+      }
+
+      .intro-text h1 {
+        font-size: 30px;
+      }
+
+      .custom-btn {
+        width: 220px;
+        font-size: 18px;
+      }
+
+      .feature-box {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">MerjiHost</div>
+    <div class="menu-button" id="menuBtn">&#9776;</div>
+  </header>
+
+  <div class="slide-panel" id="slidePanel">
+    <button class="close-button" id="closeBtn">&times;</button>
+    <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
+    <button class="menu-item" onclick="location.href='hosting.html'">Pesan Hosting</button>
+    <button class="menu-item" onclick="location.href='produk.html'">Produk Lainnya</button>
+    <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
+  </div>
+
+  <div id="mainContent">
+    <main>
+      <div class="intro-text">
+        <h1>MerjiHost Terpercaya</h1>
+        <p>Solusi hosting terpercaya dan stabil untuk semua kebutuhan server kamu. pesan sekarang!</p>
+      </div>
+
+      <div class="btn-container">
+        <button class="custom-btn" onclick="location.href='hosting.html'">Pesan Hosting</button>
+        <button class="custom-btn" onclick="window.open('https://whatsapp.com/channel/0029VaxWKJS8F2p9As8oHb00','_blank')">Testimoni</button>
+      </div>
+
+      <!-- 🔽 Kotak Sampul -->
+      <div class="box-section">
+        <div class="feature-box">
+          <img src="logo.jpg" alt="Logo">
+          <h2>Judul Kotak 1</h2>
+          <p>Deskripsi fitur unggulan pertama yang bisa kamu sesuaikan.</p>
+        </div>
+        <div class="feature-box">
+          <img src="logo.jpg" alt="Logo">
+          <h2>Judul Kotak 2</h2>
+          <p>Deskripsi informasi tambahan untuk layanan lainnya.</p>
+        </div>
+        <div class="feature-box">
+          <img src="logo.jpg" alt="Logo">
+          <h2>Judul Kotak 3</h2>
+          <p>Deskripsi menarik untuk fitur promosi atau diskon.</p>
+        </div>
+        <div class="feature-box">
+          <img src="logo.jpg" alt="Logo">
+          <h2>Judul Kotak 4</h2>
+          <p>Deskripsi penutup atau fitur lain yang ingin ditampilkan.</p>
+        </div>
+      </div>
+
+    </main>
+
+    <footer>© 2025 MerjiHost. All Rights Reserved</footer>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const slidePanel = document.getElementById('slidePanel');
+    const closeBtn = document.getElementById('closeBtn');
+    const mainContent = document.getElementById('mainContent');
+
+    menuBtn.addEventListener('click', () => {
+      slidePanel.classList.add('open');
+      mainContent.classList.add('blur-active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      slidePanel.classList.remove('open');
+      mainContent.classList.remove('blur-active');
+    });
+  </script>
+</body>
+</html>

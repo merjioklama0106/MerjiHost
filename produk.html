@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MerjiHost</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #ff0000, #000000);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blur-active {
+      filter: blur(5px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    header {
+      background-color: #a5a5a5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .menu-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .menu-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .slide-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100%;
+      width: 180px;
+      background: #111;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+      padding: 70px 10px 20px;
+      transition: right 0.4s ease;
+      z-index: 1000;
+    }
+
+    .slide-panel.open {
+      right: 0;
+    }
+
+    .slide-panel .panel-header {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .panel-header img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .panel-header span {
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 40px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+
+    .close-button:hover {
+      transform: scale(1.2);
+    }
+
+    .slide-panel button.menu-item {
+      width: 100%;
+      margin: 20px 0;
+      display: block;
+      padding: 12px;
+      background: linear-gradient(to right, #333, #222);
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      transition: 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255,255,255,0.15);
+    }
+
+    .slide-panel button.menu-item:hover {
+      background: #444;
+      transform: scale(1.05);
+    }
+
+    #mainContent {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      padding-top: 100px;
+      text-align: center;
+      flex: 1;
+    }
+
+    .intro-text h1 {
+      font-size: 42px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .intro-text p {
+      font-size: 16px;
+      color: #cccccc;
+      max-width: 90%;
+      margin: 0 auto 30px;
+      font-weight: 400;
+    }
+
+    .sampul-card {
+      background: #222;
+      border-radius: 16px;
+      padding: 20px;
+      margin: 30px auto 20px;
+      width: 90%;
+      max-width: 400px;
+      transition: 0.3s;
+      border: 2px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sampul-card:hover {
+      background: #2e2e2e;
+      border-color: rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    .copy-btn {
+      background: #555;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-left: auto;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 20px 0;
+      color: #ccc;
+      margin-top: auto;
+    }
+
+    @media screen and (max-width: 600px) {
+      .slide-panel {
+        width: 70%;
+      }
+
+      .intro-text h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">MerjiHost</div>
+    <div class="menu-button" id="menuBtn">&#9776;</div>
+  </header>
+
+  <div class="slide-panel" id="slidePanel">
+    <button class="close-button" id="closeBtn">&times;</button>
+    <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
+    <button class="menu-item" onclick="location.href='hosting.html'">Pesan Hosting</button>
+    <button class="menu-item" onclick="location.href='produk.html'">Produk Lainnya</button>
+    <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
+  </div>
+
+  <div id="mainContent">
+    <main>
+      <div class="intro-text">
+        <h1>List Produk Merji Lainnya</h1>
+        <p>Silahkan cari kebutuhan yang sedang ingin anda beli!</p>
+      </div>
+
+    <footer>© 2025 MerjiHost. All Rights Reserved</footer>
+  </d>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const slidePanel = document.getElementById('slidePanel');
+    const closeBtn = document.getElementById('closeBtn');
+    const mainContent = document.getElementById('mainContent');
+
+    menuBtn.addEventListener('click', () => {
+      slidePanel.classList.add('open');
+      mainContent.classList.add('blur-active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      slidePanel.classList.remove('open');
+      mainContent.classList.remove('blur-active');
+    });
+
+    function copyToClipboard() {
+      const text = document.getElementById("waNumber").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Nomor berhasil disalin!");
+      });
+    }
+  </script>
+</body>
+</html>
