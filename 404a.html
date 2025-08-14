@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Halaman Sedang Diperbaiki</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #0b1e39;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+    }
+
+    /* Angka 404 */
+    .error {
+      font-size: 130px;
+      font-weight: bold;
+      font-family: 'Orbitron', sans-serif;
+      animation: float 2s ease-in-out infinite;
+      background: linear-gradient(90deg, #ffffff, #cccccc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .message {
+      font-size: 20px;
+      margin-top: 10px;
+      animation: fadeIn 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+
+    /* Tombol Keluar - Stroke putih */
+    .exit-btn {
+      margin-top: 30px;
+      padding: 12px 36px;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      background: transparent;
+      border-radius: 50px; /* sudut bulat penuh */
+      border: 2px solid #fff; /* stroke putih */
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      letter-spacing: 1px;
+    }
+
+    /* Hover - background putih transparan */
+    .exit-btn:hover {
+      background: rgba(255,255,255,0.1);
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(255,255,255,0.4);
+    }
+
+    /* Klik */
+    .exit-btn:active {
+      transform: scale(0.92);
+      background: rgba(255,255,255,0.2);
+    }
+
+    @media (max-width: 600px) {
+      .error {
+        font-size: 90px;
+      }
+      .message {
+        font-size: 16px;
+      }
+      .exit-btn {
+        padding: 10px 28px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error">404</div>
+  <div class="message">Halaman Sedang Diperbaiki</div>
+  <button class="exit-btn" onclick="window.location.href='hosting.html'">Keluar</button>
+
+</body>
+</html>
