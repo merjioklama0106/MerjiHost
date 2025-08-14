@@ -91,28 +91,6 @@
       right: 0;
     }
 
-    .slide-panel .panel-header {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .panel-header img {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    .panel-header span {
-      font-size: 16px;
-      font-weight: 600;
-      color: white;
-    }
-
     .close-button {
       position: absolute;
       top: 10px;
@@ -186,8 +164,8 @@
       transition: 0.3s;
       border: 2px solid transparent;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      gap: 15px;
     }
 
     .sampul-card:hover {
@@ -205,7 +183,7 @@
       font-weight: 500;
     }
 
-    .wa-icon {
+    .wa-icon, .tg-icon {
       width: 35px;
       height: 35px;
       filter: grayscale(1);
@@ -317,10 +295,17 @@
       </div>
 
       <div class="sampul-card">
+        <!-- WhatsApp -->
         <div class="sampul-content">
-          <img src="contact.jpg" class="wa-icon" alt="WA">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="wa-icon" alt="WA">
           <span id="waNumber">08979687563</span>
-          <button class="copy-btn" onclick="copyToClipboard()">Salin</button>
+          <button class="copy-btn" onclick="copyToClipboard('waNumber')">Salin</button>
+        </div>
+        <!-- Telegram -->
+        <div class="sampul-content">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="tg-icon" alt="Telegram">
+          <span id="tgUser">@merjihost</span>
+          <button class="copy-btn" onclick="copyToClipboard('tgUser')">Salin</button>
         </div>
       </div>
       
@@ -339,7 +324,7 @@
     </main>
 
     <footer>© 2025 MerjiHost. All Rights Reserved</footer>
-  </d>
+  </div>
 
   <script>
     const menuBtn = document.getElementById('menuBtn');
@@ -357,10 +342,10 @@
       mainContent.classList.remove('blur-active');
     });
 
-    function copyToClipboard() {
-      const text = document.getElementById("waNumber").innerText;
+    function copyToClipboard(elementId) {
+      const text = document.getElementById(elementId).innerText;
       navigator.clipboard.writeText(text).then(() => {
-        alert("Nomor berhasil disalin!");
+        alert("Teks berhasil disalin!");
       });
     }
   </script>
