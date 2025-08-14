@@ -380,17 +380,17 @@
   <div id="mainContent">
     <!-- Papan Kotak Domain -->
     <div class="domain-box" id="domainBox">
-      <div class="domain-title">AppPremium</div>
+      <div class="domain-title">Nokos</div>
 
       <!-- Pilih Domain -->
       <div class="custom-select-wrapper">
-        <label for="selectDomain" class="custom-select-label">Pilih Layanan</label>
+        <label for="selectDomain" class="custom-select-label">Pilih Nokos</label>
         <div class="custom-select" id="selectDomain" tabindex="0" aria-haspopup="listbox" aria-expanded="false" role="combobox" aria-labelledby="selectDomainLabel">
-          <span class="selected-text" id="selectedDomainText">Pilih Layanan</span>
+          <span class="selected-text" id="selectedDomainText">Pilih Negara</span>
         </div>
         <div class="custom-select-items" id="domainOptions" role="listbox" tabindex="-1">
-          <div class="custom-select-item" data-value="youtube" role="option" tabindex="0">YouTube</div>
-          <div class="custom-select-item" data-value="canva" role="option" tabindex="0">Canva</div>
+          <div class="custom-select-item" data-value="indo" role="option" tabindex="0">Indonesia</div>
+          <div class="custom-select-item" data-value="viet" role="option" tabindex="0">Vietnam</div>
         </div>
       </div>
 
@@ -410,13 +410,13 @@
       <!-- Nama Domain -->
       <div class="input-text-wrapper">
         <label for="inputDomainName">Nama Anda</label>
-        <input type="text" id="inputDomainName" placeholder="isi nama anda" autocomplete="off" />
+        <input type="text" id="inputDomainName" placeholder="Isi nama anda" autocomplete="off" />
       </div>
 
       <!-- Deskripsi Keuntungan -->
       <div class="description-box" id="descriptionBox">
         <strong>Keuntungan</strong>
-        Silakan pilih Layanan untuk melihat keuntungan.
+        Silakan pilih Nokos untuk melihat keuntungan.
       </div>
 
       <!-- Harga -->
@@ -528,34 +528,25 @@
     const descriptionBox = document.getElementById('descriptionBox');
     function updatePriceText() {
       const domainVal = domainSelect.getValue();
-      if(domainVal === 'youtube') priceText.textContent = "Harga : Rp 3.000";
-      else if(domainVal === 'canva') priceText.textContent = "Harga : Rp 2.000";
+      if(domainVal === 'indo') priceText.textContent = "Harga : Rp 7.000";
+      else if(domainVal === 'viet') priceText.textContent = "Harga : Rp 8.000";
       else priceText.textContent = "Harga :";
     }
 
     // Update deskripsi keuntungan sesuai domain terpilih
     function updateDescription() {
       const domainVal = domainSelect.getValue();
-      if(domainVal === 'youtube') {
+      if(domainVal === 'indo') {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-Cukup kirim email saja, anda sudah bisa menikmati fitur YouTube premium!
-
-• Active 1 Bulan
-• YouTube Music Active
-• Putar Latar Belakang Active
-• Nonton Video Bebas Iklan
+Tidak Ada Garansi!
 `;
-      } else if(domainVal === 'canva') {
+      } else if(domainVal === 'viet') {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-Cukup kirim email saja, anda sudah bisa menikmati fitur Canva pro!
-
-• Active 1 Bulan
-• 1000+ Template pro
-• Tanpa Watermak
+Tidak Ada Garansi!
 `;
       } else {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-Silakan pilih Layanan untuk melihat keuntungan.`;
+Silakan pilih nokos untuk melihat keuntungan.`;
       }
     }
 
@@ -584,14 +575,14 @@ Silakan pilih Layanan untuk melihat keuntungan.`;
       }
 
       let price = "";
-      if(domainVal === "youtube") price = "Rp 3.000";
-      else if(domainVal === "canva") price = "Rp 2.000";
+      if(domainVal === "indo") price = "Rp 7.000";
+      else if(domainVal === "viet") price = "Rp 8.000";
 
       // Format pesan WhatsApp
       const phone = "628979687563";
       const text = 
-        `*ORDER APLIKASI PREMIUM*%0A`+
-        `LAYANAN%20: ${domainVal}%0A`+
+        `*ORDER NOKOS WHATSAPP*%0A`+
+        `NOKOS%20: ${domainVal}%0A`+
         `NAMA%20: ${domainNameVal}%0A`+
         `METODE%20PEMBAYARAN%20: ${paymentVal}%0A`+
         `NOMINAL%20: ${price}`;
