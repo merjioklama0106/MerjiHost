@@ -20,7 +20,7 @@
       overflow-x: hidden;
     }
     
-        .blur-active {
+    .blur-active {
       filter: blur(5px);
       pointer-events: none;
       user-select: none;
@@ -173,7 +173,7 @@
     }
 
     @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(20px); }
+      0% { opacity: 0; transform: translateY(40px); }
       100% { opacity: 1; transform: translateY(0); }
     }
 
@@ -202,21 +202,10 @@
       box-shadow: 0 0 20px rgba(255,255,255,0.5);
     }
 
-    .feature-box:nth-child(1) {
-      background-color: #222a3f;
-    }
-
-    .feature-box:nth-child(2) {
-      background-color: #3f2a2a;
-    }
-
-    .feature-box:nth-child(3) {
-      background-color: #1d3f2a;
-    }
-
-    .feature-box:nth-child(4) {
-      background-color: #3c2f45;
-    }
+    .feature-box:nth-child(1) { background-color: #222a3f; }
+    .feature-box:nth-child(2) { background-color: #3f2a2a; }
+    .feature-box:nth-child(3) { background-color: #1d3f2a; }
+    .feature-box:nth-child(4) { background-color: #3c2f45; }
 
     .feature-box img {
       width: 80px;
@@ -237,110 +226,217 @@
       color: #ccc;
     }
 
+    /* Review Section */
+    .review-section {
+      background: #2a6fb6;
+      padding: 40px 20px;
+      margin-top: 50px;
+      animation: fadeInUp 1s ease forwards;
+    }
+    .review-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 26px;
+      font-weight: 700;
+    }
+    .review-card {
+      background: #dcdcdc;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 2px solid #b0b0b0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      color: black;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .review-header img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .review-name {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .review-sub {
+      font-size: 12px;
+      color: #333;
+    }
+    .review-text {
+      font-size: 14px;
+      line-height: 1.4;
+      font-style: italic;
+    }
+    .stars {
+      color: gray;
+      font-size: 26px;
+    }
+
+    /* Social Media Section */
+    .social-section {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .social-section h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #ccc;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      align-items: center;
+    }
+    .social-icons a img {
+      width: 30px;
+      height: 30px;
+      filter: grayscale(100%);
+      transition: filter 0.3s;
+    }
+    .social-icons a img:hover {
+      filter: grayscale(0%);
+    }
+
     footer {
       text-align: center;
-      margin-top: 100px;
+      margin-top: 20px;
       font-size: 14px;
       padding-bottom: 20px;
       color: #ccc;
     }
 
     @media screen and (max-width: 600px) {
-      .slide-panel {
-        width: 70%;
-      }
-
-      .intro-text h1 {
-        font-size: 30px;
-      }
-
-      .custom-btn {
-        width: 220px;
-        font-size: 18px;
-      }
-
-      .feature-box {
-        max-width: 90%;
-      }
+      .slide-panel { width: 70%; }
+      .intro-text h1 { font-size: 30px; }
+      .custom-btn { width: 220px; font-size: 18px; }
+      .feature-box { max-width: 90%; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">MerjiHost</div>
-    <div class="menu-button" id="menuBtn">&#9776;</div>
-  </header>
+<header>
+  <div class="logo">MerjiHost</div>
+  <div class="menu-button" id="menuBtn">&#9776;</div>
+</header>
 
-  <div class="slide-panel" id="slidePanel">
-    <button class="close-button" id="closeBtn">&times;</button>
-    <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
-    <button class="menu-item" onclick="location.href='404a.html'">Pesan Hosting</button>
-    <button class="menu-item" onclick="location.href='produk.html'">Produk Lainnya</button>
-    <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
-  </div>
-  <br>
+<div class="slide-panel" id="slidePanel">
+  <button class="close-button" id="closeBtn">&times;</button>
+  <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
+  <button class="menu-item" onclick="location.href='404a.html'">Pesan Hosting</button>
+  <button class="menu-item" onclick="location.href='produk.html'">Produk Lainnya</button>
+  <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
+</div>
 
-  <div id="mainContent">
-    <main>
-      <div class="intro-text">
-        <h1>MerjiHost Terpercaya</h1>
-        <p>Solusi hosting terpercaya dan stabil untuk semua kebutuhan server kamu. pesan sekarang!</p>
+<div id="mainContent">
+  <main>
+    <div class="intro-text">
+      <h1>MerjiHost Terpercaya</h1>
+      <p>Solusi hosting terpercaya dan stabil untuk semua kebutuhan server kamu. pesan sekarang!</p>
+    </div>
+
+    <div class="btn-container">
+      <button class="custom-btn" onclick="location.href='404a.html'">Pesan Hosting</button>
+      <button class="custom-btn" onclick="window.open('https://whatsapp.com/channel/0029VaxWKJS8F2p9As8oHb00','_blank')">Testimoni</button>
+    </div>
+
+    <div class="intro-text">
+      <h1>Kenapa Harus Memilih MerjiHost?</h1>
+    </div>
+
+    <div class="box-section">
+      <div class="feature-box">
+        <img src="https://i.postimg.cc/6pW8Xq7C/u.png" alt="u">
+        <h2>99% Uptime</h2>
+        <p>Server Online Dengan Uptime 24/Jam.</p>
+      </div>
+      <div class="feature-box">
+        <img src="https://i.postimg.cc/3whDW1b0/20250808-225140.png" alt="d">
+        <h2>Fast Storage</h2>
+        <p>SSD NVMe Untuk Performa Penyimpanan Maksimal.</p>
+      </div>
+      <div class="feature-box">
+        <img src="https://i.postimg.cc/434VBwbk/dd.png" alt="dd">
+        <h2>DDoS Protection</h2>
+        <p>Perlindungan DDoS Untuk Menjaga Keamanan Server Anda.</p>
+      </div>
+      <div class="feature-box">
+        <img src="https://i.postimg.cc/FHcJy20W/20250815-174942.png" alt="is">
+        <h2>Instant Setup</h2>
+        <p>Server Siap Dalam Hitungan Menit</p>
+      </div>
+    </div> 
+
+    <!-- Review Section -->
+    <section class="review-section">
+      <h2>Review Dari Customer</h2>
+
+      <div class="review-card">
+        <div class="review-header">
+          <img src="https://i.postimg.cc/YqsgHsGp/20250815-190258.png" alt="Abirian">
+          <div>
+            <div class="review-name">Abirian</div>
+            <div class="review-sub">MerjiHost Review</div>
+          </div>
+        </div>
+        <div class="review-text">Hosting yang bagus dan proses instant, dan pelayanan yang ramah.</div>
+        <div class="stars">★★★★★</div>
       </div>
 
-      <div class="btn-container">
-        <button class="custom-btn" onclick="location.href='404a.html'">Pesan Hosting</button>
-        <button class="custom-btn" onclick="window.open('https://whatsapp.com/channel/0029VaxWKJS8F2p9As8oHb00','_blank')">Testimoni</button>
+      <div class="review-card">
+        <div class="review-header">
+          <img src="https://i.postimg.cc/43Z3k65f/20250815-190324.png" alt="Feridwi">
+          <div>
+            <div class="review-name">Feridwi</div>
+            <div class="review-sub">MerjiHost Review</div>
+          </div>
+        </div>
+        <div class="review-text">Kualitas server sangat baik dan support selalu siap membantu.</div>
+        <div class="stars">★★★★★</div>
+      </d>
+    </section>
+
+    <!-- Social Media Section -->
+    <div class="social-section">
+      <h3>Media Sosial Kami</h3>
+      <div class="social-icons">
+        <a href=""><img src="https://i.postimg.cc/5NnYmkqB/20250815-185032.png" alt="YouTube"></a>
+        <a href=""><img src="https://i.postimg.cc/QMjQMWbm/20250815-184728.png" alt="TikTok"></a>
+        <a href=""><img src="https://i.postimg.cc/SRKqQV24/20250815-185246.png" alt="Instagram"></a>
       </div>
+    </div>
 
-  <div id="mainContent">
-      <div class="intro-text">
-        <h1>Kenapa Harus Memilih MerjiHost?</h1>
-      </div>
+  </main>
 
-      <div class="box-section">
-        <div class="feature-box">
-          <img src="https://i.postimg.cc/6pW8Xq7C/u.png" alt="u">
-          <h2>99% Uptime</h2>
-          <p>Server Online Dengan Uptime 24/Jam.</p>
-        </div>
-        <div class="feature-box">
-          <img src="https://i.postimg.cc/3whDW1b0/20250808-225140.png" alt="d">
-          <h2>Fast Storage</h2>
-          <p>SSD NVMe Untuk Performa Penyimpanan Maksimal.</p>
-        </div>
-        <div class="feature-box">
-          <img src="https://i.postimg.cc/434VBwbk/dd.png" alt="dd">
-          <h2>DDoS Protection</h2>
-          <p>Perlindungan DDoS Untuk Menjaga Keamanan Server Anda.</p>
-        </div>
-        <div class="feature-box">
-          <img src="https://i.postimg.cc/FHcJy20W/20250815-174942.png" alt="is">
-          <h2>Instant Setup</h2>
-          <p>Server Siap Dalam Hitungan Menit</p>
-        </div>
-      </div> 
+  <footer>© 2025 MerjiHost. All Rights Reserved</footer>
+</d>
 
-    </m>
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const slidePanel = document.getElementById('slidePanel');
+  const closeBtn = document.getElementById('closeBtn');
+  const mainContent = document.getElementById('mainContent');
 
-    <footer>© 2025 MerjiHost. All Rights Reserved</footer>
-  </div>
+  menuBtn.addEventListener('click', () => {
+    slidePanel.classList.add('open');
+    mainContent.classList.add('blur-active');
+  });
 
-  <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const slidePanel = document.getElementById('slidePanel');
-    const closeBtn = document.getElementById('closeBtn');
-    const mainContent = document.getElementById('mainContent');
+  closeBtn.addEventListener('click', () => {
+    slidePanel.classList.remove('open');
+    mainContent.classList.remove('blur-active');
+  });
+</script>
 
-    menuBtn.addEventListener('click', () => {
-      slidePanel.classList.add('open');
-      mainContent.classList.add('blur-active');
-    });
-
-    closeBtn.addEventListener('click', () => {
-      slidePanel.classList.remove('open');
-      mainContent.classList.remove('blur-active');
-    });
-  </script>
 </body>
 </html>
