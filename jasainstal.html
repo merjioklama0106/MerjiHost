@@ -380,17 +380,18 @@
   <div id="mainContent">
     <!-- Papan Kotak Domain -->
     <div class="domain-box" id="domainBox">
-      <div class="domain-title">Nokos</div>
+      <div class="domain-title">JasaInstal</div>
 
       <!-- Pilih Domain -->
       <div class="custom-select-wrapper">
-        <label for="selectDomain" class="custom-select-label">Pilih Nokos</label>
+        <label for="selectDomain" class="custom-select-label">Pilih Jasa Instal</label>
         <div class="custom-select" id="selectDomain" tabindex="0" aria-haspopup="listbox" aria-expanded="false" role="combobox" aria-labelledby="selectDomainLabel">
-          <span class="selected-text" id="selectedDomainText">Pilih Negara</span>
+          <span class="selected-text" id="selectedDomainText">Pilih Jasa</span>
         </div>
         <div class="custom-select-items" id="domainOptions" role="listbox" tabindex="-1">
-          <div class="custom-select-item" data-value="indo" role="option" tabindex="0">Indonesia</div>
-          <div class="custom-select-item" data-value="viet" role="option" tabindex="0">Vietnam</div>
+          <div class="custom-select-item" data-value="Pterodactyl" role="option" tabindex="0">Pterodactyl</div>
+          <div class="custom-select-item" data-value="node" role="option" tabindex="0">Node/Wings</div>
+          <div class="custom-select-item" data-value="fixnode" role="option" tabindex="0">Fix Node/Wings Merah</div>
         </div>
       </div>
 
@@ -416,7 +417,7 @@
       <!-- Deskripsi Keuntungan -->
       <div class="description-box" id="descriptionBox">
         <strong>Keuntungan</strong>
-        Silakan pilih Nokos untuk melihat keuntungan.
+        Silakan pilih jasa untuk melihat keuntungan.
       </div>
 
       <!-- Harga -->
@@ -528,25 +529,30 @@
     const descriptionBox = document.getElementById('descriptionBox');
     function updatePriceText() {
       const domainVal = domainSelect.getValue();
-      if(domainVal === 'indo') priceText.textContent = "Harga : Rp 7.000";
-      else if(domainVal === 'viet') priceText.textContent = "Harga : Rp 8.000";
+      if(domainVal === 'pterodactyl') priceText.textContent = "Harga : Rp 5.000";
+      else if(domainVal === 'node') priceText.textContent = "Harga : Rp 5.000";
+      else if(domainVal === 'fixnode') priceText.textContent = "Harga : Rp 5.000";
       else priceText.textContent = "Harga :";
     }
 
     // Update deskripsi keuntungan sesuai domain terpilih
     function updateDescription() {
       const domainVal = domainSelect.getValue();
-      if(domainVal === 'indo') {
+      if(domainVal === 'pterodactyl') {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-Tidak Ada Garansi!
+100% Akun vps kamu aman
 `;
-      } else if(domainVal === 'viet') {
+      } else if(domainVal === 'node') {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-Tidak Ada Garansi!
+100% Akun vps kamu aman
+`;
+      } else if(domainVal === 'fixnode') {
+        descriptionBox.innerHTML = `<strong>Keuntungan</strong>
+100% Akun vps kamu aman
 `;
       } else {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-Silakan pilih nokos untuk melihat keuntungan.`;
+Silakan pilih domain untuk melihat keuntungan.`;
       }
     }
 
@@ -575,14 +581,15 @@ Silakan pilih nokos untuk melihat keuntungan.`;
       }
 
       let price = "";
-      if(domainVal === "indo") price = "Rp 7.000";
-      else if(domainVal === "viet") price = "Rp 8.000";
+      if(domainVal === "Pterodactyl") price = "Rp 5.000";
+      else if(domainVal === "node") price = "Rp 5.000";
+      else if(domainVal === "fixnode") price = "Rp 5.000";
 
       // Format pesan WhatsApp
       const phone = "628979687563";
       const text = 
-        `*ORDER NOKOS WHATSAPP*%0A`+
-        `NOKOS%20: ${domainVal}%0A`+
+        `*ORDER JASA PTERODACTYL*%0A`+
+        `JASA%20: ${domainVal}%0A`+
         `NAMA%20: ${domainNameVal}%0A`+
         `METODE%20PEMBAYARAN%20: ${paymentVal}%0A`+
         `NOMINAL%20: ${price}`;
