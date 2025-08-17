@@ -368,16 +368,16 @@
 
   <div id="mainContent">
     <div class="domain-box" id="domainBox">
-      <div class="domain-title">Domain CloudFlare</div>
+      <div class="domain-title">Jasa Unbaned WhatsApp</div>
 
       <div class="custom-select-wrapper">
-        <label for="selectDomain" class="custom-select-label">Pilih Domain</label>
+        <label for="selectDomain" class="custom-select-label">Pilih Metode Kenon</label>
         <div class="custom-select" id="selectDomain" tabindex="0" aria-haspopup="listbox" aria-expanded="false" role="combobox" aria-labelledby="selectDomainLabel">
-          <span class="selected-text" id="selectedDomainText">Pilih Domain</span>
+          <span class="selected-text" id="selectedDomainText">Pilih Metod</span>
         </div>
         <div class="custom-select-items" id="domainOptions" role="listbox" tabindex="-1">
-          <div class="custom-select-item" data-value="my.id" role="option" tabindex="0">my.id</div>
-          <div class="custom-select-item" data-value="biz.id" role="option" tabindex="0">biz.id</div>
+          <div class="custom-select-item" data-value="spam" role="option" tabindex="0">Spam</div>
+          <div class="custom-select-item" data-value="perma" role="option" tabindex="0">Perma</div>
         </div>
       </div>
 
@@ -400,7 +400,7 @@
 
       <div class="description-box" id="descriptionBox">
         <strong>Keuntungan</strong>
-        Silakan pilih domain untuk melihat keuntungan.
+        Silakan pilih metode kenon untuk melihat keuntungan.
       </div>
 
       <div class="price-text" id="priceText">Harga :</div>
@@ -506,30 +506,26 @@
     const descriptionBox = document.getElementById('descriptionBox');
     function updatePriceText() {
       const domainVal = domainSelect.getValue();
-      if(domainVal === 'my.id') priceText.textContent = "Harga : Rp 15.000";
-      else if(domainVal === 'biz.id') priceText.textContent = "Harga : Rp 15.000";
+      if(domainVal === 'spam') priceText.textContent = "Harga : Rp 5.000";
+      else if(domainVal === 'perma') priceText.textContent = "Harga : Rp 15.000";
       else priceText.textContent = "Harga :";
     }
 
     function updateDescription() {
       const domainVal = domainSelect.getValue();
-      if(domainVal === 'my.id') {
+      if(domainVal === 'spam') {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-Domain akan active dari hari pertama pembelian!
-
-• Active 1 Tahun
-• Full Akses CloudFlare
+Cukup kirim nomor WhatsApp yang terkena kenon spam.
+Dan akan kami proses sekitar 8-24 Jam, Jika gagal terunban maka jaminan 100% uang anda kembali.
 `;
-      } else if(domainVal === 'biz.id') {
+      } else if(domainVal === 'perma') {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-Domain akan active dari hari pertama pembelian!
-
-• Active 1 Tahun
-• Full Akses CloudFlare
+Cukuk kirim nomor WhatsApp yang terkena kenon perma.
+Dan akan kami proses sekitar 10Jam - 2Hari, jika gagal terunban maka jaminan 100% uang anda kembali.
 `;
       } else {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-Silakan pilih domain untuk melihat keuntungan.`;
+Silakan pilih metod kenon untuk melihat keuntungan.`;
       }
     }
 
@@ -556,13 +552,13 @@ Silakan pilih domain untuk melihat keuntungan.`;
       }
 
       let price = "";
-      if(domainVal === "my.id") price = "Rp 15.000";
-      else if(domainVal === "biz.id") price = "Rp 15.000";
+      if(domainVal === "spam") price = "Rp 5.000";
+      else if(domainVal === "perma") price = "Rp 15.000";
 
       const phone = "628979687563";
       const text = 
-        `*ORDER DOMAIN*%0A`+
-        `DOMAIN%20: ${domainVal}%0A`+
+        `*ORDER UNBANED WHATSAPP*%0A`+
+        `KENON%20: ${domainVal}%0A`+
         `NAMA%20: ${domainNameVal}%0A`+
         `METODE%20PEMBAYARAN%20: ${paymentVal}%0A`+
         `NOMINAL%20: ${price}`;
