@@ -6,329 +6,241 @@
   <title>MerjiHost</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    * { 
+    margin:0; 
+    padding:0; 
+    box-sizing:border-box;
     }
-
     body {
-      background: linear-gradient(to bottom, #101820, #101820);
-      color: white;
-      font-family: 'Poppins', sans-serif;
-      scroll-behavior: smooth;
-      height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    .blur-active {
-      filter: blur(5px);
-      pointer-events: none;
-      user-select: none;
+     background: url('https://i.postimg.cc/tCJckg8B/6d9a5b8b76de46e5052a6c76835a06a7.jpg') no-repeat center center fixed;
+     background-size: cover;
+     color: white;
+     font-family: 'Poppins', sans-serif;
+     overflow-x: hidden; 
+     scroll-behavior: smooth;
     }
 
     header {
-      background-color: #a5a5a5;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 999;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      background:#a5a5a5;
+      display:flex; 
+      justify-content:space-between; 
+      align-items:center;
+      padding:10px 20px; 
+      position:fixed; 
+      top:0; 
+      width:100%; 
+      z-index:999;
+      box-shadow:0 2px 5px rgba(0,0,0,0.3);
     }
-
     .logo {
-      font-weight: 600;
-      font-size: 24px;
-      color: #000;
-      animation: float 2s ease-in-out infinite;
+      font-weight:600; 
+      font-size:24px; 
+      color:#000;
+      animation:float 2s ease-in-out infinite;
     }
-
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
+      0%,100% { transform: translateY(0px); }
       50% { transform: translateY(-5px); }
     }
 
     .menu-button {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      background: transparent;
-      color: white;
-      border: 2px solid white;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s ease;
+      width:40px; 
+      height:40px; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center;
+      font-size:20px; 
+      background:transparent; 
+      color:white;
+      border:2px solid white; 
+      border-radius:8px; 
+      cursor:pointer; 
+      transition:0.3s;
     }
-
-    .menu-button:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.1);
-    }
+    .menu-button:hover { 
+      background:rgba(255,255,255,0.2); 
+      transform:scale(1.1);
+      }
 
     .slide-panel {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      height: 100%;
-      width: 180px;
-      background: #111;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
-      padding: 70px 10px 20px;
-      transition: right 0.4s ease;
-      z-index: 1000;
+      position:fixed; top:0; 
+      right:-100%; 
+      height:100%; 
+      width:180px;
+      background:#111; 
+      box-shadow:-2px 0 10px rgba(0,0,0,0.5);
+      padding:70px 10px 20px; 
+      transition:right 0.4s ease; 
+      z-index:1000;
     }
-
-    .slide-panel.open {
-      right: 0;
+    .slide-panel.open { 
+      right:0;
     }
-
-    .slide-panel .panel-header {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .panel-header img {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    .panel-header span {
-      font-size: 16px;
-      font-weight: 600;
-      color: white;
-    }
-
     .close-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 40px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      transition: transform 0.2s;
+      position:absolute; 
+      top:10px; 
+      right:10px; 
+      font-size:40px;
+      background:none; 
+      border:none; 
+      color:white; 
+      cursor:pointer; 
+      font-weight:bold;
+      transition:transform 0.2s;
     }
-
-    .close-button:hover {
-      transform: scale(1.2);
+    .close-button:hover { 
+      transform:scale(1.2);
     }
-
     .slide-panel button.menu-item {
-      width: 100%;
-      margin: 20px 0;
-      display: block;
-      padding: 12px;
-      background: linear-gradient(to right, #333, #222);
-      color: #fff;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      transition: 0.3s ease;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(255,255,255,0.15);
+      width:100%; 
+      margin:20px 0; 
+      display:block;
+      padding:12px;
+      background:linear-gradient(to 
+      right,#333,#222); 
+      color:#fff;
+      font-size:16px; 
+      border:none; 
+      border-radius:8px;
+      transition:0.3s ease; 
+      cursor:pointer;
+      box-shadow:0 0 10px rgba(255,255,255,0.15);
     }
-
     .slide-panel button.menu-item:hover {
-      background: #444;
-      transform: scale(1.05);
+      background:#444; 
+      transform:scale(1.05);
     }
 
-    main {
-      padding-top: 100px;
-      text-align: center;
+    @media(max-width:600px){
+      .slide-panel { width:70%; }
     }
 
-    .intro-text h1 {
-      font-size: 42px;
-      color: #fff;
-      margin-bottom: 10px;
+    main { 
+    padding-top:100px; 
+    text-align:center; 
+    overflow:hidden;
+    }
+    .intro-text h1 { 
+      font-size:42px; 
+    margin-bottom:10px;
+    }
+    .intro-text p { 
+    font-size:16px; color:#ccc; 
+    max-width:90%; 
+    margin:0 auto 30px;
     }
 
-    .intro-text p {
-      font-size: 16px;
-      color: #cccccc;
-      max-width: 90%;
-      margin: 0 auto 30px;
-      font-weight: 400;
+    .btn-group {
+      display:inline-flex; 
+      border:2px solid white; 
+      border-radius:30px;
+      overflow:hidden; 
+      margin-bottom:20px; 
+      box-shadow:0 0 10px rgba(255,255,255,0.3);
+    }
+    .btn-group button {
+      background:transparent; 
+      border:none; 
+      color:white; 
+      padding:12px 25px;
+      cursor:pointer; 
+      font-size:16px; 
+      font-weight:600; 
+      transition:0.3s;
+    }
+    .btn-group button.active {
+      background:#007bff; 
+      box-shadow:inset 0 0 10px rgba(255,255,255,0.5);
+    }
+    .btn-group button:not(:last-child){ 
+      border-right:2px solid white;
+    }
+
+    .slider { 
+    display:flex; 
+    width:200%; 
+    transition:transform 0.6s ease;
+    }
+    .slide { width:50%; 
+    padding:20px;
     }
 
     .paket-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin: 40px 0;
+      display:flex; 
+      justify-content:center; 
+      flex-wrap:wrap; gap:20px; 
+      margin:40px 0;
     }
-
     .paket-box {
-      background: #111;
-      border-radius: 20px;
-      padding: 25px;
-      width: 300px;
-      box-shadow: 0 0 10px rgba(0,255,255,0.1);
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-      position: relative;
+      background:#111; 
+      border-radius:20px; 
+      padding:25px; width:300px;
+      box-shadow:0 0 10px rgba(0,255,255,0.1);
+      transition:all 0.3s ease; 
+      border:2px solid transparent;
     }
-
-    .paket-box.effect {
-      box-shadow: 0 0 30px 10px rgba(0,255,255,0.5);
+    .paket-box.effect { 
+      box-shadow:0 0 30px 10px rgba(0,255,255,0.5); 
     }
-
-    .paket-title {
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #00ffff;
+    .paket-title { 
+    font-size:22px; 
+    font-weight:600; 
+    margin-bottom:10px; 
+    color:#00ffff;
     }
-
-    .paket-harga {
-      font-size: 24px;
-      font-weight: bold;
-      color: #00d0ff;
-      margin-bottom: 20px;
-    }
-
-    .per-bulan {
-      font-size: 13px;
-      color: #ccc;
-      margin-left: 5px;
-    }
-
-    .fitur {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 10px 0;
-    }
-
-    .fitur img {
-      width: 24px;
-      height: 24px;
-      object-fit: cover;
-    }
-
-    .fitur span {
-      font-size: 15px;
-      color: #ddd;
-    }
-
-    .pesan-btn {
-      display: block;
-      margin-top: 20px;
-      background: none;
-      color: white;
-      text-align: center;
-      padding: 12px 0;
-      border-radius: 30px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s ease;
-      box-shadow: 0 0 0 rgba(0,0,0,0);
-      border: 2px solid white;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pesan-btn.effect {
-      box-shadow: 0 0 15px 4px rgba(255,255,255,0.7);
-    }
-
-    .pesan-btn:hover {
-      transform: scale(1.05);
-    }
-
-    @keyframes slideUp {
-      0% {
-        transform: translateY(40px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0px);
-        opacity: 1;
-      }
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 100px;
-      font-size: 14px;
-      padding-bottom: 20px;
-      color: #ccc;
-    }
-
-    @media screen and (max-width: 600px) {
-      .slide-panel {
-        width: 70%;
-      }
-
-      .intro-text h1 {
-        font-size: 30px;
-      }
-
-      .paket-box {
-        width: 90%;
-      }
-  .btn-group{
-    display:inline-flex;
-    border:2px solid white;
-    border-radius:30px;
-    overflow:hidden;
+    .paket-harga { 
+    font-size:24px; 
+    font-weight:bold; 
+    color:#00d0ff; 
     margin-bottom:20px;
-    box-shadow:0 0 10px rgba(255,255,255,0.3);
-  }
-  .btn-group button{
-    background:transparent;
-    border:none;
-    color:white;
-    padding:12px 25px;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:600;
-    position:relative;
-    transition:0.3s ease;
-  }
-  .btn-group button:not(:last-child){
-    border-right:2px solid white;
-  }
-  .btn-group button.active{
-    background:#007bff;
-    box-shadow:inset 0 0 10px rgba(255,255,255,0.5);
-  }
-  .btn-group button::after{
-    content:"";
-    position:absolute;
-    top:0;left:0;
-    width:0;height:100%;
-    background:rgba(255,255,255,0.2);
-    transition:width 0.3s ease;
-  }
-  .btn-group button:active::after{
-    width:100%;
-    left:auto;
-    right:0;
-   }
-  }
+    }
+    .per-bulan { 
+    font-size:13px; 
+    color:#ccc; 
+    margin-left:5px;
+    }
+    .fitur { 
+    display:flex; 
+    align-items:center; 
+    gap:10px; 
+    margin:10px 0;
+    }
+    .fitur img { 
+    width:24px; 
+    height:24px;
+    }
+    .fitur span { 
+    font-size:15px; 
+    color:#ddd;
+    }
+    .pesan-btn {
+      display:block; 
+      margin-top:20px; 
+      padding:12px 0; 
+      border-radius:30px;
+      border:2px solid white; 
+      color:white; 
+      font-weight:bold;
+      text-decoration:none; 
+      transition:0.3s; 
+      overflow:hidden;
+    }
+    .pesan-btn.effect { 
+      box-shadow:0 0 15px 4px rgba(255,255,255,0.7); }
+    .pesan-btn:hover { 
+      transform:scale(1.05);
+    background:#007bff; }
+
+    footer { text-align:center; margin:50px 0 20px; font-size:14px; color:#ccc; }
+    @media(max-width:600px){
+      .intro-text h1{font-size:30px}
+      .paket-box{width:90%}
+      .slide{width:100%}
+      .slider{width:200%}
+    }
   </style>
 </head>
 <body>
-
   <header>
     <div class="logo">MerjiHost</div>
     <div class="menu-button" id="menuBtn">&#9776;</div>
@@ -337,295 +249,300 @@
   <div class="slide-panel" id="slidePanel">
     <button class="close-button" id="closeBtn">&times;</button>
     <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
-    <button class="menu-item" onclick="location.href='404a.html'">Pesan Hosting</button>
+    <button class="menu-item" onclick="location.href='hosting.html'">Pesan Hosting</button>
     <button class="menu-item" onclick="location.href='produk.html'">Produk Lainnya</button>
     <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
   </div>
 
-  <div id="mainContent">
-    <main>
-      <div class="intro-text">
-        <h1>Hosting Minecraft</h1>
-        <p>Pilih Speck Basic & Premium hosting yang ingin kamu beli di bawah ini!</p>
-      </div>
-      
+  <main>
+    <div class="intro-text">
+      <h1>Hosting Minecraft</h1>
+      <p>Pilih Speck Basic & Premium hosting yang ingin kamu beli di bawah ini!</p>
+    </div>
+
     <div class="btn-group">
-      <button id="btn1" onclick="location.href='404a.html'">Basic Hosting</button>
-      <button id="btn2" onclick="location.href='404a.html'">Premium Hosting</button>
+      <button id="btnBasic" class="active">Basic Hosting</button>
+      <button id="btnPremium">Premium Hosting</button>
     </div>
     
-  <div id="mainContent">
-      <div class="intro-text">
-        <h1>HOSTING MINECRAFT BASIC</h1>
-      </div>
+    <div class="slider" id="slider">
+      <div class="slide">
+        <h2>HOSTING MINECRAFT BASIC</h2>
+        
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Basic 1GB</h3>
+            <p class="paket-harga">Rp 5.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>1GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>1 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>5GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Basic%201GB%0ANOMINAL%20:%20Rp5.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
 
-      <div class="paket-container">
-        <div class="paket-box" onclick="showBoxEffect(this)">
-          <h2 class="paket-title">Paket 1GB</h2>
-          <p class="paket-harga">Rp 5.000<span class="per-bulan">/bulan</span></p>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png" alt="RAM" loading="lazy">
-            <span>1GB RAM</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/jjkKBdNq/cpu.png" alt="CPU" loading="lazy">
-            <span>1 vCPU</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/63RSz9fm/ssd.png" alt="SSD" loading="lazy">
-            <span>5GB SSD</span>
-          </div>
-          <a href="https://wa.me/628979687563?text=*HALLO%20SAYA%20INGIN%20MEMBELI%20HOSTING*%0APAKET%20:%201GB%0ANOMINAL%20:%20Rp5.000%0ASOFTWARE%20:%20BEDROCK"
-             class="pesan-btn"
-             target="_blank"
-             onclick="event.stopPropagation(); showBtnEffect(this)">
-             Pesan Via WhatsApp
-          </a>
-        </div>
-      </div>
-      
-      <div class="paket-container">
-        <div class="paket-box" onclick="showBoxEffect(this)">
-          <h2 class="paket-title">Paket 2GB</h2>
-          <p class="paket-harga">Rp 10.000<span class="per-bulan">/bulan</span></p>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png" alt="RAM" loading="lazy">
-            <span>2GB RAM</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/jjkKBdNq/cpu.png" alt="CPU" loading="lazy">
-            <span>2 vCPU</span>
-          </div>
-          <div class="fitur">
-            <img src="
-            https://i.postimg.cc/63RSz9fm/ssd.png" alt="SSD" loading="lazy">
-            <span>10GB SSD</span>
-          </div>
-           <a href="https://wa.me/628979687563?text=*HALLO%20SAYA%20INGIN%20MEMBELI%20HOSTING*%0APAKET%20:%202GB%0ANOMINAL%20:%20Rp10.000%0ASOFTWARE%20:%20BEDROCK"
-             class="pesan-btn"
-             target="_blank"
-             onclick="event.stopPropagation(); showBtnEffect(this)">
-             Pesan Via WhatsApp
-          </a>
-        </div>
-      </div>
-      
-       <div class="paket-container">
-        <div class="paket-box" onclick="showBoxEffect(this)">
-          <h2 class="paket-title">Paket 3GB</h2>
-          <p class="paket-harga">Rp 15.000<span class="per-bulan">/bulan</span></p>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png" alt="RAM" loading="lazy">
-            <span>3GB RAM</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/jjkKBdNq/cpu.png" alt="CPU" loading="lazy">
-            <span>3 vCPU</span>
-          </div>
-          <div class="fitur">
-            <img src="
-            https://i.postimg.cc/63RSz9fm/ssd.png" alt="SSD" loading="lazy">
-            <span>15GB SSD</span>
-          </div>
-           <a href="https://wa.me/628979687563?text=*HALLO%20SAYA%20INGIN%20MEMBELI%20HOSTING*%0APAKET%20:%203GB%0ANOMINAL%20:%20Rp15.000%0ASOFTWARE%20:%20BEDROCK"
-             class="pesan-btn"
-             target="_blank"
-             onclick="event.stopPropagation(); showBtnEffect(this)">
-             Pesan Via WhatsApp
-          </a>
-        </div>
-      </div>
-      
-      <div class="paket-container">
-        <div class="paket-box" onclick="showBoxEffect(this)">
-          <h2 class="paket-title">Paket 4GB</h2>
-          <p class="paket-harga">Rp 20.000<span class="per-bulan">/bulan</span></p>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png" alt="RAM" loading="lazy">
-            <span>4GB RAM</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/jjkKBdNq/cpu.png" alt="CPU" loading="lazy">
-            <span>4 vCPU</span>
-          </div>
-          <div class="fitur">
-            <img src="
-            https://i.postimg.cc/63RSz9fm/ssd.png" alt="SSD" loading="lazy">
-            <span>20GB SSD</span>
-          </div>
-          <a href="https://wa.me/628979687563?text=*HALLO%20SAYA%20INGIN%20MEMBELI%20HOSTING*%0APAKET%20:%204GB%0ANOMINAL%20:%20Rp20.000%0ASOFTWARE%20:%20BEDROCK"
-             class="pesan-btn"
-             target="_blank"
-             onclick="event.stopPropagation(); showBtnEffect(this)">
-             Pesan Via WhatsApp
-          </a>
-        </div>
-      </div>
-      
-      <div class="paket-container">
-        <div class="paket-box" onclick="showBoxEffect(this)">
-          <h2 class="paket-title">Paket 5GB</h2>
-          <p class="paket-harga">Rp 25.000<span class="per-bulan">/bulan</span></p>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png" alt="RAM" loading="lazy">
-            <span>5GB RAM</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/jjkKBdNq/cpu.png" alt="CPU" loading="lazy">
-            <span>5 vCPU</span>
-          </div>
-          <div class="fitur">
-            <img src="
-            https://i.postimg.cc/63RSz9fm/ssd.png" alt="SSD" loading="lazy">
-            <span>25GB SSD</span>
-          </div>
-          <a href="https://wa.me/628979687563?text=*HALLO%20SAYA%20INGIN%20MEMBELI%20HOSTING*%0APAKET%20:%205GB%0ANOMINAL%20:%20Rp25.000%0ASOFTWARE%20:%20BEDROCK"
-             class="pesan-btn"
-             target="_blank"
-             onclick="event.stopPropagation(); showBtnEffect(this)">
-             Pesan Via WhatsApp
-          </a>
-        </div>
-      </div>
-    
-    <div class="paket-container">
-        <div class="paket-box" onclick="showBoxEffect(this)">
-          <h2 class="paket-title">Paket 6GB</h2>
-          <p class="paket-harga">Rp 30.000<span class="per-bulan">/bulan</span></p>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png" alt="RAM" loading="lazy">
-            <span>6GB RAM</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/jjkKBdNq/cpu.png" alt="CPU" loading="lazy">
-            <span>6 vCPU</span>
-          </div>
-          <div class="fitur">
-            <img src="
-            https://i.postimg.cc/63RSz9fm/ssd.png" alt="SSD" loading="lazy">
-            <span>30GB SSD</span>
-          </div>
-          <a href="https://wa.me/628979687563?text=*HALLO%20SAYA%20INGIN%20MEMBELI%20HOSTING*%0APAKET%20:%206GB%0ANOMINAL%20:%20Rp30.000%0ASOFTWARE%20:%20BEDROCK"
-             class="pesan-btn"
-             target="_blank"
-             onclick="event.stopPropagation(); showBtnEffect(this)">
-             Pesan Via WhatsApp
-          </a>
-        </div>
-      </div>
-    
-      <div class="paket-container">
-        <div class="paket-box" onclick="showBoxEffect(this)">
-          <h2 class="paket-title">Paket 7GB</h2>
-          <p class="paket-harga">Rp 35.000<span class="per-bulan">/bulan</span></p>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png" alt="RAM" loading="lazy">
-            <span>7GB RAM</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/jjkKBdNq/cpu.png" alt="CPU" loading="lazy">
-            <span>7 vCPU</span>
-          </div>
-          <div class="fitur">
-            <img src="
-            https://i.postimg.cc/63RSz9fm/ssd.png" alt="SSD" loading="lazy">
-            <span>35GB SSD</span>
-          </div>
-          <a href="https://wa.me/628979687563?text=*HALLO%20SAYA%20INGIN%20MEMBELI%20HOSTING*%0APAKET%20:%207GB%0ANOMINAL%20:%20Rp35.000%0ASOFTWARE%20:%20BEDROCK"
-             class="pesan-btn"
-             target="_blank"
-             onclick="event.stopPropagation(); showBtnEffect(this)">
-             Pesan Via WhatsApp
-          </a>
-        </div>
-      </div>
-    
-    <div class="paket-container">
-        <div class="paket-box" onclick="showBoxEffect(this)">
-          <h2 class="paket-title">Paket 8GB</h2>
-          <p class="paket-harga">Rp 40.000<span class="per-bulan">/bulan</span></p>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png" alt="RAM" loading="lazy">
-            <span>8GB RAM</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.postimg.cc/jjkKBdNq/cpu.png" alt="CPU" loading="lazy">
-            <span>8 vCPU</span>
-          </div>
-          <div class="fitur">
-            <img src="
-            https://i.postimg.cc/63RSz9fm/ssd.png" alt="SSD" loading="lazy">
-            <span>40GB SSD</span>
-          </div>
-          <a href="https://wa.me/628979687563?text=*HALLO%20SAYA%20INGIN%20MEMBELI%20HOSTING*%0APAKET%20:%208GB%0ANOMINAL%20:%20Rp40.000%0ASOFTWARE%20:%20BEDROCK"
-             class="pesan-btn"
-             target="_blank"
-             onclick="event.stopPropagation(); showBtnEffect(this)">
-             Pesan Via WhatsApp
-          </a>
-        </div>
-      </div>
-    
-    <div class="paket-container">
-        <div class="paket-box" onclick="showBoxEffect(this)">
-          <h2 class="paket-title">Keuntungan</h2>
-          <div class="fitur">
-            <img src="https://i.imgur.com/AM2zhXa.png" alt="c" loading="lazy">
-            <span>Uptime 24/7</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.imgur.com/AM2zhXa.png" alt="c" loading="lazy">
-            <span>Anti DDoS Protection</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.imgur.com/AM2zhXa.png" alt="c" loading="lazy">
-            <span>Anti Down 90%</span>
-          </div>
-          <div class="fitur">
-            <img src="https://i.imgur.com/AM2zhXa.png" alt="c" loading="lazy">
-            <span>5 Slot Backup</span>
-          </div>
-          <div class="fitur">
-            <img src="
-            https://i.imgur.com/AM2zhXa.png" alt="c" loading="lazy">
-            <span>Active 30 Days/Hari</span>
-          </div>
-          <div class="fitur">
-            <img src="
-            https://i.imgur.com/AM2zhXa.png" alt="c" loading="lazy">
-            <span>Garansi 30 Days/Hari</span>
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Basic 2GB</h3>
+            <p class="paket-harga">Rp 10.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>2GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>2 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>10GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Basic%202GB%0ANOMINAL%20:%20Rp10.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
           </div>
         </div>
-      </div>
-    </main>
 
-    <footer>© 2025 MerjiHost. All Rights Reserved</footer>
-  </d>
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Basic 3GB</h3>
+            <p class="paket-harga">Rp 15.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>3GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>3 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>15GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Basic%203GB%0ANOMINAL%20:%20Rp15.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Basic 4GB</h3>
+            <p class="paket-harga">Rp 20.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>4GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>4 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>20GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Basic%204GB%0ANOMINAL%20:%20Rp20.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Basic 5GB</h3>
+            <p class="paket-harga">Rp 25.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>5GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>5 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>25GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Basic%205GB%0ANOMINAL%20:%20Rp25.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Basic 6GB</h3>
+            <p class="paket-harga">Rp 30.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>6GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>6 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>30GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Basic%206GB%0ANOMINAL%20:%20Rp30.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+        
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Basic 7GB</h3>
+            <p class="paket-harga">Rp 35.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>7GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>7 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>35GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Basic%207GB%0ANOMINAL%20:%20Rp35.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Basic 8GB</h3>
+            <p class="paket-harga">Rp 40.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>8GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>8 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>40GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Basic%208GB%0ANOMINAL%20:%20Rp40.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+        
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Keuntungan Hosting Basic</h3>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Uptime 24/7</span></div>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Anti Down 90%</span></div>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Anti DDoS Protection</span></div>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Free 3 Slot Backup</span></div>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Active 30 Days/Hari</span></div>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Garansi 20 Days/Hari</span></div>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="slide">
+        <h2>HOSTING MINECRAFT PREMIUM</h2>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Premium 1GB</h3>
+            <p class="paket-harga">Rp 10.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>1GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>1 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>5GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Premium%201GB%0ANOMINAL%20:%20Rp10.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Premium 2GB</h3>
+            <p class="paket-harga">Rp 20.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>2GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>2 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>10GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Premium%202GB%0ANOMINAL%20:%20Rp20.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Premium 3GB</h3>
+            <p class="paket-harga">Rp 30.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>3GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>3 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>15GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Premium%203GB%0ANOMINAL%20:%20Rp30.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Premium 4GB</h3>
+            <p class="paket-harga">Rp 40.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>4GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>4 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>20GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Premium%204GB%0ANOMINAL%20:%20Rp40.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Premium 5GB</h3>
+            <p class="paket-harga">Rp 50.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>5GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>5 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>25GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Premium%205GB%0ANOMINAL%20:%20Rp50.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Premium 6GB</h3>
+            <p class="paket-harga">Rp 60.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>6GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>6 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>30GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Premium%206GB%0ANOMINAL%20:%20Rp60.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Premium 7GB</h3>
+            <p class="paket-harga">Rp 70.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>7GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>7 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>35GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Premium%207GB%0ANOMINAL%20:%20Rp70.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Premium 8GB</h3>
+            <p class="paket-harga">Rp 80.000<span class="per-bulan">/bulan</span></p>
+            <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png"><span>8GB RAM</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png"><span>8 vCPU</span></div>
+            <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png"><span>40GB SSD</span></div>
+            <a href="https://wa.me/628979687563?text=*ORDER%20MINECRAFT%20HOSTING*%0APAKET%20:%20Premium%208GB%0ANOMINAL%20:%20Rp80.000"
+               class="pesan-btn" target="_blank"
+               onclick="event.stopPropagation(); showBtnEffect(this)">Pesan Via WhatsApp</a>
+          </div>
+        </div>
+        <div class="paket-container">
+          <div class="paket-box" onclick="showBoxEffect(this)">
+            <h3 class="paket-title">Keuntungan Hosting Premium</h3>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Uptime 24/7</span></div>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Anti Down 100%</span></div>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Anti DDoS Protection</span></div>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Free 5 Slot Backup</span></div>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Active 30 Days/Hari</span></div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <footer>
+      &copy; 2025 MerjiHost. All Rights Reserved.
+    </footer>
+  </main>
 
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const slidePanel = document.getElementById('slidePanel');
     const closeBtn = document.getElementById('closeBtn');
-    const mainContent = document.getElementById('mainContent');
+    menuBtn.addEventListener('click', ()=> slidePanel.classList.add('open'));
+    closeBtn.addEventListener('click', ()=> slidePanel.classList.remove('open'));
 
-    menuBtn.addEventListener('click', () => {
-      slidePanel.classList.toggle('open');
-      mainContent.classList.toggle('blur-active');
+    const btnBasic = document.getElementById('btnBasic');
+    const btnPremium = document.getElementById('btnPremium');
+    const slider = document.getElementById('slider');
+
+    btnBasic.addEventListener('click', ()=>{
+      slider.style.transform = 'translateX(0%)';
+      btnBasic.classList.add('active');
+      btnPremium.classList.remove('active');
     });
 
-    closeBtn.addEventListener('click', () => {
-      slidePanel.classList.remove('open');
-      mainContent.classList.remove('blur-active');
+    btnPremium.addEventListener('click', ()=>{
+      slider.style.transform = 'translateX(-50%)';
+      btnPremium.classList.add('active');
+      btnBasic.classList.remove('active');
     });
 
-    function showBoxEffect(box) {
-      box.classList.add('effect');
-      setTimeout(() => box.classList.remove('effect'), 600);
+    function showBoxEffect(el){
+      document.querySelectorAll('.paket-box').forEach(box=> box.classList.remove('effect'));
+      el.classList.add('effect');
     }
-
-    function showBtnEffect(button) {
-      button.classList.add('effect');
-      setTimeout(() => button.classList.remove('effect'), 600);
+    function showBtnEffect(btn){
+      document.querySelectorAll('.pesan-btn').forEach(b=> b.classList.remove('effect'));
+      btn.classList.add('effect');
+      setTimeout(()=> btn.classList.remove('effect'), 1000);
     }
   </script>
 </body>

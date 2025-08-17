@@ -131,7 +131,6 @@
       }
     }
 
-    /* ========== Papan Kotak Domain ========== */
     .domain-box {
       width: 100%;
       max-width: 400px;
@@ -168,7 +167,6 @@
       user-select: none;
     }
 
-    /* ==== Custom Select Styles ==== */
     .custom-select-wrapper {
       position: relative;
       width: 100%;
@@ -244,8 +242,7 @@
     .custom-select-item:hover {
       background: #333;
     }
-
-    /* ==== Input Text ==== */
+    
     .input-text-wrapper {
       margin-top: 40px;
       width: 100%;
@@ -275,7 +272,6 @@
       background: #222;
     }
 
-    /* ==== Deskripsi Keuntungan ==== */
     .description-box {
       margin-top: 40px;
       background: #1f1f1f;
@@ -297,7 +293,6 @@
       font-size: 16px;
     }
 
-    /* ==== Harga & Button ==== */
     .price-text {
       margin-top: 40px;
       font-size: 18px;
@@ -340,7 +335,6 @@
       left: 0;
     }
 
-    /* ==== Notifikasi ==== */
     .notif {
       position: fixed;
       top: 20px;
@@ -372,17 +366,15 @@
   <div class="slide-panel" id="slidePanel">
     <button class="close-button" id="closeBtn">&times;</button>
     <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
-    <button class="menu-item" onclick="location.href='404a.html'">Pesan Hosting</button>
+    <button class="menu-item" onclick="location.href='hosting.html'">Pesan Hosting</button>
     <button class="menu-item" onclick="location.href='produk.html'">Produk Lainnya</button>
     <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
   </div>
 
   <div id="mainContent">
-    <!-- Papan Kotak Domain -->
     <div class="domain-box" id="domainBox">
       <div class="domain-title">Domain</div>
 
-      <!-- Pilih Domain -->
       <div class="custom-select-wrapper">
         <label for="selectDomain" class="custom-select-label">Pilih Domain</label>
         <div class="custom-select" id="selectDomain" tabindex="0" aria-haspopup="listbox" aria-expanded="false" role="combobox" aria-labelledby="selectDomainLabel">
@@ -394,7 +386,6 @@
         </div>
       </div>
 
-      <!-- Metode Pembayaran -->
       <div class="custom-select-wrapper">
         <label for="selectPayment" class="custom-select-label">Metode Pembayaran</label>
         <div class="custom-select" id="selectPayment" tabindex="0" aria-haspopup="listbox" aria-expanded="false" role="combobox" aria-labelledby="selectPaymentLabel">
@@ -407,33 +398,27 @@
         </div>
       </div>
 
-      <!-- Nama Domain -->
       <div class="input-text-wrapper">
         <label for="inputDomainName">Nama Anda</label>
         <input type="text" id="inputDomainName" placeholder="Isi nama anda" autocomplete="off" />
       </div>
 
-      <!-- Deskripsi Keuntungan -->
       <div class="description-box" id="descriptionBox">
         <strong>Keuntungan</strong>
         Silakan pilih domain untuk melihat keuntungan.
       </div>
 
-      <!-- Harga -->
       <div class="price-text" id="priceText">Harga :</div>
 
-      <!-- Button Pesan -->
       <button class="order-button" id="orderBtn" type="button">Pesan Via WhatsApp</button>
     </div>
 
     <footer>© 2025 MerjiHost. All Rights Reserved</footer>
   </div>
 
-  <!-- Notifikasi -->
   <div class="notif" id="notif">Isi semua data di bawah</div>
 
   <script>
-    // Sidebar menu logic
     const menuBtn = document.getElementById('menuBtn');
     const slidePanel = document.getElementById('slidePanel');
     const closeBtn = document.getElementById('closeBtn');
@@ -449,7 +434,6 @@
       mainContent.classList.remove('blur-active');
     });
 
-    // Custom Select Class
     class CustomSelect {
       constructor(wrapperId, selectedTextId, optionsId) {
         this.wrapper = document.getElementById(wrapperId);
@@ -512,8 +496,8 @@
         this.value = value;
         this.selectedText.textContent = text;
         this.selectedText.dataset.value = value;
-        updatePriceText(); // update harga saat domain berubah
-        updateDescription(); // update deskripsi keuntungan saat domain berubah
+        updatePriceText(); 
+        updateDescription(); 
       }
       getValue() {
         return this.value;
@@ -523,7 +507,6 @@
     const domainSelect = new CustomSelect('selectDomain', 'selectedDomainText', 'domainOptions');
     const paymentSelect = new CustomSelect('selectPayment', 'selectedPaymentText', 'paymentOptions');
 
-    // Harga dinamis sesuai domain
     const priceText = document.getElementById('priceText');
     const descriptionBox = document.getElementById('descriptionBox');
     function updatePriceText() {
@@ -533,7 +516,6 @@
       else priceText.textContent = "Harga :";
     }
 
-    // Update deskripsi keuntungan sesuai domain terpilih
     function updateDescription() {
       const domainVal = domainSelect.getValue();
       if(domainVal === 'my.id') {
@@ -556,7 +538,6 @@ Silakan pilih domain untuk melihat keuntungan.`;
       }
     }
 
-    // Notifikasi
     const notif = document.getElementById('notif');
     function showNotif(message) {
       notif.textContent = message;
@@ -566,7 +547,6 @@ Silakan pilih domain untuk melihat keuntungan.`;
       }, 3000);
     }
 
-    // Button Pesan Sekarang click handler
     const orderBtn = document.getElementById('orderBtn');
     const inputDomainName = document.getElementById('inputDomainName');
 
@@ -584,7 +564,6 @@ Silakan pilih domain untuk melihat keuntungan.`;
       if(domainVal === "my.id") price = "Rp 15.000";
       else if(domainVal === "biz.id") price = "Rp 15.000";
 
-      // Format pesan WhatsApp
       const phone = "628979687563";
       const text = 
         `*ORDER DOMAIN*%0A`+
@@ -595,7 +574,6 @@ Silakan pilih domain untuk melihat keuntungan.`;
 
       const waURL = `https://wa.me/${phone}?text=${text}`;
 
-      // Buka WhatsApp di tab baru
       window.open(waURL, '_blank');
     });
   </script>
