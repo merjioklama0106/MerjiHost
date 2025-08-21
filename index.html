@@ -20,11 +20,23 @@
       overflow-x: hidden;
     }
     
-    .blur-active {
-      filter: blur(5px);
-      pointer-events: none;
-      user-select: none;
-    }
+.overlay {
+  position: fixed;
+  top: 60px; 
+  left:0;
+  width:100%; 
+  height:calc(100% - 60px);
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  opacity:0;
+  pointer-events:none;
+  transition: opacity 0.3s ease;
+  z-index:1000;
+}
+.overlay.active {
+  opacity:1;
+  pointer-events:auto;
+}
 
     header {
       background-color: #a5a5a5;
@@ -328,6 +340,8 @@
   <div class="menu-button" id="menuBtn">&#9776;</div>
 </header>
 
+<div class="overlay" id="overlay"></div>
+
 <div class="slide-panel" id="slidePanel">
   <button class="close-button" id="closeBtn">&times;</button>
   <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
@@ -436,17 +450,19 @@
   const menuBtn = document.getElementById('menuBtn');
   const slidePanel = document.getElementById('slidePanel');
   const closeBtn = document.getElementById('closeBtn');
-  const mainContent = document.getElementById('mainContent');
+  const overlay = document.getElementById('overlay');
 
   menuBtn.addEventListener('click', () => {
     slidePanel.classList.add('open');
-    mainContent.classList.add('blur-active');
+    overlay.classList.add('active');
   });
 
-  closeBtn.addEventListener('click', () => {
+  function closePanel(){
     slidePanel.classList.remove('open');
-    mainContent.classList.remove('blur-active');
-  });
+    overlay.classList.remove('active');
+  }
+  closeBtn.addEventListener('click', closePanel);
+  overlay.addEventListener('click', closePanel);
 </script>
 
 </body>

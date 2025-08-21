@@ -237,8 +237,7 @@
     .custom-select-item:hover {
       background: #333;
     }
-
-    /* ==== Input Text ==== */
+    
     .input-text-wrapper {
       margin-top: 40px;
       width: 100%;
@@ -369,17 +368,20 @@
 
   <div id="mainContent">
     <div class="domain-box" id="domainBox">
-      <div class="domain-title">Jasa Pterodactyl</div>
+      <div class="domain-title">Murid Merji</div>
 
       <div class="custom-select-wrapper">
-        <label for="selectDomain" class="custom-select-label">Pilih Jasa Instal</label>
+        <label for="selectDomain" class="custom-select-label">Pilih Murid Merji</label>
         <div class="custom-select" id="selectDomain" tabindex="0" aria-haspopup="listbox" aria-expanded="false" role="combobox" aria-labelledby="selectDomainLabel">
-          <span class="selected-text" id="selectedDomainText">Pilih Jasa</span>
+          <span class="selected-text" id="selectedDomainText">Pilih Murid</span>
         </div>
         <div class="custom-select-items" id="domainOptions" role="listbox" tabindex="-1">
-          <div class="custom-select-item" data-value="pterodactyl" role="option" tabindex="0">Pterodactyl</div>
-          <div class="custom-select-item" data-value="node" role="option" tabindex="0">Node/Wings</div>
-          <div class="custom-select-item" data-value="fixnode" role="option" tabindex="0">Fix Node/Wings Merah</div>
+          <div class="custom-select-item" data-value="baned" role="option" tabindex="0">Murid Baned</div>
+          <div class="custom-select-item" data-value="unbanned" role="option" tabindex="0">Murid Unbanned</div>
+          <div class="custom-select-item" data-value="nokos" role="option" tabindex="0">Murid Nokos</div>
+          <div class="custom-select-item" data-value="sadap" role="option" tabindex="0">Murid Sadap</div>
+          <div class="custom-select-item" data-value="suntiksosmed" role="option" tabindex="0">Murid Suntik Sosmed</div>
+          <div class="custom-select-item" data-value="allmurid" role="option" tabindex="0">All Murid Lebih Hemat</div>
         </div>
       </div>
 
@@ -402,7 +404,7 @@
 
       <div class="description-box" id="descriptionBox">
         <strong>Keuntungan</strong>
-        Silakan pilih jasa untuk melihat keuntungan.
+        Silakan pilih Murid untuk melihat keuntungan.
       </div>
 
       <div class="price-text" id="priceText">Harga :</div>
@@ -508,32 +510,58 @@
     const descriptionBox = document.getElementById('descriptionBox');
     function updatePriceText() {
       const domainVal = domainSelect.getValue();
-      if(domainVal === 'pterodactyl') priceText.textContent = "Harga : Rp 5.000";
-      else if(domainVal === 'node') priceText.textContent = "Harga : Rp 5.000";
-      else if(domainVal === 'fixnode') priceText.textContent = "Harga : Rp 5.000";
+      if(domainVal === 'baned') priceText.textContent = "Harga : Rp 10.000";
+      else if(domainVal === 'unbanned') priceText.textContent = "Harga : Rp 5.000";
+      else if(domainVal === 'nokos') priceText.textContent = "Harga : Rp 5.000";
+      else if(domainVal === 'sadap') priceText.textContent = "Harga : Rp 10.000";
+      else if(domainVal === 'suntiksosmed') priceText.textContent = "Harga : Rp 3.000";
+      else if(domainVal === 'allmurid') priceText.textContent = "Harga : Rp 20.000";
       else priceText.textContent = "Harga :";
     }
 
     function updateDescription() {
       const domainVal = domainSelect.getValue();
-      if(domainVal === 'pterodactyl') {
+      if(domainVal === 'baned') {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-100% Akun vps kamu aman
+• Bisa Open Jasa Baned
+• Sudah Di Sediakan Video Cara Banednya
+• Bahan Baned Sudah Di Sediakan
 `;
-      } else if(domainVal === 'node') {
+      } else if(domainVal === 'unbanned') {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-100% Akun vps kamu aman
+• Bisa Open Jasa Unbanned
+• Bahan Unbanned Sudah Di Sediakan
+• Sudah Di Sediakan Video Cara Unbannya
+• Bisa Unbaned Opsi Kedip
 `;
-      } else if(domainVal === 'fixnode') {
+      } else if(domainVal === 'nokos') {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-100% Akun vps kamu aman
+• Bisa Jualan Nokos
+• Sudah Di Sediakan Video Cara Create Nokos Free
+• Disediakan Link Website Buy Nokos Murah
+`;
+      } else if(domainVal === 'sadap') {
+        descriptionBox.innerHTML = `<strong>Keuntungan</strong>
+• Bisa Sadap Orang
+• Sudah Di Sediakan Video Cara Sadapnya
+• Di Sediakan Mentahan Buat Sadapnya
+`;
+      } else if(domainVal === 'suntiksosmed') {
+        descriptionBox.innerHTML = `<strong>Keuntungan</strong>
+• Bisa Jualan Jasa Suntik Sosmed
+• Sudah Di Sediakan Link Website Suntik Sosmed Murah
+`;
+      } else if(domainVal === 'allmurid') {
+        descriptionBox.innerHTML = `<strong>Keuntungan</strong>
+All Murid Lebih Hemat!
+Bisa Akses Semua Murid.
 `;
       } else {
         descriptionBox.innerHTML = `<strong>Keuntungan</strong>
-Silakan pilih domain untuk melihat keuntungan.`;
+Silakan pilih Murid untuk melihat keuntungan.`;
       }
     }
-    
+
     const notif = document.getElementById('notif');
     function showNotif(message) {
       notif.textContent = message;
@@ -557,14 +585,17 @@ Silakan pilih domain untuk melihat keuntungan.`;
       }
 
       let price = "";
-      if(domainVal === "Pterodactyl") price = "Rp 5.000";
-      else if(domainVal === "node") price = "Rp 5.000";
-      else if(domainVal === "fixnode") price = "Rp 5.000";
+      if(domainVal === "baned") price = "Rp 10.000";
+      else if(domainVal === "unbanned") price = "Rp 5.000";
+      else if(domainVal === "nokos") price = "Rp 5.000";
+      else if(domainVal === "sadap") price = "Rp 10.000";
+      else if(domainVal === "suntiksosmed") price = "Rp 3.000";
+      else if(domainVal === "allmurid") price = "Rp 20.000";
 
       const phone = "628979687563";
       const text = 
-        `*ORDER JASA PTERODACTYL*%0A`+
-        `JASA%20: ${domainVal}%0A`+
+        `*ORDER MERJI STUDENT*%0A`+
+        `MURID%20: ${domainVal}%0A`+
         `NAMA%20: ${domainNameVal}%0A`+
         `METODE%20PEMBAYARAN%20: ${paymentVal}%0A`+
         `NOMINAL%20: ${price}`;

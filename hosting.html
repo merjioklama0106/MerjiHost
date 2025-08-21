@@ -7,244 +7,254 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { 
-    margin:0; 
-    padding:0; 
-    box-sizing:border-box;
-    }
-    body {
-     background: url('https://i.postimg.cc/tCJckg8B/6d9a5b8b76de46e5052a6c76835a06a7.jpg') no-repeat center center fixed;
-     background-size: cover;
-     color: white;
-     font-family: 'Poppins', sans-serif;
-     overflow-x: hidden; 
-     scroll-behavior: smooth;
-    }
+  margin:0; 
+  padding:0; 
+  box-sizing:border-box;
+ }
+.bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; 
+  height: 100%;
+  background: url('https://i.postimg.cc/tCJckg8B/6d9a5b8b76de46e5052a6c76835a06a7.jpg') no-repeat center center;
+  background-size: cover;
+  z-index: -1; 
+}
 
-    header {
-      background:#a5a5a5;
-      display:flex; 
-      justify-content:space-between; 
-      align-items:center;
-      padding:10px 20px; 
-      position:fixed; 
-      top:0; 
-      width:100%; 
-      z-index:999;
-      box-shadow:0 2px 5px rgba(0,0,0,0.3);
-    }
-    .logo {
-      font-weight:600; 
-      font-size:24px; 
-      color:#000;
-      animation:float 2s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%,100% { transform: translateY(0px); }
-      50% { transform: translateY(-5px); }
-    }
+header {
+  background:#a5a5a5;
+  display:flex; 
+  justify-content:space-between; 
+  align-items:center;
+  padding:10px 20px; 
+  position:fixed; 
+  top:0; 
+  width:100%; 
+  z-index:999;
+  box-shadow:0 2px 5px rgba(0,0,0,0.3);
+}
+.logo {
+  font-family: 'Poppins', sans-serif; 
+  font-weight:600; 
+  font-size:24px; 
+  color:#000;
+  animation:float 2s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
 
-    .menu-button {
-      width:40px; 
-      height:40px; 
-      display:flex; 
-      align-items:center; 
-      justify-content:center;
-      font-size:20px; 
-      background:transparent; 
-      color:white;
-      border:2px solid white; 
-      border-radius:8px; 
-      cursor:pointer; 
-      transition:0.3s;
-    }
-    .menu-button:hover { 
-      background:rgba(255,255,255,0.2); 
-      transform:scale(1.1);
-      }
+.menu-button {
+  width:40px; 
+  height:40px; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center;
+  font-size:20px; 
+  background:transparent; 
+  color:white;
+  border:2px solid white; 
+  border-radius:8px; 
+  cursor:pointer; 
+  transition:0.3s;
+}
+.menu-button:hover { 
+  background:rgba(255,255,255,0.2); 
+  transform:scale(1.1);
+}
 
-    .slide-panel {
-      position:fixed; top:0; 
-      right:-100%; 
-      height:100%; 
-      width:180px;
-      background:#111; 
-      box-shadow:-2px 0 10px rgba(0,0,0,0.5);
-      padding:70px 10px 20px; 
-      transition:right 0.4s ease; 
-      z-index:1000;
-    }
-    .slide-panel.open { 
-      right:0;
-    }
-    .close-button {
-      position:absolute; 
-      top:10px; 
-      right:10px; 
-      font-size:40px;
-      background:none; 
-      border:none; 
-      color:white; 
-      cursor:pointer; 
-      font-weight:bold;
-      transition:transform 0.2s;
-    }
-    .close-button:hover { 
-      transform:scale(1.2);
-    }
-    .slide-panel button.menu-item {
-      width:100%; 
-      margin:20px 0; 
-      display:block;
-      padding:12px;
-      background:linear-gradient(to 
-      right,#333,#222); 
-      color:#fff;
-      font-size:16px; 
-      border:none; 
-      border-radius:8px;
-      transition:0.3s ease; 
-      cursor:pointer;
-      box-shadow:0 0 10px rgba(255,255,255,0.15);
-    }
-    .slide-panel button.menu-item:hover {
-      background:#444; 
-      transform:scale(1.05);
-    }
+.slide-panel {
+  position:fixed; top:0; 
+  right:-100%; 
+  height:100%; 
+  width:180px;
+  background:#111; 
+  box-shadow:-2px 0 10px rgba(0,0,0,0.5);
+  padding:70px 10px 20px; 
+  transition:right 0.4s ease; 
+  z-index:1001;
+}
+.slide-panel.open { right:0; }
 
-    @media(max-width:600px){
-      .slide-panel { width:70%; }
-    }
+.close-button {
+  position:absolute; 
+  top:10px; 
+  right:10px; 
+  font-size:40px;
+  background:none; 
+  border:none; 
+  color:white; 
+  cursor:pointer; 
+  font-weight:bold;
+  transition:transform 0.2s;
+}
+.close-button:hover { transform:scale(1.2); }
 
-    main { 
-    padding-top:100px; 
-    text-align:center; 
-    overflow:hidden;
-    }
-    .intro-text h1 { 
-      font-size:42px; 
-    margin-bottom:10px;
-    }
-    .intro-text p { 
-    font-size:16px; color:#ccc; 
-    max-width:90%; 
-    margin:0 auto 30px;
-    }
+.slide-panel button.menu-item {
+  width:100%; 
+  margin:20px 0; 
+  display:block;
+  padding:12px;
+  background:linear-gradient(to right,#333,#222); 
+  color:#fff;
+  font-size:16px; 
+  border:none; 
+  border-radius:8px;
+  transition:0.3s ease; 
+  cursor:pointer;
+  box-shadow:0 0 10px rgba(255,255,255,0.15);
+}
+.slide-panel button.menu-item:hover {
+  background:#444; 
+  transform:scale(1.05);
+}
 
-    .btn-group {
-      display:inline-flex; 
-      border:2px solid white; 
-      border-radius:30px;
-      overflow:hidden; 
-      margin-bottom:20px; 
-      box-shadow:0 0 10px rgba(255,255,255,0.3);
-    }
-    .btn-group button {
-      background:transparent; 
-      border:none; 
-      color:white; 
-      padding:12px 25px;
-      cursor:pointer; 
-      font-size:16px; 
-      font-weight:600; 
-      transition:0.3s;
-    }
-    .btn-group button.active {
-      background:#007bff; 
-      box-shadow:inset 0 0 10px rgba(255,255,255,0.5);
-    }
-    .btn-group button:not(:last-child){ 
-      border-right:2px solid white;
-    }
+.overlay {
+  position: fixed;
+  top: 60px;
+  left:0;
+  width:100%; 
+  height:calc(100% - 60px);
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  opacity:0;
+  pointer-events:none;
+  transition: opacity 0.3s ease;
+  z-index:1000;
+}
+.overlay.active {
+  opacity:1;
+  pointer-events:auto;
+}
 
-    .slider { 
-    display:flex; 
-    width:200%; 
-    transition:transform 0.6s ease;
-    }
-    .slide { width:50%; 
-    padding:20px;
-    }
+main { 
+  padding-top:100px; 
+  text-align:center; 
+  overflow:hidden;
+}
+.intro-text h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif; 
+  font-weight: 700; 
+  color: #fff;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.7); 
+}
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  font-weight: 700;
+}
+h2 {
+  font-size: 28px;
+  margin: 20px 0;
+  text-transform: uppercase; 
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6); 
+}
+.intro-text p {
+  font-size: 16px;
+  color: #ddd; 
+  max-width: 90%;
+  margin: 0 auto 30px;
+  font-family: 'Poppins', sans-serif;
+ }
+ .fitur span {
+   font-size: 15px;
+   color: #ddd;
+   font-family: 'Poppins', sans-serif;
+}
 
-    .paket-container {
-      display:flex; 
-      justify-content:center; 
-      flex-wrap:wrap; gap:20px; 
-      margin:40px 0;
-    }
-    .paket-box {
-      background:#111; 
-      border-radius:20px; 
-      padding:25px; width:300px;
-      box-shadow:0 0 10px rgba(0,255,255,0.1);
-      transition:all 0.3s ease; 
-      border:2px solid transparent;
-    }
-    .paket-box.effect { 
-      box-shadow:0 0 30px 10px rgba(0,255,255,0.5); 
-    }
-    .paket-title { 
-    font-size:22px; 
-    font-weight:600; 
-    margin-bottom:10px; 
-    color:#00ffff;
-    }
-    .paket-harga { 
-    font-size:24px; 
-    font-weight:bold; 
-    color:#00d0ff; 
-    margin-bottom:20px;
-    }
-    .per-bulan { 
-    font-size:13px; 
-    color:#ccc; 
-    margin-left:5px;
-    }
-    .fitur { 
-    display:flex; 
-    align-items:center; 
-    gap:10px; 
-    margin:10px 0;
-    }
-    .fitur img { 
-    width:24px; 
-    height:24px;
-    }
-    .fitur span { 
-    font-size:15px; 
-    color:#ddd;
-    }
-    .pesan-btn {
-      display:block; 
-      margin-top:20px; 
-      padding:12px 0; 
-      border-radius:30px;
-      border:2px solid white; 
-      color:white; 
-      font-weight:bold;
-      text-decoration:none; 
-      transition:0.3s; 
-      overflow:hidden;
-    }
-    .pesan-btn.effect { 
-      box-shadow:0 0 15px 4px rgba(255,255,255,0.7); }
-    .pesan-btn:hover { 
-      transform:scale(1.05);
-    background:#007bff; }
+.btn-group {
+  display:inline-flex; 
+  border:2px solid white; 
+  border-radius:30px;
+  overflow:hidden; 
+  margin-bottom:20px; 
+  box-shadow:0 0 10px rgba(255,255,255,0.3);
+}
+.btn-group button {
+  background:transparent; 
+  border:none; 
+  color:white; 
+  padding:12px 25px;
+  cursor:pointer; 
+  font-size:16px; 
+  font-weight:600; 
+  transition:0.3s;
+}
+.btn-group button.active {
+  background:#007bff; 
+  box-shadow:inset 0 0 10px rgba(255,255,255,0.5);
+}
+.btn-group button:not(:last-child){ 
+  border-right:2px solid white;
+}
 
-    footer { text-align:center; margin:50px 0 20px; font-size:14px; color:#ccc; }
-    @media(max-width:600px){
-      .intro-text h1{font-size:30px}
-      .paket-box{width:90%}
-      .slide{width:100%}
-      .slider{width:200%}
-    }
+.slider { 
+  display:flex; 
+  width:200%; 
+  transition:transform 0.6s ease;
+}
+.slide { width:50%; padding:20px; }
+
+.paket-container {
+  display:flex; 
+  justify-content:center; 
+  flex-wrap:wrap; gap:20px; 
+  margin:40px 0;
+}
+.paket-box {
+  background:#111; 
+  border-radius:20px; 
+  padding:25px; width:300px;
+  box-shadow:0 0 10px rgba(0,255,255,0.1);
+  transition:all 0.3s ease; 
+  border:2px solid transparent;
+}
+.paket-box.effect { box-shadow:0 0 30px 10px rgba(0,255,255,0.5); }
+.paket-title { font-size:22px; font-weight:600; margin-bottom:10px; color:#00ffff; }
+.paket-harga { font-size:24px; font-weight:bold; color:#00d0ff; margin-bottom:20px; }
+.per-bulan { font-size:13px; color:#ccc; margin-left:5px; }
+.fitur { display:flex; align-items:center; gap:10px; margin:10px 0; }
+.fitur img { width:24px; height:24px; }
+.fitur span { font-size:15px; color:#ddd; }
+
+.pesan-btn {
+  display:block; 
+  margin-top:20px; 
+  padding:12px 0; 
+  border-radius:30px;
+  border:2px solid white; 
+  color:white; 
+  font-weight:bold;
+  text-decoration:none; 
+  transition:0.3s; 
+  overflow:hidden;
+}
+.pesan-btn.effect { box-shadow:0 0 15px 4px rgba(255,255,255,0.7); }
+.pesan-btn:hover { transform:scale(1.05); background:#007bff; }
+
+footer { text-align:center; margin:50px 0 20px; font-size:14px; color:#ccc; }
+
+@media(max-width:600px){
+  .slide-panel { width:70%; }
+  .intro-text h1{font-size:30px}
+  .paket-box{width:90%}
+  .slide{width:100%}
+  .slider{width:200%}
+}
   </style>
 </head>
 <body>
+  <div class="bg"></div>
+  
   <header>
     <div class="logo">MerjiHost</div>
     <div class="menu-button" id="menuBtn">&#9776;</div>
   </header>
+
+  <div class="overlay" id="overlay"></div>
 
   <div class="slide-panel" id="slidePanel">
     <button class="close-button" id="closeBtn">&times;</button>
@@ -254,7 +264,7 @@
     <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
   </div>
 
-  <main>
+  <main id="mainContent">
     <div class="intro-text">
       <h1>Hosting Minecraft</h1>
       <p>Pilih Speck Basic & Premium hosting yang ingin kamu beli di bawah ini!</p>
@@ -377,7 +387,7 @@
           <div class="paket-box" onclick="showBoxEffect(this)">
             <h3 class="paket-title">Keuntungan Hosting Basic</h3>
             <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Uptime 24/7</span></div>
-            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Anti Down 90%</span></div>
+            <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Anti Down 95%</span></div>
             <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Anti DDoS Protection</span></div>
             <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Region Singapore</span></div>
             <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png"><span>Active 30 Days/Hari</span></div>
@@ -515,38 +525,48 @@
     </footer>
   </main>
 
-  <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const slidePanel = document.getElementById('slidePanel');
-    const closeBtn = document.getElementById('closeBtn');
-    menuBtn.addEventListener('click', ()=> slidePanel.classList.add('open'));
-    closeBtn.addEventListener('click', ()=> slidePanel.classList.remove('open'));
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const slidePanel = document.getElementById('slidePanel');
+  const closeBtn = document.getElementById('closeBtn');
+  const overlay = document.getElementById('overlay');
+  const btnBasic = document.getElementById('btnBasic');
+  const btnPremium = document.getElementById('btnPremium');
+  const slider = document.getElementById('slider');
 
-    const btnBasic = document.getElementById('btnBasic');
-    const btnPremium = document.getElementById('btnPremium');
-    const slider = document.getElementById('slider');
+  menuBtn.addEventListener('click', () => {
+    slidePanel.classList.add('open');
+    overlay.classList.add('active');
+  });
 
-    btnBasic.addEventListener('click', ()=>{
-      slider.style.transform = 'translateX(0%)';
-      btnBasic.classList.add('active');
-      btnPremium.classList.remove('active');
-    });
+  function closePanel(){
+    slidePanel.classList.remove('open');
+    overlay.classList.remove('active');
+  }
+  closeBtn.addEventListener('click', closePanel);
+  overlay.addEventListener('click', closePanel);
 
-    btnPremium.addEventListener('click', ()=>{
-      slider.style.transform = 'translateX(-50%)';
-      btnPremium.classList.add('active');
-      btnBasic.classList.remove('active');
-    });
+  btnBasic.addEventListener('click', ()=>{
+    slider.style.transform = 'translateX(0%)';
+    btnBasic.classList.add('active');
+    btnPremium.classList.remove('active');
+  });
+  btnPremium.addEventListener('click', ()=>{
+    slider.style.transform = 'translateX(-50%)';
+    btnPremium.classList.add('active');
+    btnBasic.classList.remove('active');
+  });
 
-    function showBoxEffect(el){
-      document.querySelectorAll('.paket-box').forEach(box=> box.classList.remove('effect'));
-      el.classList.add('effect');
-    }
-    function showBtnEffect(btn){
-      document.querySelectorAll('.pesan-btn').forEach(b=> b.classList.remove('effect'));
-      btn.classList.add('effect');
-      setTimeout(()=> btn.classList.remove('effect'), 1000);
-    }
-  </script>
+  function showBoxEffect(el){
+    document.querySelectorAll('.paket-box').forEach(box=> box.classList.remove('effect'));
+    el.classList.add('effect');
+  }
+
+  function showBtnEffect(btn){
+    document.querySelectorAll('.pesan-btn').forEach(b=> b.classList.remove('effect'));
+    btn.classList.add('effect');
+    setTimeout(()=> btn.classList.remove('effect'), 1000);
+  }
+</script>
 </body>
 </html>
