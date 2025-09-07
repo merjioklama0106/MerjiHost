@@ -20,23 +20,23 @@
       overflow-x: hidden;
     }
     
-.overlay {
-  position: fixed;
-  top: 60px; 
-  left:0;
-  width:100%; 
-  height:calc(100% - 60px);
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(5px);
-  opacity:0;
-  pointer-events:none;
-  transition: opacity 0.3s ease;
-  z-index:1000;
-}
-.overlay.active {
-  opacity:1;
-  pointer-events:auto;
-}
+    .overlay {
+      position: fixed;
+      top: 60px; 
+      left:0;
+      width:100%; 
+      height:calc(100% - 60px);
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity 0.3s ease;
+      z-index:1000;
+    }
+    .overlay.active {
+      opacity:1;
+      pointer-events:auto;
+    }
 
     header {
       background-color: #a5a5a5;
@@ -331,6 +331,64 @@
       .custom-btn { width: 220px; font-size: 18px; }
       .feature-box { max-width: 90%; }
     }
+
+    .faq-section {
+      background: #111827;
+      padding: 50px 20px;
+      border-top: 0px solid #007bff;
+      border-bottom: 0px solid #007bff;
+      margin-top: 60px;
+      animation: fadeInUp 1s ease forwards;
+    }
+    .faq-section h2 {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      text-shadow: 0 0 8px #007bff;
+    }
+    .faq-item {
+      border: 1px solid #007bff;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      background: #1c2536;
+      box-shadow: 0 0 10px rgba(0,123,255,0.4);
+      transition: all 0.3s ease;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .faq-icon {
+      font-size: 24px;
+      font-weight: bold;
+      color: #007bff;
+      transition: transform 0.3s ease;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 20px;
+      font-size: 15px;
+      color: #ccc;
+      line-height: 1.5;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 15px 20px;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+      content: "-";
+    }
   </style>
 </head>
 <body>
@@ -432,6 +490,42 @@
       </div>
     </section>
 
+    <section class="faq-section">
+      <h2>Pertanyaan Umum</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Bagaimana Cara Melakukan Pembelian?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Kamu bisa membeli layanan hosting atau produk lainnya dengan klik tombol <b>Pesan Via WhatsApp</b> lalu ikuti instruksi yang tersedia.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Apa Sajah Metode Pembayaran Yang Tersedia?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Kami menyediakan metode pembayaran seperti <b>Dana, Gopay</b> dan <b>Qris</b> untuk memudahkan transaksi anda.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Apakah Barang Yang Di Jual Bergaransi?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Iyah semua barang di kami Bergaransi semua.<br>
+          • Hosting server minecraft 100% Bergaransi<br>
+          • Dan produk lainnya juga 99% Bergaransi
+        </div>
+      </div>
+    </section>
+
     <div class="social-section">
       <h3>Media Sosial Kami</h3>
       <div class="social-icons">
@@ -463,6 +557,25 @@
   }
   closeBtn.addEventListener('click', closePanel);
   overlay.addEventListener('click', closePanel);
+
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const icon = item.querySelector('.faq-icon');
+
+    question.addEventListener('click', () => {
+      faqItems.forEach(i => {
+        if (i !== item) {
+          i.classList.remove('active');
+          i.querySelector('.faq-icon').textContent = "+";
+        }
+      });
+
+      item.classList.toggle('active');
+      icon.textContent = item.classList.contains('active') ? "-" : "+";
+    });
+  });
 </script>
 
 </body>
