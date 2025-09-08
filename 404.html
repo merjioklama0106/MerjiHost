@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Halaman Sedang Diperbaiki</title>
+  <title>404 - Halaman Tidak Di Temukan</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -35,7 +35,7 @@
     }
 
     .message {
-      font-size: 20px;
+      font-size: 25px;
       margin-top: 10px;
       animation: fadeIn 1.5s ease-in-out infinite alternate;
     }
@@ -78,11 +78,15 @@
         font-size: 90px;
       }
       .message {
-        font-size: 16px;
+        font-size: 25px;
       }
       .exit-btn {
         padding: 10px 28px;
         font-size: 14px;
+      }
+      p {
+        font-size: 15px;
+        color: #a5a5a5;
       }
     }
   </style>
@@ -90,7 +94,9 @@
 <body>
 
   <div class="error">404</div>
-  <div class="message">Halaman Sedang Diperbaiki</div>
+  <div class="message"><b>Halaman Tidak Di Temukan</b></div>
+  <p>Sepertinya halaman yang anda cari tidak tersedia,<br>
+  Mungkin halaman telah di hapus atau di pindahkan oleh MerjiHost.</p>
   <button class="exit-btn" onclick="window.location.href='index.html'">Keluar</button>
 
 </body>
