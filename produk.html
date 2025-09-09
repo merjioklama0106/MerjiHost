@@ -21,23 +21,23 @@
       flex-direction: column;
     }
     
-.overlay {
-  position: fixed;
-  top: 60px; 
-  left:0;
-  width:100%; 
-  height:calc(100% - 60px);
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(5px);
-  opacity:0;
-  pointer-events:none;
-  transition: opacity 0.3s ease;
-  z-index:1000;
-}
-.overlay.active {
-  opacity:1;
-  pointer-events:auto;
-    }
+     .overlay {
+       position: fixed;
+       top: 60px; 
+       left:0;
+       width:100%; 
+       height:calc(100% - 60px);
+       background: rgba(0,0,0,0.5);
+       backdrop-filter: blur(5px);
+       opacity:0;
+       pointer-events:none;
+       transition: opacity 0.3s ease;
+       z-index:1000;
+      }
+     .overlay.active {
+       opacity:1;
+       pointer-events:auto;
+     }
     header {
       background-color: #a5a5a5;
       display: flex;
@@ -149,53 +149,38 @@
       font-weight: 400;
     }
 
-    .button-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
-      animation: fadeUp 0.8s ease forwards;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .custom-btn {
-      width: 80%;
-      max-width: 400px;
+    /* Grid Produk */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      max-width: 800px;
+      margin: 0 auto;
       padding: 10px;
-      background: #555;
-      border: 2px solid white;
-      border-radius: 8px;
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      transition: 0.3s ease;
     }
-    .custom-btn::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
+    .product-box {
+      background: #1a1a1a;
+      border: 2px solid yellow;
+      border-radius: 12px;
+      padding: 8px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .product-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 12px rgba(255,255,0,0.4);
+    }
+    .product-box img {
       width: 100%;
-      height: 100%;
-      background: rgba(255,255,255,0.2);
-      transition: left 0.4s ease;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 6px;
     }
-    .custom-btn:active::before {
-      left: 100%;
-    }
-    .custom-btn:active {
-      box-shadow: 0 0 15px white;
-      border-color: #fff;
-      transform: scale(0.98);
-    }
-    .custom-btn:hover {
-      background: #666;
+    .product-box p {
+      margin-top: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
     }
 
     footer {
@@ -237,15 +222,38 @@
         <p>Cari produk yang ingin anda beli di bawah!</p>
       </div>
 
-      <div class="button-container">
-        <a href="panel.html" class="custom-btn">Panel Run Bot</a>
-        <a href="404.html" class="custom-btn">Domain CloudFlare</a>
-        <a href="404.html" class="custom-btn">Aplikasi Premium</a>
-        <a href="404.html" class="custom-btn">Nokos WhatsApp</a>
-        <a href="404.html" class="custom-btn">Jasa Instal Pterodactyl</a>
-        <a href="404.html" class="custom-btn">Suntik Sosmed</a>
-        <a href="404.html" class="custom-btn">Merji Student</a>
+      <!-- Produk Grid -->
+      <div class="product-grid">
+        <div class="product-box" onclick="location.href='panel.html'">
+          <img src="ppp.jpg" alt="Panel">
+          <p>Panel Run Bot</p>
+        </div>
+        <div class="product-box" onclick="location.href='domain.html'">
+          <img src="https://i.postimg.cc/d1jJHcS4/IMG-20250909-142900.jpg" alt="Domain">
+          <p>Domain</p>
+        </div>
+        <div class="product-box" onclick="location.href='404.html'">
+          <img src="pp.jpg" alt="">
+          <p>Nokos WhatsApp</p>
+        </div>
+        <div class="product-box" onclick="location.href='404.html'">
+          <img src="pp.jpg" alt="">
+          <p>Jasa Pterodactly</p>
+        </div>
+        <div class="product-box" onclick="location.href='404.html'">
+          <img src="pp.jpg" alt="">
+          <p>Aplikasi Premium</p>
+        </div>
+        <div class="product-box" onclick="location.href='404.html'">
+          <img src="pp.jpg" alt="">
+          <p>Suntik Sosmed</p>
+        </div>
+        <div class="product-box" onclick="location.href='404.html'">
+          <img src="pp.jpg" alt="">
+          <p>Merji Student</p>
+        </div>
       </div>
+
     </main>
     <footer>© 2025 MerjiHost. All Rights Reserved</footer>
   </div>
