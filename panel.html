@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MerjiHost</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
   <style>
     * {
       margin: 0;
@@ -15,19 +14,12 @@
 
     body {
       background: #101820;
-      color: #fff;
+      color: white;
       font-family: 'Poppins', sans-serif;
-      scroll-behavior: smooth;
-      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    .blur-active {
-      filter: blur(5px);
-      pointer-events: none;
-      user-select: none;
-    }
-
+    /* Header */
     header {
       background: #a5a5a5;
       display: flex;
@@ -38,7 +30,7 @@
       top: 0;
       width: 100%;
       z-index: 999;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
 
     .logo {
@@ -60,17 +52,302 @@
       align-items: center;
       justify-content: center;
       font-size: 20px;
+      color: white;
       background: transparent;
-      color: #fff;
-      border: 2px solid #fff;
+      border: 2px solid white;
       border-radius: 8px;
       cursor: pointer;
-      transition: .3s;
+      transition: 0.3s;
     }
 
     .menu-button:hover {
-      background: rgba(255, 255, 255, .2);
+      background: rgba(255,255,255,0.2);
       transform: scale(1.1);
+    }
+
+    /* Banner */
+    .banner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 64/25;
+      overflow: hidden;
+      margin-top: 60px;
+    }
+
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .banner-text {
+      position: absolute;
+      bottom: 15px;
+      left: 20px;
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+    }
+
+    /* Section Label */
+    .input-label,
+    .select-label,
+    .services-label {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: #FFD700;
+      margin-bottom: 4px;
+    }
+
+    .input-label::before,
+    .select-label::before,
+    .services-label::before {
+      content: "";
+      width: 3px;
+      height: 20px;
+      background: #FFD700;
+      margin-right: 10px;
+    }
+
+    /* Input Section */
+    .input-section {
+      margin: 20px;
+    }
+
+    .input-section small {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .input-section input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #FFD700;
+      border-radius: 6px;
+      font-size: 16px;
+      background: #1a1a1a;
+      color: white;
+      outline: none;
+    }
+
+    .error {
+      color: red;
+      margin-top: 5px;
+      font-size: 13px;
+    }
+
+    /* Select Section */
+    .select-section {
+      margin: 20px;
+    }
+
+    .select-section .description {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+
+    .custom-select {
+      position: relative;
+      width: 100%;
+    }
+
+    .select-btn {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #FFD700;
+      border-radius: 6px;
+      font-size: 16px;
+      background: #1a1a1a;
+      color: white;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .select-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #1a1a1a;
+      border: 2px solid #FFD700;
+      border-radius: 6px;
+      margin-top: 5px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      opacity: 0;
+      z-index: 10;
+    }
+
+    .select-options.show {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    .select-options div {
+      padding: 10px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .select-options div:hover {
+      background: #333;
+    }
+
+    /* Services Section */
+    .services-section {
+      margin: 20px;
+    }
+
+    .services-section .description {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+    }
+
+    .service-box {
+      border: 2px solid #666;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      background: #1a1a1a;
+      cursor: pointer;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .service-box h3 {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .service-box small {
+      color: #FFD700;
+      font-size: 14px;
+    }
+
+    .service-box.active {
+      border: 3px solid #FFD700;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Label Populer */
+    .label-populer {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #FFD700;
+      color: #333;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid #666; 
+    }
+
+    /* Benefit Box */
+    .benefit-box {
+      margin: 20px;
+      border-radius: 10px;
+      padding: 20px;
+      background: #222;
+    }
+
+    .benefit-box h3 {
+      text-align: center;
+      color: #FFD700;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .benefit-item img {
+      width: 28px;
+      height: 28px;
+      margin-right: 12px;
+    }
+
+    .benefit-item span {
+      font-size: 16px;
+      color: #ddd;
+    }
+
+    /* Button WhatsApp */
+    .btn-wa {
+      display: block;
+      width: 90%;
+      margin: 30px auto;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      color: #fff;
+      background: transparent;
+      border: 2px solid #FFD700;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-wa::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 215, 0, 0.5);
+      transition: left 0.5s ease;
+      z-index: 0;
+    }
+
+    .btn-wa:active::before {
+      left: 100%;
+    }
+
+    .btn-wa span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Slide Panel */
+    .overlay {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 60px);
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .slide-panel {
@@ -80,13 +357,15 @@
       height: 100%;
       width: 180px;
       background: #111;
-      box-shadow: -2px 0 10px rgba(0, 0, 0, .5);
+      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
       padding: 70px 10px 20px;
-      transition: right .4s;
-      z-index: 1000;
+      transition: 0.4s;
+      z-index: 1001;
     }
 
-    .slide-panel.open { right: 0; }
+    .slide-panel.open {
+      right: 0;
+    }
 
     .close-button {
       position: absolute;
@@ -95,293 +374,160 @@
       font-size: 40px;
       background: none;
       border: none;
-      color: #fff;
+      color: white;
       cursor: pointer;
       font-weight: bold;
-      transition: transform .2s;
+      transition: 0.2s;
     }
 
-    .close-button:hover { transform: scale(1.2); }
+    .close-button:hover {
+      transform: scale(1.2);
+    }
 
-    .slide-panel .menu-item {
+    .slide-panel button.menu-item {
+      display: block;
       width: 100%;
       margin: 20px 0;
-      display: block;
       padding: 12px;
       background: linear-gradient(to right, #333, #222);
       color: #fff;
       font-size: 16px;
       border: none;
       border-radius: 8px;
-      transition: .3s;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 255, 255, .15);
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(255,255,255,0.15);
     }
 
-    .slide-panel .menu-item:hover {
+    .slide-panel button.menu-item:hover {
       background: #444;
       transform: scale(1.05);
     }
 
-    main {
-      padding-top: 100px;
-      text-align: center;
-    }
-
-    .intro-text h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
-
-    .intro-text p {
-      font-size: 16px;
-      color: #ccc;
-      max-width: 90%;
-      margin: 0 auto 30px;
-    }
-    
-    .paket-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin: 40px 0;
-    }
-
-    .paket-box {
-      background: #111;
-      border-radius: 20px;
-      padding: 25px;
-      width: 300px;
-      box-shadow: 0 0 10px rgba(0, 255, 255, .1);
-      transition: box-shadow .3s, transform .3s;
-      position: relative;
-      cursor: pointer;
-    }
-
-    .paket-box.effect {
-      box-shadow:
-        0 0 0 2px rgba(0, 255, 255, .25),
-        30px 0 40px -10px rgba(0, 255, 255, .6),
-        -30px 0 40px -10px rgba(0, 255, 255, .6),
-        0 10px 25px -10px rgba(0, 0, 0, .6);
-      transform: translateY(-2px);
-    }
-
-    .paket-title {
-      font-size: 22px;
-      font-weight: 600;
-      color: #00ffff;
-    }
-
-    .paket-harga {
-      font-size: 24px;
-      font-weight: bold;
-      color: #00d0ff;
-      margin-bottom: 20px;
-    }
-
-    .per-bulan {
-      font-size: 13px;
-      color: #ccc;
-      margin-left: 5px;
-    }
-
-    .fitur {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 10px 0;
-    }
-
-    .fitur img {
-      width: 24px;
-      height: 24px;
-    }
-
-    .fitur span {
-      font-size: 15px;
-      color: #ddd;
-    }
-
-    .pesan-btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 20px auto 0;
-      width: 80%;
-      padding: 12px 0;
-      background: #00d0ff;
-      color: #000;
-      font-weight: bold;
-      border-radius: 30px;
-      border: none;
-      cursor: pointer;
-      transition: .3s;
-    }
-
-    .pesan-btn:hover {
-      background: #00ffff;
-      box-shadow: 0 0 10px #00ffff;
-    }
-
-    .popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, .7);
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-    }
-
-    .popup {
-      background: #1b1b1b;
-      padding: 20px;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 20px rgba(0, 255, 255, .4);
-      animation: scaleIn .3s ease;
-    }
-
-    @keyframes scaleIn {
-      from { transform: scale(.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .popup h2 {
-      text-align: center;
-      margin-bottom: 15px;
-      color: #00ffff;
-    }
-
-    .error-msg {
-      color: #ff3b3b;
-      text-align: center;
-      margin-bottom: 10px;
-      display: none;
-    }
-
-    .popup input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      margin-bottom: 15px;
-      background: #333;
-      color: #fff;
-    }
-
-    .popup input::placeholder {
-      color: #cfcfcf;
-    }
-
-    .dropdown {
-      position: relative;
-      margin-bottom: 15px;
-    }
-
-    .dropdown-btn {
-      background: #333;
-      color: #fff;
-      padding: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .dropdown-btn:after {
-      content: "▾";
-      opacity: .8;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
-      right: 0;
-      background: #333;
-      color: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, .4);
-      z-index: 10;
-    }
-
-    .dropdown-content div {
-      padding: 12px 10px;
-      cursor: pointer;
-    }
-
-    .dropdown-content div:hover {
-      background: #00d0ff;
-      color: #000;
-    }
-
-    .detail-box {
-      text-align: center;
-      background: #111;
-      padding: 12px;
-      border-radius: 10px;
-      margin: 12px 0;
-      font-size: 14px;
-      color: #ddd;
-    }
-
-    .btn-order, .btn-cancel {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
-      transition: .3s;
-    }
-
-    .btn-order {
-      background: #00d0ff;
-      color: #000;
-    }
-
-    .btn-order:hover { background: #00ffff; }
-
-    .btn-cancel {
-      background: #ff3b3b;
-      color: #fff;
-      margin-top: 10px;
-    }
-
-    .btn-cancel:hover { background: #ff5c5c; }
-
+    /* Footer */
     footer {
       text-align: center;
-      margin-top: 100px;
       font-size: 14px;
-      padding-bottom: 20px;
+      padding: 20px 0;
       color: #ccc;
+      margin-top: 30px;
     }
 
     @media (max-width: 600px) {
-      .slide-panel { width: 70%; }
-      .intro-text h1 { font-size: 30px; }
-      .paket-box { width: 90%; }
+      .banner-text {
+        font-size: 18px;
+      }
+      .slide-panel {
+        width: 70%;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
     <div class="logo">MerjiHost</div>
     <div class="menu-button" id="menuBtn">&#9776;</div>
   </header>
 
+  <!-- Banner -->
+  <section class="banner">
+    <img src="https://i.postimg.cc/156VjzyQ/20250909-215948.jpg" alt="Panel">
+    <div class="banner-text">Panel Run Bot</div>
+  </section>
+
+  <!-- Username -->
+  <section class="input-section">
+    <div class="input-label">Masukan Nama Anda</div>
+    <small>Nama wajib di isi!</small>
+    <input type="text" id="nama" placeholder="nama">
+    <div id="error-nama" class="error"></div>
+  </section>
+
+  <!-- Username -->
+  <section class="input-section">
+    <div class="input-label">Masukan Username Panel</div>
+    <small>Masukan username sesuka anda!</small>
+    <input type="text" id="username" placeholder="Contoh : merjigwanteng">
+    <div id="error-username" class="error"></div>
+  </section>
+  
+  <!-- Password -->
+  <section class="input-section">
+    <div class="input-label">Masukan Password Panel</div>
+    <small>Masukan password sesuka anda!</small>
+    <input type="text" id="password" placeholder="Contoh : merjigwanteng666">
+    <div id="error-password" class="error"></div>
+  </section>
+
+  <!-- Payment -->
+  <section class="select-section">
+    <div class="select-label">Pilih Metode Pembayaran</div>
+    <p class="description">Pilih metode pembayaran anda!</p>
+    <div class="custom-select">
+      <div class="select-btn" id="selectBtn">Pilih pembayaran</div>
+      <div class="select-options" id="selectOptions">
+        <div data-value="Dana">Dana</div>
+        <div data-value="Gopay">Gopay</div>
+        <div data-value="Qris">Qris (All Payment)</div>
+      </div>
+    </div>
+    <div id="error-payment" class="error"></div>
+  </section>
+
+  <!-- Services -->
+  <section class="services-section">
+    <div class="services-label">Pilih Speck Panel </div>
+    <p class="description">Pilih speck panel yang ingin anda beli!</p>
+    <div class="services-grid">
+      <div class="service-box" onclick="selectService(this, 'Rp 3.000/Bulan')">
+        <h3>Panel 2GB</h3>
+        <small>Rp 3.000/Bulan</small>
+      </div>
+      <div class="service-box" onclick="selectService(this, 'Rp 6.000/Bulan')">
+        <div class="label-populer">Recommended</div>
+        <h3>Panel 4GB</h3>
+        <small>Rp 6.000/Bulan</small>
+      </div>
+      <div class="service-box" onclick="selectService(this, 'Rp 9.000/Bulan')">
+        <h3>Panel 6GB</h3>
+        <small>Rp 9.000/Bulan</small>
+      </div>
+      <div class="service-box" onclick="selectService(this, 'Rp 12.000/Bulan')">
+        <h3>Panel 8GB</h3>
+        <small>Rp 12.000/Bulan</small>
+      </div>
+    </div>
+    <div id="error-service" class="error"></div>
+  </section>
+
+  <!-- Benefit -->
+  <section class="benefit-box">
+    <h3>Benefit Untuk Anda</h3>
+    <div class="benefit-item">
+      <img src="https://i.imgur.com/AM2zhXa.png"/>
+      <span>Uptime 24/7</span>
+    </div>
+    <div class="benefit-item">
+      <img src="https://i.imgur.com/AM2zhXa.png"/>
+      <span>Region Singapore</span>
+    </div>
+    <div class="benefit-item">
+      <img src="https://i.imgur.com/AM2zhXa.png"/>
+      <span>Panel Private</span>
+    </div>
+    <div class="benefit-item">
+      <img src="https://i.imgur.com/AM2zhXa.png"/>
+      <span>Garansi 30 Hari</span>
+    </div>
+  </section>
+
+  <!-- WhatsApp -->
+  <button class="btn-wa" onclick="sendToWhatsApp()"><span>Pesan via WhatsApp</span></button>
+
+  <!-- Overlay + Slide Panel -->
+  <div class="overlay" id="overlay"></div>
   <div class="slide-panel" id="slidePanel">
     <button class="close-button" id="closeBtn">&times;</button>
     <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
@@ -390,132 +536,121 @@
     <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
   </div>
 
-  <div id="mainContent">
-    <main>
-      <div class="intro-text">
-        <h1>Panel Run Bot</h1>
-        <p>Panel run bot cocok buat kamu yang ingin menjalankan project bot!</p>
-      </div>
-
-      <div class="paket-container">
-        <div class="paket-box" data-speck="Special" data-harga="10000" onclick="showBoxEffect(this)">
-          <h2 class="paket-title">Paket Special</h2>
-          <p class="paket-harga">Rp 10.000<span class="per-bulan">/bulan</span></p>
-          <div class="fitur"><img src="https://i.postimg.cc/J0Dh1kq6/20250729-161615.png" alt="RAM"><span>Unlimited RAM</span></div>
-          <div class="fitur"><img src="https://i.postimg.cc/jjkKBdNq/cpu.png" alt="CPU"><span>4 vCPU</span></div>
-          <div class="fitur"><img src="https://i.postimg.cc/63RSz9fm/ssd.png" alt="SSD"><span>Unlimited SSD</span></div>
-          <button class="pesan-btn" onclick="event.stopPropagation(); openPopup(this)">Pesan Sekarang</button>
-        </div>
-      </div>
-
-      <div class="paket-container">
-        <div class="paket-box" onclick="showBoxEffect(this)">
-          <h2 class="paket-title">Keuntungan</h2>
-          <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png" alt=""><span>Uptime 24/7</span></div>
-          <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png" alt=""><span>Anti Delete Panel</span></div>
-          <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png" alt=""><span>Anti Colong Script</span></div>
-          <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png" alt=""><span>Panel Private</span></div>
-          <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png" alt=""><span>Active 30 Days/Hari</span></div>
-          <div class="fitur"><img src="https://i.imgur.com/AM2zhXa.png" alt=""><span>Garansi 30 Days/Hari</span></div>
-        </div>
-      </div>
-    </main>
-
-    <footer>© 2025 MerjiHost. All Rights Reserved</footer>
-  </div>
-  
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup">
-      <h2>Panel Run Bot</h2>
-      <div class="error-msg" id="errorMsg">Harap Isi Semua Data</div>
-
-      <input type="text" id="namaPemesan" placeholder="Nama Lengkap">
-
-      <div class="dropdown" id="dropdown">
-        <div class="dropdown-btn" onclick="toggleDropdown()">Pilih Pembayaran</div>
-        <div class="dropdown-content" id="dropdownContent">
-          <div onclick="selectPembayaran('Dana')">Dana</div>
-          <div onclick="selectPembayaran('Gopay')">Gopay</div>
-          <div onclick="selectPembayaran('Qris')">Qris</div>
-        </div>
-      </div>
-
-      <div class="detail-box">
-        <div>Speck Panel : <span id="popupSpeck"></span></div>
-        <div>Nominal : Rp <span id="popupHarga"></span></div>
-      </div>
-
-      <button class="btn-order" onclick="sendOrder()">Pesan Via WhatsApp</button>
-      <button class="btn-cancel" onclick="closePopup()">Batal Pesanan</button>
-    </div>
-  </div>
+  <!-- Footer -->
+  <footer>© 2025 MerjiHost. All Rights Reserved</footer>
 
   <script>
+    // Slide Menu
     const menuBtn = document.getElementById('menuBtn');
     const slidePanel = document.getElementById('slidePanel');
     const closeBtn = document.getElementById('closeBtn');
-    const mainContent = document.getElementById('mainContent');
+    const overlay = document.getElementById('overlay');
 
     menuBtn.addEventListener('click', () => {
-      slidePanel.classList.toggle('open');
-      mainContent.classList.toggle('blur-active');
+      slidePanel.classList.add('open');
+      overlay.classList.add('active');
     });
 
-    closeBtn.addEventListener('click', () => {
+    function closePanel() {
       slidePanel.classList.remove('open');
-      mainContent.classList.remove('blur-active');
+      overlay.classList.remove('active');
+    }
+
+    closeBtn.addEventListener('click', closePanel);
+    overlay.addEventListener('click', closePanel);
+
+    // Custom Select
+    const selectBtn = document.getElementById("selectBtn");
+    const selectOptions = document.getElementById("selectOptions");
+    const options = selectOptions.querySelectorAll("div");
+    let selectedPayment = "";
+
+    selectBtn.addEventListener("click", () => {
+      selectOptions.classList.toggle("show");
     });
 
-    function showBoxEffect(box) {
-      box.classList.add('effect');
-      setTimeout(() => box.classList.remove('effect'), 600);
-    }
+    options.forEach(option => {
+      option.addEventListener("click", () => {
+        selectBtn.textContent = option.textContent;
+        selectedPayment = option.getAttribute("data-value");
+        selectOptions.classList.remove("show");
+      });
+    });
 
-    let selectedSpeck = "", selectedHarga = "", selectedPembayaran = "";
-
-    function openPopup(btn) {
-      const paketBox = btn.closest('.paket-box');
-      selectedSpeck = paketBox.dataset.speck || 'Special';
-      selectedHarga = paketBox.dataset.harga || '10000';
-      document.getElementById('popupSpeck').textContent = selectedSpeck;
-      document.getElementById('popupHarga').textContent = Number(selectedHarga).toLocaleString('id-ID');
-      document.getElementById('popupOverlay').style.display = 'flex';
-    }
-
-    function closePopup() {
-      document.getElementById('popupOverlay').style.display = 'none';
-      document.getElementById('errorMsg').style.display = 'none';
-    }
-
-    function toggleDropdown() {
-      const dc = document.getElementById('dropdownContent');
-      dc.style.display = (dc.style.display === 'block') ? 'none' : 'block';
-    }
-
-    function selectPembayaran(p) {
-      selectedPembayaran = p;
-      document.querySelector('.dropdown-btn').textContent = p;
-      document.getElementById('dropdownContent').style.display = 'none';
-    }
-
-    document.addEventListener('click', (e) => {
-      const dd = document.getElementById('dropdown');
-      if (!dd.contains(e.target)) {
-        document.getElementById('dropdownContent').style.display = 'none';
+    document.addEventListener("click", (e) => {
+      if (!selectBtn.contains(e.target) && !selectOptions.contains(e.target)) {
+        selectOptions.classList.remove("show");
       }
     });
 
-    function sendOrder() {
-      const nama = document.getElementById('namaPemesan').value.trim();
-      if (!nama || !selectedPembayaran) {
-        document.getElementById('errorMsg').style.display = 'block';
-        return;
+    // Domain service
+    let selectedService = "";
+    let selectedPrice = "";
+    function selectService(el, price) {
+      document.querySelectorAll('.service-box').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      selectedService = el.querySelector("h3").textContent;
+      selectedPrice = price;
+    }
+
+    // WhatsApp
+    function sendToWhatsApp() {
+      const nama = document.getElementById("nama").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      let valid = true;
+
+      document.getElementById("error-nama").textContent = "";
+      document.getElementById("error-username").textContent = "";
+      document.getElementById("error-password").textContent = "";
+      document.getElementById("error-payment").textContent = "";
+      document.getElementById("error-service").textContent = "";
+
+      if (nama === "") {
+        document.getElementById("error-nama").textContent = "Wajib isi nama anda";
+        valid = false;
       }
-      const nominal = Number(selectedHarga).toLocaleString('id-ID');
-      const pesan = `*ORDER PANEL RUN BOT*\nNAMA : ${nama}\nPEMBAYARAN : ${selectedPembayaran}\nSPECK : ${selectedSpeck}\nNOMINAL : Rp${nominal}`;
-      const waUrl = `https://wa.me/628979687563?text=${encodeURIComponent(pesan)}`;
-      window.open(waUrl, '_blank');
+
+      if (username === "") {
+        document.getElementById("error-username").textContent = "Username panel harus di isi";
+        valid = false;
+      } else if (/[A-Z]/.test(username)) {
+        document.getElementById("error-username").textContent = "Username panel harus huruf kecil semua";
+        valid = false;
+      }
+
+      if (password === "") {
+        document.getElementById("error-password").textContent = "Password panel harus di isi";
+        valid = false;
+      } else if (/[A-Z]/.test(password)) {
+        document.getElementById("error-password").textContent = "Password panel harus huruf kecil semua";
+        valid = false;
+      }
+
+      if (selectedPayment === "") {
+        document.getElementById("error-payment").textContent = "Wajib pilih salah satu metode pembayaran";
+        valid = false;
+      }
+
+      if (selectedService === "") {
+        document.getElementById("error-service").textContent = "Wajib pilih salah satu speck panel";
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      const nomor = "628979687563";
+      const pesan = `*ORDER PANEL RUN BOT*\n` +
+        `Nama : ${nama}\n` +
+        `Username Panel : ${username}\n` +
+        `Password Panel : ${password}\n` +
+        `Speck Panel : ${selectedService}\n` +
+        `Metode Pembayaran : ${selectedPayment}\n` +
+        `Harga : ${selectedPrice}`;
+
+      const url = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+      window.open(url, "_blank");
     }
   </script>
-</body>
+</b>
 </html>

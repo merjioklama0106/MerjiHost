@@ -587,7 +587,7 @@
       document.getElementById("error-service").textContent = "";
 
       if (username === "") {
-        document.getElementById("error-username").textContent = "Wajib isi username";
+        document.getElementById("error-username").textContent = "Wajib isi nama anda";
         valid = false;
       }
 
@@ -612,7 +612,7 @@
       if (!valid) return;
 
       const nomor = "628979687563";
-      const pesan = `*ORDER DOMAIN CLOUDFLARE*\n\n` +
+      const pesan = `*ORDER DOMAIN CLOUDFLARE*\n` +
         `Nama : ${username}\n` +
         `Nama Domain : ${domain}\n` +
         `Layanan Domain : ${selectedService}\n` +
