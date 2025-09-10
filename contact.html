@@ -166,6 +166,7 @@
       font-weight: 400;
     }
 
+    /* Kotak Contact Admin dengan stroke kuning */
     .sampul-card {
       background: #222;
       border-radius: 16px;
@@ -174,16 +175,17 @@
       width: 90%;
       max-width: 400px;
       transition: 0.3s;
-      border: 2px solid transparent;
+      border: 2px solid #FFD700;
       display: flex;
       flex-direction: column;
       gap: 15px;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
     }
 
     .sampul-card:hover {
       background: #2e2e2e;
-      border-color: rgba(255,255,255,0.2);
-      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      border-color: #FFD700;
+      box-shadow: 0 0 18px rgba(255, 215, 0, 0.6);
     }
 
     .sampul-content {
@@ -225,28 +227,47 @@
       flex-wrap: wrap;
     }
 
+    /* Button Komunitas hanya stroke */
     .wa-btn {
       display: flex;
       align-items: center;
-      color: white;
-      font-weight: 600;
-      padding: 12px 18px;
-      border-radius: 50px;
+      justify-content: center;
+      font-weight: 700;
+      padding: 14px 22px;
+      border-radius: 10px;
       text-decoration: none;
       font-size: 16px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-      transition: 0.3s;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+      background: transparent;
     }
 
-    .wa-btn:hover {
-      transform: scale(1.05);
+    .wa-btn:active {
+      transform: scale(0.95);
     }
 
-    .wa-btn.green { background: #25D366; }
-    .wa-btn.green:hover { background: #20b956; }
+    /* Hijau */
+    .wa-btn.green {
+      border: 2px solid #25D366;
+      color: #25D366;
+      box-shadow: 0 0 10px rgba(37,211,102,0.6);
+    }
+    .wa-btn.green:hover {
+      background: rgba(37,211,102,0.1);
+      box-shadow: 0 0 20px rgba(37,211,102,1);
+    }
 
-    .wa-btn.blue { background: #007BFF; }
-    .wa-btn.blue:hover { background: #0066cc; }
+    /* Biru */
+    .wa-btn.blue {
+      border: 2px solid #007BFF;
+      color: #007BFF;
+      box-shadow: 0 0 10px rgba(0,123,255,0.6);
+    }
+    .wa-btn.blue:hover {
+      background: rgba(0,123,255,0.1);
+      box-shadow: 0 0 20px rgba(0,123,255,1);
+    }
 
     footer {
       text-align: center;
@@ -327,7 +348,7 @@
   <div id="mainContent">
     <main>
       <div class="intro-text">
-        <h1>Contacts Admin</h1>
+        <h1>Hubungi Admin</h1>
         <p>Jangan ragu ragu untuk menghubungi admin!.</p>
       </div>
 
@@ -391,6 +412,12 @@
   }
   closeBtn.addEventListener('click', closePanel);
   overlay.addEventListener('click', closePanel);
+
+  function copyToClipboard(elementId) {
+    const text = document.getElementById(elementId).innerText;
+    navigator.clipboard.writeText(text);
+    alert("Disalin: " + text);
+  }
 </script>
 </body>
 </html>
