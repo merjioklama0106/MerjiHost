@@ -4,8 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MerjiHost</title>
+
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Style -->
   <style>
+    /* Reset */
     * {
       margin: 0;
       padding: 0;
@@ -90,7 +95,7 @@
       text-shadow: 0 2px 5px rgba(0,0,0,0.7);
     }
 
-    /* Section Label */
+    /* Label */
     .input-label,
     .select-label,
     .services-label {
@@ -141,7 +146,7 @@
       font-size: 13px;
     }
 
-    /* Select Section */
+    /* Select */
     .select-section {
       margin: 20px;
     }
@@ -200,7 +205,7 @@
       background: #333;
     }
 
-    /* Services Section */
+    /* Services */
     .services-section {
       margin: 20px;
     }
@@ -213,7 +218,7 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 15px;
     }
 
@@ -242,24 +247,10 @@
 
     .service-box.active {
       border: 3px solid #FFD700;
-      box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+      box-shadow: 0 0 12px rgba(255,215,0,0.5);
     }
 
-    /* Label Populer */
-    .label-populer {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      background: #FFD700;
-      color: #333;
-      font-size: 10px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 6px;
-      border: 1px solid #666; 
-    }
-
-    /* Benefit Box */
+    /* Benefit */
     .benefit-box {
       margin: 20px;
       border-radius: 10px;
@@ -275,23 +266,12 @@
     }
 
     .benefit-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .benefit-item img {
-      width: 28px;
-      height: 28px;
-      margin-right: 12px;
-    }
-
-    .benefit-item span {
       font-size: 16px;
       color: #ddd;
+      margin-bottom: 8px;
     }
 
-    /* Button WhatsApp */
+    /* WhatsApp Button */
     .btn-wa {
       display: block;
       width: 90%;
@@ -413,10 +393,16 @@
       margin-top: 30px;
     }
 
+    /* Responsive */
     @media (max-width: 600px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
       .banner-text {
         font-size: 18px;
       }
+
       .slide-panel {
         width: 70%;
       }
@@ -433,41 +419,39 @@
 
   <!-- Banner -->
   <section class="banner">
-    <img src="https://i.postimg.cc/156VjzyQ/20250909-215948.jpg" alt="Panel">
-    <div class="banner-text">Panel Run Bot</div>
+    <img src="https://i.postimg.cc/d0qYHZ3r/20250911-174527.jpg" alt="Aplikasi Premium">
+    <div class="banner-text">Aplikasi Premium</div>
   </section>
 
   <!-- Username -->
   <section class="input-section">
     <div class="input-label">Masukan Nama Anda</div>
     <small>Nama wajib di isi!</small>
-    <input type="text" id="nama" placeholder="nama">
-    <div id="error-nama" class="error"></div>
-  </section>
-
-  <!-- Username -->
-  <section class="input-section">
-    <div class="input-label">Masukan Username Panel</div>
-    <small>Masukan username sesuka anda!</small>
-    <input type="text" id="username" placeholder="Contoh : merjigwanteng">
+    <input type="text" id="username" placeholder="Nama">
     <div id="error-username" class="error"></div>
   </section>
-  
-  <!-- Password -->
-  <section class="input-section">
-    <div class="input-label">Masukan Password Panel</div>
-    <small>Masukan password sesuka anda!</small>
-    <input type="text" id="password" placeholder="Contoh : merjigwanteng666">
-    <div id="error-password" class="error"></div>
-  </section>
 
-  <!-- Payment -->
+  <!-- Select Aplikasi Premium -->
+  <section class="select-section">
+    <div class="select-label">Pilih Layanan Aplikasi</div>
+    <p class="description">Pilih layanan aplikasi premium!</p>
+    <div class="custom-select">
+      <div class="select-btn" id="selectBtnPremium">Pilih layanan</div>
+      <div class="select-options" id="selectOptionsPremium">
+        <div data-value="Canva">Canva</div>
+        <div data-value="Youtube">Youtube</div>
+      </div>
+    </div>
+    <div id="error-premium" class="error"></div>
+  </section>
+  
+  <!-- Select Payment -->
   <section class="select-section">
     <div class="select-label">Pilih Metode Pembayaran</div>
     <p class="description">Pilih metode pembayaran anda!</p>
     <div class="custom-select">
-      <div class="select-btn" id="selectBtn">Pilih pembayaran</div>
-      <div class="select-options" id="selectOptions">
+      <div class="select-btn" id="selectBtnPayment">Pilih pembayaran</div>
+      <div class="select-options" id="selectOptionsPayment">
         <div data-value="Dana">Dana</div>
         <div data-value="Gopay">Gopay</div>
         <div data-value="Qris">Qris (All Payment)</div>
@@ -478,49 +462,24 @@
 
   <!-- Services -->
   <section class="services-section">
-    <div class="services-label">Pilih Speck Panel </div>
-    <p class="description">Pilih speck panel yang ingin anda beli!</p>
-    <div class="services-grid">
-      <div class="service-box" onclick="selectService(this, 'Rp 3.000/Bulan')">
-        <h3>Panel 2GB</h3>
-        <small>Rp 3.000/Bulan</small>
-      </div>
-      <div class="service-box" onclick="selectService(this, 'Rp 6.000/Bulan')">
-        <div class="label-populer">Recommended</div>
-        <h3>Panel 4GB</h3>
-        <small>Rp 6.000/Bulan</small>
-      </div>
-      <div class="service-box" onclick="selectService(this, 'Rp 9.000/Bulan')">
-        <h3>Panel 6GB</h3>
-        <small>Rp 9.000/Bulan</small>
-      </div>
-      <div class="service-box" onclick="selectService(this, 'Rp 12.000/Bulan')">
-        <h3>Panel 8GB</h3>
-        <small>Rp 12.000/Bulan</small>
-      </div>
-    </div>
+    <div class="services-label">Pilih Layanan Premium</div>
+    <p class="description">Pilih layanan yang ingin anda beli!</p>
+    <div class="services-grid" id="servicesGrid"></div>
     <div id="error-service" class="error"></div>
   </section>
 
   <!-- Benefit -->
-  <section class="benefit-box">
+  <section class="benefit-box" id="benefitBox">
     <h3>Benefit Untuk Anda</h3>
-    <div class="benefit-item">
-      <span>• Uptime 24/7</span>
-    </div>
-    <div class="benefit-item">
-      <span>• Region Singapore</span>
-    </div>
-    <div class="benefit-item">
-      <span>• Panel Private</span>
-    </div>
-    <div class="benefit-item">
-      <span>• Garansi 30 Hari</span>
+    <div id="benefitList">
+      <div class="benefit-item">Pilih layanan aplikasi untuk melihat benefit</div>
     </div>
   </section>
 
   <!-- WhatsApp -->
-  <button class="btn-wa" onclick="sendToWhatsApp()"><span>Pesan via WhatsApp</span></button>
+  <button class="btn-wa" onclick="sendToWhatsApp()">
+    <span>Pesan via WhatsApp</span>
+  </button>
 
   <!-- Overlay + Slide Panel -->
   <div class="overlay" id="overlay"></div>
@@ -535,8 +494,9 @@
   <!-- Footer -->
   <footer>© 2025 MerjiHost. All Rights Reserved</footer>
 
+  <!-- Script -->
   <script>
-    // Slide Menu
+    /* Slide Panel */
     const menuBtn = document.getElementById('menuBtn');
     const slidePanel = document.getElementById('slidePanel');
     const closeBtn = document.getElementById('closeBtn');
@@ -555,71 +515,130 @@
     closeBtn.addEventListener('click', closePanel);
     overlay.addEventListener('click', closePanel);
 
-    // Custom Select
-    const selectBtn = document.getElementById("selectBtn");
-    const selectOptions = document.getElementById("selectOptions");
-    const options = selectOptions.querySelectorAll("div");
-    let selectedPayment = "";
+    /* Data Layanan */
+    const layanan = {
+      Canva: {
+        services: [
+          { name: "Canva Pro", price: "Rp 2.000/Bulan" }
+        ],
+        benefits: [
+          "Cukup kirim email saja anda sudah bisa menikmati fitur Canva Pro",
+          "-",
+          "• Akses semua template premium Canva",
+          "• Fitur remove background",
+          "• Tanpa watermax"
+        ]
+      },
+      Youtube: {
+        services: [
+          { name: "YouTube Premium", price: "Rp 3.000/Bulan" }
+        ],
+        benefits: [
+          "Cukup kirim email saja anda sudah bisa menikmati fitur YouTube Premium",
+          "-",
+          "• Nonton Video Tanpa iklan",
+          "• Putar Latar Belakang Aktif",
+          "• YouTube Music Aktif"
+        ]
+      }
+    };
 
-    selectBtn.addEventListener("click", () => {
-      selectOptions.classList.toggle("show");
+    /* Variabel */
+    let selectedPremium = "";
+    let selectedPayment = "";
+    let selectedService = "";
+    let selectedPrice = "";
+
+    /* Select Premium */
+    const selectBtnPremium = document.getElementById("selectBtnPremium");
+    const selectOptionsPremium = document.getElementById("selectOptionsPremium");
+
+    selectBtnPremium.addEventListener("click", () => {
+      selectOptionsPremium.classList.toggle("show");
     });
 
-    options.forEach(option => {
-      option.addEventListener("click", () => {
-        selectBtn.textContent = option.textContent;
-        selectedPayment = option.getAttribute("data-value");
-        selectOptions.classList.remove("show");
+    selectOptionsPremium.querySelectorAll("div").forEach(opt => {
+      opt.addEventListener("click", () => {
+        selectedPremium = opt.getAttribute("data-value");
+        selectBtnPremium.textContent = opt.textContent;
+        selectOptionsPremium.classList.remove("show");
+        renderServicesAndBenefits();
       });
     });
 
-    document.addEventListener("click", (e) => {
-      if (!selectBtn.contains(e.target) && !selectOptions.contains(e.target)) {
-        selectOptions.classList.remove("show");
-      }
+    /* Select Payment */
+    const selectBtnPayment = document.getElementById("selectBtnPayment");
+    const selectOptionsPayment = document.getElementById("selectOptionsPayment");
+
+    selectBtnPayment.addEventListener("click", () => {
+      selectOptionsPayment.classList.toggle("show");
     });
 
-    // Domain service
-    let selectedService = "";
-    let selectedPrice = "";
-    function selectService(el, price) {
-      document.querySelectorAll('.service-box').forEach(b => b.classList.remove('active'));
-      el.classList.add('active');
-      selectedService = el.querySelector("h3").textContent;
-      selectedPrice = price;
+    selectOptionsPayment.querySelectorAll("div").forEach(opt => {
+      opt.addEventListener("click", () => {
+        selectedPayment = opt.getAttribute("data-value");
+        selectBtnPayment.textContent = opt.textContent;
+        selectOptionsPayment.classList.remove("show");
+      });
+    });
+
+    /* Render Services & Benefits */
+    function renderServicesAndBenefits() {
+      const servicesGrid = document.getElementById("servicesGrid");
+      const benefitList = document.getElementById("benefitList");
+
+      servicesGrid.innerHTML = "";
+      benefitList.innerHTML = "";
+      selectedService = "";
+      selectedPrice = "";
+
+      if (!layanan[selectedPremium]) {
+        benefitList.innerHTML = `<div class="benefit-item">Pilih layanan aplikasi untuk melihat benefit</div>`;
+        return;
+      }
+
+      // Render services
+      layanan[selectedPremium].services.forEach(s => {
+        const box = document.createElement("div");
+        box.className = "service-box";
+        box.innerHTML = `<h3>${s.name}</h3><small>${s.price}</small>`;
+        box.addEventListener("click", () => {
+          document.querySelectorAll(".service-box").forEach(b => b.classList.remove("active"));
+          box.classList.add("active");
+          selectedService = s.name;
+          selectedPrice = s.price;
+        });
+        servicesGrid.appendChild(box);
+      });
+
+      // Render benefits
+      layanan[selectedPremium].benefits.forEach(b => {
+        const item = document.createElement("div");
+        item.className = "benefit-item";
+        item.textContent = b;
+        benefitList.appendChild(item);
+      });
     }
 
-    // WhatsApp
+    /* Kirim ke WhatsApp */
     function sendToWhatsApp() {
-      const nama = document.getElementById("nama").value.trim();
       const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
       let valid = true;
 
-      document.getElementById("error-nama").textContent = "";
+      // Reset error
       document.getElementById("error-username").textContent = "";
-      document.getElementById("error-password").textContent = "";
+      document.getElementById("error-premium").textContent = "";
       document.getElementById("error-payment").textContent = "";
       document.getElementById("error-service").textContent = "";
 
-      if (nama === "") {
-        document.getElementById("error-nama").textContent = "Wajib isi nama anda";
-        valid = false;
-      }
-
+      // Validasi
       if (username === "") {
-        document.getElementById("error-username").textContent = "Username panel harus di isi";
-        valid = false;
-      } else if (/[A-Z]/.test(username)) {
-        document.getElementById("error-username").textContent = "Username panel harus huruf kecil semua";
+        document.getElementById("error-username").textContent = "Wajib isi nama anda";
         valid = false;
       }
 
-      if (password === "") {
-        document.getElementById("error-password").textContent = "Password panel harus di isi";
-        valid = false;
-      } else if (/[A-Z]/.test(password)) {
-        document.getElementById("error-password").textContent = "Password panel harus huruf kecil semua";
+      if (selectedPremium === "") {
+        document.getElementById("error-premium").textContent = "Wajib pilih salah satu layanan aplikasi";
         valid = false;
       }
 
@@ -629,18 +648,19 @@
       }
 
       if (selectedService === "") {
-        document.getElementById("error-service").textContent = "Wajib pilih salah satu speck panel";
+        document.getElementById("error-service").textContent = "Wajib pilih salah satu layanan";
         valid = false;
       }
 
       if (!valid) return;
 
+      // Kirim pesan WA
       const nomor = "628979687563";
-      const pesan = `*ORDER PANEL RUN BOT*\n` +
-        `Nama : ${nama}\n` +
-        `Username Panel : ${username}\n` +
-        `Password Panel : ${password}\n` +
-        `Speck Panel : ${selectedService}\n` +
+      const pesan =
+        `*ORDER APLIKASI PREMIUM*\n` +
+        `Nama : ${username}\n` +
+        `Layanan Aplikasi : ${selectedPremium}\n` +
+        `Layanan Premium : ${selectedService}\n` +
         `Metode Pembayaran : ${selectedPayment}\n` +
         `Harga : ${selectedPrice}`;
 
@@ -648,5 +668,6 @@
       window.open(url, "_blank");
     }
   </script>
-</b>
+
+</body>
 </html>

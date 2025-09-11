@@ -21,23 +21,23 @@
       flex-direction: column;
     }
     
-     .overlay {
-       position: fixed;
-       top: 60px; 
-       left:0;
-       width:100%; 
-       height:calc(100% - 60px);
-       background: rgba(0,0,0,0.5);
-       backdrop-filter: blur(5px);
-       opacity:0;
-       pointer-events:none;
-       transition: opacity 0.3s ease;
-       z-index:1000;
-      }
-     .overlay.active {
-       opacity:1;
-       pointer-events:auto;
-     }
+    .overlay {
+      position: fixed;
+      top: 60px; 
+      left:0;
+      width:100%; 
+      height:calc(100% - 60px);
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity 0.3s ease;
+      z-index:1000;
+    }
+    .overlay.active {
+      opacity:1;
+      pointer-events:auto;
+    }
     header {
       background-color: #112240;
       display: flex;
@@ -182,6 +182,19 @@
       font-weight: 700;
       color: white;
     }
+    .status {
+      font-size: 13px;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+    .status.ready {
+      color: #00ff88;
+      text-shadow: 0 0 5px #00ff88;
+    }
+    .status.close {
+      color: #ff3333;
+      text-shadow: 0 0 5px #ff3333;
+    }
 
     footer {
       text-align: center;
@@ -227,30 +240,47 @@
         <div class="product-box" onclick="location.href='panel.html'">
           <img src="https://i.postimg.cc/LXwMd2md/ppp.png" alt="Panel">
           <p>Panel Run Bot</p>
+          <div class="status ready">Ready</div>
         </div>
         <div class="product-box" onclick="location.href='domain.html'">
           <img src="https://i.postimg.cc/d1jJHcS4/IMG-20250909-142900.jpg" alt="Domain">
           <p>Domain</p>
+          <div class="status ready">Ready</div>
         </div>
-        <div class="product-box" onclick="location.href='404.html'">
-          <img src="https://i.postimg.cc/76yLF39M/20250909-211915.jpg" alt="">
-          <p>Nokos WhatsApp</p>
+        <div class="product-box" onclick="location.href='premium.html'">
+          <img src="https://i.postimg.cc/zDkjbNV7/file-000000001be861faa31375d46f3bbaca-1.png" alt="">
+          <p>Aplikasi Premium</p>
+          <div class="status ready">Ready</div>
         </div>
         <div class="product-box" onclick="location.href='404.html'">
           <img src="https://i.postimg.cc/76yLF39M/20250909-211915.jpg" alt="">
           <p>Jasa Pterodactly</p>
+          <div class="status close">Close</div>
         </div>
         <div class="product-box" onclick="location.href='404.html'">
           <img src="https://i.postimg.cc/76yLF39M/20250909-211915.jpg" alt="">
-          <p>Aplikasi Premium</p>
+          <p>Nokos WhatsApp</p>
+          <div class="status close">Close</div>
         </div>
         <div class="product-box" onclick="location.href='404.html'">
           <img src="https://i.postimg.cc/76yLF39M/20250909-211915.jpg" alt="">
           <p>Suntik Sosmed</p>
+          <div class="status close">Close</div>
+        </div>
+        <div class="product-box" onclick="location.href='404.html'">
+          <img src="https://i.postimg.cc/76yLF39M/20250909-211915.jpg" alt="">
+          <p>Jasa WhatsApp</p>
+          <div class="status close">Close</div>
         </div>
         <div class="product-box" onclick="location.href='404.html'">
           <img src="https://i.postimg.cc/76yLF39M/20250909-211915.jpg" alt="">
           <p>Merji Student</p>
+          <div class="status close">Close</div>
+        </div>
+        <div class="product-box" onclick="location.href='404.html'">
+          <img src="https://i.postimg.cc/76yLF39M/20250909-211915.jpg" alt="">
+          <p>Coming Soon</p>
+          <div class="status close">Close</div>
         </div>
       </div>
 
