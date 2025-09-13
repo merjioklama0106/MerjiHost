@@ -146,7 +146,7 @@
       font-size: 13px;
     }
 
-    /* Select */
+    /* Select Section */
     .select-section {
       margin: 20px;
     }
@@ -393,6 +393,41 @@
       margin-top: 30px;
     }
 
+    /* Notifikasi */
+    .notif {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(45deg, #ff6600, #cc0000);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 2000;
+    }
+
+    .notif.show {
+      opacity: 1;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(-50%) translateX(0); }
+      25% { transform: translateX(-50%) translateX(-5px); }
+      50% { transform: translateX(-50%) translateX(5px); }
+      75% { transform: translateX(-50%) translateX(-5px); }
+      100% { transform: translateX(-50%) translateX(0); }
+    }
+
+    .notif.shake {
+      animation: shake 0.4s;
+    }
+
     /* Responsive */
     @media (max-width: 600px) {
       .services-grid {
@@ -486,10 +521,12 @@
   <div class="slide-panel" id="slidePanel">
     <button class="close-button" id="closeBtn">&times;</button>
     <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
-    <button class="menu-item" onclick="location.href='hosting.html'">Pesan Hosting</button>
-    <button class="menu-item" onclick="location.href='produk.html'">Produk Lainnya</button>
+    <button class="menu-item" onclick="location.href='produk.html'">Produk</button>
     <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
   </div>
+
+  <!-- Notifikasi -->
+  <div id="notifBox" class="notif"></div>
 
   <!-- Footer -->
   <footer>© 2025 MerjiHost. All Rights Reserved</footer>
@@ -620,6 +657,15 @@
       });
     }
 
+    /* Notifikasi */
+    const notifBox = document.getElementById("notifBox");
+    function showNotif(msg) {
+      notifBox.innerText = msg;
+      notifBox.classList.add("show", "shake");
+      setTimeout(() => notifBox.classList.remove("shake"), 400);
+      setTimeout(() => notifBox.classList.remove("show"), 2500);
+    }
+
     /* Kirim ke WhatsApp */
     function sendToWhatsApp() {
       const username = document.getElementById("username").value.trim();
@@ -636,23 +682,24 @@
         document.getElementById("error-username").textContent = "Wajib isi nama anda";
         valid = false;
       }
-
       if (selectedPremium === "") {
         document.getElementById("error-premium").textContent = "Wajib pilih salah satu layanan aplikasi";
         valid = false;
       }
-
       if (selectedPayment === "") {
         document.getElementById("error-payment").textContent = "Wajib pilih salah satu metode pembayaran";
         valid = false;
       }
-
       if (selectedService === "") {
         document.getElementById("error-service").textContent = "Wajib pilih salah satu layanan";
         valid = false;
       }
 
-      if (!valid) return;
+      // Jika tidak valid → tampilkan notifikasi
+      if (!valid) {
+        showNotif("Wajib isi semua data di bawah!");
+        return;
+      }
 
       // Kirim pesan WA
       const nomor = "628979687563";
@@ -668,6 +715,5 @@
       window.open(url, "_blank");
     }
   </script>
-
 </body>
 </html>
