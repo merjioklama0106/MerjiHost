@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MerjiHost</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Style -->
+  <style>
+    /* ==================== RESET ==================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #101820;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ==================== HEADER ==================== */
+    header {
+      background-color: #112240;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 24px;
+      color: white;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .menu-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: white;
+      background: transparent;
+      border: 2px solid white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .menu-button:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.1);
+    }
+
+    /* ==================== BANNER ==================== */
+    .banner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 64/25;
+      overflow: hidden;
+      margin-top: 60px;
+    }
+
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .banner-text {
+      position: absolute;
+      bottom: 15px;
+      left: 20px;
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+    }
+
+    /* ==================== LABEL ==================== */
+    .input-label,
+    .select-label,
+    .services-label {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: #FFD700;
+      margin-bottom: 4px;
+    }
+
+    .input-label::before,
+    .select-label::before,
+    .services-label::before {
+      content: "";
+      width: 3px;
+      height: 20px;
+      background: #FFD700;
+      margin-right: 10px;
+    }
+
+    /* ==================== INPUT SECTION ==================== */
+    .input-section {
+      margin: 20px;
+    }
+
+    .input-section small {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .input-section input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #FFD700;
+      border-radius: 6px;
+      font-size: 16px;
+      background: #1a1a1a;
+      color: white;
+      outline: none;
+    }
+
+    .error {
+      color: red;
+      margin-top: 5px;
+      font-size: 13px;
+    }
+
+    /* ==================== SELECT SECTION ==================== */
+    .select-section {
+      margin: 20px;
+    }
+
+    .select-section .description {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+
+    .custom-select {
+      position: relative;
+      width: 100%;
+    }
+
+    .select-btn {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #FFD700;
+      border-radius: 6px;
+      font-size: 16px;
+      background: #1a1a1a;
+      color: white;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .select-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #1a1a1a;
+      border: 2px solid #FFD700;
+      border-radius: 6px;
+      margin-top: 5px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      opacity: 0;
+      z-index: 10;
+    }
+
+    .select-options.show {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    .select-options div {
+      padding: 10px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .select-options div:hover {
+      background: #333;
+    }
+
+    /* ==================== SERVICES ==================== */
+    .services-section {
+      margin: 20px;
+    }
+
+    .services-section .description {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .service-box {
+      border: 2px solid #666;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      background: #1a1a1a;
+      cursor: pointer;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .service-box h3 {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .service-box small {
+      color: #FFD700;
+      font-size: 14px;
+    }
+
+    .service-box.active {
+      border: 3px solid #FFD700;
+      box-shadow: 0 0 12px rgba(255,215,0,0.5);
+    }
+
+    .label-populer {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #FFD700;
+      color: #333;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid #666; 
+    }
+
+    /* ==================== BENEFIT ==================== */
+    .benefit-box {
+      margin: 20px;
+      border-radius: 10px;
+      padding: 20px;
+      background: #222;
+    }
+
+    .benefit-box h3 {
+      text-align: center;
+      color: #FFD700;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .benefit-item {
+      font-size: 16px;
+      color: #ddd;
+      margin-bottom: 8px;
+    }
+
+    /* ==================== BUTTON WA ==================== */
+    .btn-wa {
+      display: block;
+      width: 90%;
+      margin: 30px auto;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      color: #fff;
+      background: transparent;
+      border: 2px solid #FFD700;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-wa::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 215, 0, 0.5);
+      transition: left 0.5s ease;
+      z-index: 0;
+    }
+
+    .btn-wa:active::before {
+      left: 100%;
+    }
+
+    .btn-wa span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==================== SLIDE PANEL ==================== */
+    .overlay {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 60px);
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .slide-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100%;
+      width: 180px;
+      background: #111;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+      padding: 70px 10px 20px;
+      transition: 0.4s;
+      z-index: 1001;
+    }
+
+    .slide-panel.open {
+      right: 0;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 40px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .close-button:hover {
+      transform: scale(1.2);
+    }
+
+    .slide-panel button.menu-item {
+      display: block;
+      width: 100%;
+      margin: 20px 0;
+      padding: 12px;
+      background: linear-gradient(to right, #333, #222);
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(255,255,255,0.15);
+    }
+
+    .slide-panel button.menu-item:hover {
+      background: #444;
+      transform: scale(1.05);
+    }
+
+    /* ==================== FOOTER ==================== */
+    footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 20px 0;
+      color: #ccc;
+      margin-top: 30px;
+    }
+
+    /* ==================== NOTIFIKASI ==================== */
+    .notif {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(45deg, #ff6600, #cc0000);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 2000;
+    }
+
+    .notif.show { opacity: 1; }
+
+    @keyframes shake {
+      0% { transform: translateX(-50%) translateX(0); }
+      25% { transform: translateX(-50%) translateX(-5px); }
+      50% { transform: translateX(-50%) translateX(5px); }
+      75% { transform: translateX(-50%) translateX(-5px); }
+      100% { transform: translateX(-50%) translateX(0); }
+    }
+
+    .notif.shake { animation: shake 0.4s; }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .banner-text { font-size: 18px; }
+      .slide-panel { width: 70%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <div class="logo">MerjiHost</div>
+    <div class="menu-button" id="menuBtn">&#9776;</div>
+  </header>
+
+  <!-- ==================== BANNER ==================== -->
+  <section class="banner">
+    <img src="https://i.postimg.cc/wj6JXDBQ/20250916-194216.jpg" alt="Merji Student">
+    <div class="banner-text">Nokos WhatsApp</div>
+  </section>
+
+  <!-- ==================== INPUT USERNAME ==================== -->
+  <section class="input-section">
+    <div class="input-label">Masukan Nama Anda</div>
+    <small>Nama wajib di isi!</small>
+    <input type="text" id="username" placeholder="Nama">
+    <div id="error-username" class="error"></div>
+  </section>
+  
+  <!-- ==================== SELECT PAYMENT ==================== -->
+  <section class="select-section">
+    <div class="select-label">Pilih Metode Pembayaran</div>
+    <p class="description">Pilih metode pembayaran anda!</p>
+    <div class="custom-select">
+      <div class="select-btn" id="selectBtnPayment">Pilih pembayaran</div>
+      <div class="select-options" id="selectOptionsPayment">
+        <div data-value="Dana">Dana</div>
+        <div data-value="Gopay">Gopay</div>
+        <div data-value="Qris">Qris (All Payment)</div>
+      </div>
+    </div>
+    <div id="error-payment" class="error"></div>
+  </section>
+
+  <!-- ==================== SERVICES ==================== -->
+  <section class="services-section">
+    <div class="services-label">Pilih Region Nokos</div>
+    <p class="description">Pilih nokos yang ingin anda beli!</p>
+    <div class="services-grid">
+      <div class="service-box" onclick="selectService(this, 'Rp 5.000')">
+        <h3>Nokos Indonesia</h3>
+        <small>Rp 5.000</small>
+      </div>
+      <div class="service-box" onclick="selectService(this, 'Rp 7.000')">
+        <h3>Nokos Vietnam</h3>
+        <small>Rp 7.000</small>
+      </div>
+    </div>
+    <div id="error-service" class="error"></div>
+  </section>
+
+  <!-- ==================== BENEFIT ==================== -->
+  <section class="benefit-box" id="benefitBox">
+    <h3>Benefit Untuk Anda</h3>
+    <div id="benefitList">
+      <div class="benefit-item">
+       Tidak ada garansi yah!.
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== BUTTON WA ==================== -->
+  <button class="btn-wa" onclick="sendToWhatsApp()">
+    <span>Pesan via WhatsApp</span>
+  </button>
+
+  <!-- ==================== SLIDE PANEL ==================== -->
+  <div class="overlay" id="overlay"></div>
+  <div class="slide-panel" id="slidePanel">
+    <button class="close-button" id="closeBtn">&times;</button>
+    <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
+    <button class="menu-item" onclick="location.href='produk.html'">Produk</button>
+    <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
+  </div>
+
+  <!-- ==================== NOTIFIKASI ==================== -->
+  <div id="notifBox" class="notif"></div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>© 2025 MerjiHost. All Rights Reserved</footer>
+
+  <!-- ==================== SCRIPT ==================== -->
+  <script>
+    /* ---------- Slide Panel ---------- */
+    const menuBtn = document.getElementById('menuBtn');
+    const slidePanel = document.getElementById('slidePanel');
+    const closeBtn = document.getElementById('closeBtn');
+    const overlay = document.getElementById('overlay');
+
+    menuBtn.addEventListener('click', () => {
+      slidePanel.classList.add('open');
+      overlay.classList.add('active');
+    });
+
+    function closePanel() {
+      slidePanel.classList.remove('open');
+      overlay.classList.remove('active');
+    }
+
+    closeBtn.addEventListener('click', closePanel);
+    overlay.addEventListener('click', closePanel);
+
+    /* ---------- Variabel ---------- */
+    let selectedPayment = "";
+    let selectedService = "";
+    let selectedPrice = "";
+
+    /* ---------- Select Payment ---------- */
+    const selectBtnPayment = document.getElementById("selectBtnPayment");
+    const selectOptionsPayment = document.getElementById("selectOptionsPayment");
+
+    selectBtnPayment.addEventListener("click", () => {
+      selectOptionsPayment.classList.toggle("show");
+    });
+
+    selectOptionsPayment.querySelectorAll("div").forEach(opt => {
+      opt.addEventListener("click", () => {
+        selectedPayment = opt.getAttribute("data-value");
+        selectBtnPayment.textContent = opt.textContent;
+        selectOptionsPayment.classList.remove("show");
+      });
+    });
+
+    /* ---------- Select Service ---------- */
+    function selectService(el, price) {
+      document.querySelectorAll(".service-box").forEach(box => {
+        box.classList.remove("active");
+      });
+      el.classList.add("active");
+      selectedService = el.querySelector("h3").innerText;
+      selectedPrice = price;
+    }
+
+    /* ---------- Notifikasi ---------- */
+    const notifBox = document.getElementById("notifBox");
+    function showNotif(msg) {
+      notifBox.innerText = msg;
+      notifBox.classList.add("show", "shake");
+      setTimeout(() => notifBox.classList.remove("shake"), 400);
+      setTimeout(() => notifBox.classList.remove("show"), 2500);
+    }
+
+    /* ---------- Kirim ke WhatsApp ---------- */
+    function sendToWhatsApp() {
+      const username = document.getElementById("username").value.trim();
+      let valid = true;
+
+      // Reset error
+      document.getElementById("error-username").textContent = "";
+      document.getElementById("error-payment").textContent = "";
+      document.getElementById("error-service").textContent = "";
+
+      // Validasi
+      if (username === "") {
+        document.getElementById("error-username").textContent = "Wajib isi nama anda";
+        valid = false;
+      }
+      if (selectedPayment === "") {
+        document.getElementById("error-payment").textContent = "Wajib pilih salah satu metode pembayaran";
+        valid = false;
+      }
+      if (selectedService === "") {
+        document.getElementById("error-service").textContent = "Wajib pilih salah satu layanan";
+        valid = false;
+      }
+
+      // Jika tidak valid → tampilkan notifikasi
+      if (!valid) {
+        showNotif("Wajib isi semua data di bawah!");
+        return;
+      }
+
+      // Kirim pesan WA
+      const nomor = "628979687563";
+      const pesan =
+        `*ORDER NOKOS WHATSAPP*\n` +
+        `Nama : ${username}\n` +
+        `Category : ${selectedService}\n` +
+        `Metode Pembayaran : ${selectedPayment}\n` +
+        `Harga : ${selectedPrice}`;
+
+      const url = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
