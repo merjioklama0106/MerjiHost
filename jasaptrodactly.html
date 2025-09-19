@@ -10,7 +10,7 @@
 
   <!-- Style -->
   <style>
-    /* Reset */
+    /* ==================== RESET ==================== */
     * {
       margin: 0;
       padding: 0;
@@ -24,7 +24,7 @@
       overflow-x: hidden;
     }
 
-    /* Header */
+    /* ==================== HEADER ==================== */
     header {
       background-color: #112240;
       display: flex;
@@ -70,7 +70,7 @@
       transform: scale(1.1);
     }
 
-    /* Banner */
+    /* ==================== BANNER ==================== */
     .banner {
       position: relative;
       width: 100%;
@@ -95,7 +95,7 @@
       text-shadow: 0 2px 5px rgba(0,0,0,0.7);
     }
 
-    /* Label */
+    /* ==================== LABEL ==================== */
     .input-label,
     .select-label,
     .services-label {
@@ -117,7 +117,7 @@
       margin-right: 10px;
     }
 
-    /* Input Section */
+    /* ==================== INPUT SECTION ==================== */
     .input-section {
       margin: 20px;
     }
@@ -146,7 +146,7 @@
       font-size: 13px;
     }
 
-    /* Select Section */
+    /* ==================== SELECT SECTION ==================== */
     .select-section {
       margin: 20px;
     }
@@ -205,7 +205,7 @@
       background: #333;
     }
 
-    /* Services */
+    /* ==================== SERVICES ==================== */
     .services-section {
       margin: 20px;
     }
@@ -250,7 +250,20 @@
       box-shadow: 0 0 12px rgba(255,215,0,0.5);
     }
 
-    /* Benefit */
+    .label-populer {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #FFD700;
+      color: #333;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid #666; 
+    }
+
+    /* ==================== BENEFIT ==================== */
     .benefit-box {
       margin: 20px;
       border-radius: 10px;
@@ -271,7 +284,7 @@
       margin-bottom: 8px;
     }
 
-    /* WhatsApp Button */
+    /* ==================== BUTTON WA ==================== */
     .btn-wa {
       display: block;
       width: 90%;
@@ -310,7 +323,7 @@
       z-index: 1;
     }
 
-    /* Slide Panel */
+    /* ==================== SLIDE PANEL ==================== */
     .overlay {
       position: fixed;
       top: 60px;
@@ -384,7 +397,7 @@
       transform: scale(1.05);
     }
 
-    /* Footer */
+    /* ==================== FOOTER ==================== */
     footer {
       text-align: center;
       font-size: 14px;
@@ -393,7 +406,7 @@
       margin-top: 30px;
     }
 
-    /* Notifikasi */
+    /* ==================== NOTIFIKASI ==================== */
     .notif {
       position: fixed;
       top: 10px;
@@ -412,9 +425,7 @@
       z-index: 2000;
     }
 
-    .notif.show {
-      opacity: 1;
-    }
+    .notif.show { opacity: 1; }
 
     @keyframes shake {
       0% { transform: translateX(-50%) translateX(0); }
@@ -424,41 +435,31 @@
       100% { transform: translateX(-50%) translateX(0); }
     }
 
-    .notif.shake {
-      animation: shake 0.4s;
-    }
+    .notif.shake { animation: shake 0.4s; }
 
-    /* Responsive */
+    /* ==================== RESPONSIVE ==================== */
     @media (max-width: 600px) {
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .banner-text {
-        font-size: 18px;
-      }
-
-      .slide-panel {
-        width: 70%;
-      }
+      .services-grid { grid-template-columns: 1fr; }
+      .banner-text { font-size: 18px; }
+      .slide-panel { width: 70%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- ==================== HEADER ==================== -->
   <header>
     <div class="logo">MerjiHost</div>
     <div class="menu-button" id="menuBtn">&#9776;</div>
   </header>
 
-  <!-- Banner -->
+  <!-- ==================== BANNER ==================== -->
   <section class="banner">
-    <img src="https://i.postimg.cc/8cpqq6qD/20250917-175732.jpg" alt="Suntik Sosmed">
-    <div class="banner-text">Suntik Sosmed</div>
+    <img src="https://i.postimg.cc/156VjzyQ/20250909-215948.jpg" alt="Jasa Ptrodactly">
+    <div class="banner-text">Jasa Ptrodactly</div>
   </section>
 
-  <!-- Username -->
+  <!-- ==================== INPUT USERNAME ==================== -->
   <section class="input-section">
     <div class="input-label">Masukan Nama Anda</div>
     <small>Nama wajib di isi!</small>
@@ -466,29 +467,7 @@
     <div id="error-username" class="error"></div>
   </section>
   
-  <!-- Link Target -->
-  <section class="input-section">
-    <div class="input-label">Masukan Link/User Target</div>
-    <small>User/Link target sesuaikan dengan layanan, <b>(Akun jangan di private)</b></small>
-    <input type="text" id="link" placeholder="Link/User">
-    <div id="error-link" class="error"></div>
-  </section>
-
-  <!-- Select Aplikasi Premium -->
-  <section class="select-section">
-    <div class="select-label">Pilih Layanan Sosmed</div>
-    <p class="description">Pilih layanan aplikasi suntik sosmed!</p>
-    <div class="custom-select">
-      <div class="select-btn" id="selectBtnPremium">Pilih layanan</div>
-      <div class="select-options" id="selectOptionsPremium">
-        <div data-value="Canva">Instagram</div>
-        <div data-value="Youtube">WhatsApp</div>
-      </div>
-    </div>
-    <div id="error-premium" class="error"></div>
-  </section>
-  
-  <!-- Select Payment -->
+  <!-- ==================== SELECT PAYMENT ==================== -->
   <section class="select-section">
     <div class="select-label">Pilih Metode Pembayaran</div>
     <p class="description">Pilih metode pembayaran anda!</p>
@@ -503,28 +482,44 @@
     <div id="error-payment" class="error"></div>
   </section>
 
-  <!-- Services -->
+  <!-- ==================== SERVICES ==================== -->
   <section class="services-section">
-    <div class="services-label">Pilih Layanan</div>
-    <p class="description">Pilih layanan yang ingin anda beli!</p>
-    <div class="services-grid" id="servicesGrid"></div>
+    <div class="services-label">Pilih Category Jasa</div>
+    <p class="description">Pilih category yang ingin anda beli!</p>
+    <div class="services-grid">
+      <div class="service-box" onclick="selectService(this, 'Rp 5.000')">
+        <h3>Install Panel</h3>
+        <small>Rp 5.000</small>
+      </div>
+      <div class="service-box" onclick="selectService(this, 'Rp 5.000')">
+        <h3>Install Wings/Node</h3>
+        <small>Rp 5.000</small>
+      </div>
+      <div class="service-box" onclick="selectService(this, 'Rp 10.000')">
+        <h3>Install Panel & Wings</h3>
+        <small>Rp 10.000</small>
+      </div>
+    </div>
     <div id="error-service" class="error"></div>
   </section>
 
-  <!-- Benefit -->
+  <!-- ==================== BENEFIT ==================== -->
   <section class="benefit-box" id="benefitBox">
-    <h3>Benefit Untuk Anda</h3>
+    <h3>Wajib Di Baca</h3>
     <div id="benefitList">
-      <div class="benefit-item">Pilih layanan sosmed untuk melihat benefit</div>
+      <div class="benefit-item">
+        Wajib Vps Ubuntu!<br>
+        Proses pengerjaan sekitar 10-20 menit.
+      </div>
     </div>
   </section>
 
-  <!-- WhatsApp -->
+  <!-- ==================== BUTTON WA ==================== -->
   <button class="btn-wa" onclick="sendToWhatsApp()">
     <span>Pesan via WhatsApp</span>
   </button>
 
-  <!-- Overlay + Slide Panel -->
+  <!-- ==================== SLIDE PANEL ==================== -->
   <div class="overlay" id="overlay"></div>
   <div class="slide-panel" id="slidePanel">
     <button class="close-button" id="closeBtn">&times;</button>
@@ -533,15 +528,15 @@
     <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
   </div>
 
-  <!-- Notifikasi -->
+  <!-- ==================== NOTIFIKASI ==================== -->
   <div id="notifBox" class="notif"></div>
 
-  <!-- Footer -->
+  <!-- ==================== FOOTER ==================== -->
   <footer>© 2025 MerjiHost. All Rights Reserved</footer>
 
-  <!-- Script -->
+  <!-- ==================== SCRIPT ==================== -->
   <script>
-    /* Slide Panel */
+    /* ---------- Slide Panel ---------- */
     const menuBtn = document.getElementById('menuBtn');
     const slidePanel = document.getElementById('slidePanel');
     const closeBtn = document.getElementById('closeBtn');
@@ -560,56 +555,12 @@
     closeBtn.addEventListener('click', closePanel);
     overlay.addEventListener('click', closePanel);
 
-    /* Data Layanan */
-    const layanan = {
-      Canva: {
-        services: [
-          { name: "100 Followers", price: "Rp 5.000" },
-          { name: "100 Likes Post", price: "Rp 2.000" }
-        ],
-        benefits: [
-          "Proses pengerjaan sekitar 1-10 mwnit"
-        ]
-      },
-      Youtube: {
-        services: [
-          { name: "100 Pengikut Channel", price: "Rp 5.000" },
-          { name: "50 Reaction Emoji Channel (❤️)", price: "Rp 2.000" },
-          { name: "50 Reaction Emoji Channel (👍)", price: "Rp 2.000" },
-          { name: "50 Reaction Emoji Random Channel", price: "Rp 2.000" },
-          { name: "50 Reaction Emoji Channel (😂)", price: "Rp 2.000" },
-          { name: "50 Reaction Emoji Channel (🔥)", price: "Rp 2.000" }
-        ],
-        benefits: [
-          "Proses pengerjaan sekitar 1-10 menit"
-        ]
-      }
-    };
-
-    /* Variabel */
-    let selectedPremium = "";
+    /* ---------- Variabel ---------- */
     let selectedPayment = "";
     let selectedService = "";
     let selectedPrice = "";
 
-    /* Select Premium */
-    const selectBtnPremium = document.getElementById("selectBtnPremium");
-    const selectOptionsPremium = document.getElementById("selectOptionsPremium");
-
-    selectBtnPremium.addEventListener("click", () => {
-      selectOptionsPremium.classList.toggle("show");
-    });
-
-    selectOptionsPremium.querySelectorAll("div").forEach(opt => {
-      opt.addEventListener("click", () => {
-        selectedPremium = opt.getAttribute("data-value");
-        selectBtnPremium.textContent = opt.textContent;
-        selectOptionsPremium.classList.remove("show");
-        renderServicesAndBenefits();
-      });
-    });
-
-    /* Select Payment */
+    /* ---------- Select Payment ---------- */
     const selectBtnPayment = document.getElementById("selectBtnPayment");
     const selectOptionsPayment = document.getElementById("selectOptionsPayment");
 
@@ -625,45 +576,17 @@
       });
     });
 
-    /* Render Services & Benefits */
-    function renderServicesAndBenefits() {
-      const servicesGrid = document.getElementById("servicesGrid");
-      const benefitList = document.getElementById("benefitList");
-
-      servicesGrid.innerHTML = "";
-      benefitList.innerHTML = "";
-      selectedService = "";
-      selectedPrice = "";
-
-      if (!layanan[selectedPremium]) {
-        benefitList.innerHTML = `<div class="benefit-item">Pilih layanan sosmed untuk melihat benefit</div>`;
-        return;
-      }
-
-      // Render services
-      layanan[selectedPremium].services.forEach(s => {
-        const box = document.createElement("div");
-        box.className = "service-box";
-        box.innerHTML = `<h3>${s.name}</h3><small>${s.price}</small>`;
-        box.addEventListener("click", () => {
-          document.querySelectorAll(".service-box").forEach(b => b.classList.remove("active"));
-          box.classList.add("active");
-          selectedService = s.name;
-          selectedPrice = s.price;
-        });
-        servicesGrid.appendChild(box);
+    /* ---------- Select Service ---------- */
+    function selectService(el, price) {
+      document.querySelectorAll(".service-box").forEach(box => {
+        box.classList.remove("active");
       });
-
-      // Render benefits
-      layanan[selectedPremium].benefits.forEach(b => {
-        const item = document.createElement("div");
-        item.className = "benefit-item";
-        item.textContent = b;
-        benefitList.appendChild(item);
-      });
+      el.classList.add("active");
+      selectedService = el.querySelector("h3").innerText;
+      selectedPrice = price;
     }
 
-    /* Notifikasi */
+    /* ---------- Notifikasi ---------- */
     const notifBox = document.getElementById("notifBox");
     function showNotif(msg) {
       notifBox.innerText = msg;
@@ -672,30 +595,19 @@
       setTimeout(() => notifBox.classList.remove("show"), 2500);
     }
 
-    /* Kirim ke WhatsApp */
+    /* ---------- Kirim ke WhatsApp ---------- */
     function sendToWhatsApp() {
       const username = document.getElementById("username").value.trim();
-      const link = document.getElementById("link").value.trim();
       let valid = true;
 
       // Reset error
       document.getElementById("error-username").textContent = "";
-      document.getElementById("error-premium").textContent = "";
       document.getElementById("error-payment").textContent = "";
       document.getElementById("error-service").textContent = "";
-      document.getElementById("error-link").textContent = "";
 
       // Validasi
       if (username === "") {
         document.getElementById("error-username").textContent = "Wajib isi nama anda";
-        valid = false;
-      }
-      if (link === "") {
-        document.getElementById("error-link").textContent = "Wajib isi link/user target";
-        valid = false;
-      }
-      if (selectedPremium === "") {
-        document.getElementById("error-premium").textContent = "Wajib pilih salah satu layanan";
         valid = false;
       }
       if (selectedPayment === "") {
@@ -716,11 +628,9 @@
       // Kirim pesan WA
       const nomor = "628979687563";
       const pesan =
-        `*ORDER SUNTIK SOSMED*\n` +
+        `*ORDER MERJISTUDENT*\n` +
         `Nama : ${username}\n` +
-        `Target : ${link}\n` +
-        `Layanan Sosmed : ${selectedPremium}\n` +
-        `Suntik : ${selectedService}\n` +
+        `Category : ${selectedService}\n` +
         `Metode Pembayaran : ${selectedPayment}\n` +
         `Harga : ${selectedPrice}`;
 
