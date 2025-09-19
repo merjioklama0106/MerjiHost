@@ -487,13 +487,13 @@
     <div class="services-label">Pilih Region Nokos</div>
     <p class="description">Pilih nokos yang ingin anda beli!</p>
     <div class="services-grid">
-      <div class="service-box" onclick="selectService(this, 'Rp 5.000')">
-        <h3>Nokos Indonesia</h3>
-        <small>Rp 5.000</small>
+      <div class="service-box" onclick="selectService(this, 'Rp 4.000')">
+        <h3>Indonesia</h3>
+        <small>Rp 4.000</small>
       </div>
-      <div class="service-box" onclick="selectService(this, 'Rp 7.000')">
-        <h3>Nokos Vietnam</h3>
-        <small>Rp 7.000</small>
+      <div class="service-box" onclick="selectService(this, 'Rp 4.500')">
+        <h3>Vietnam</h3>
+        <small>Rp 4.500</small>
       </div>
     </div>
     <div id="error-service" class="error"></div>
@@ -504,7 +504,7 @@
     <h3>Benefit Untuk Anda</h3>
     <div id="benefitList">
       <div class="benefit-item">
-       Tidak ada garansi yah!.
+       Tidak ada garansi!.
       </div>
     </div>
   </section>
@@ -625,7 +625,7 @@
       const pesan =
         `*ORDER NOKOS WHATSAPP*\n` +
         `Nama : ${username}\n` +
-        `Category : ${selectedService}\n` +
+        `Nokos : ${selectedService}\n` +
         `Metode Pembayaran : ${selectedPayment}\n` +
         `Harga : ${selectedPrice}`;
 
