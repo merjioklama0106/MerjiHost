@@ -329,8 +329,8 @@
       position: absolute;
       top: 8px;
       right: 8px;
-      background: #FFD700;
-      color: #333;
+      background: #007bff;
+      color: white;
       font-size: 12px;
       font-weight: 600;
       padding: 3px 8px;
@@ -453,14 +453,21 @@
     <p class="description">Pilih layanan domain yang ingin anda beli!</p>
     <div class="services-grid">
       <div class="service-box" onclick="selectService(this, 'Rp 15.000/Tahun')">
-        <div class="label-populer">Populer</div>
+        <div class="label-populer">Promo</div>
         <h3>my.id</h3>
-        <small>Rp 15.000/Tahun</small>
+        <small><s>Rp 15.000/Tahun</s></small><br>
+        <small style="color:lightgreen; font-weight:bold;">Rp 6.000/Tahun</small>
       </div>
       <div class="service-box" onclick="selectService(this, 'Rp 15.000/Tahun')">
+        <div class="label-populer">Promo</div>
         <h3>biz.id</h3>
-        <small>Rp 15.000/Tahun</small>
+        <small><s>Rp 15.000/Tahun</s></small><br>
+        <small style="color:lightgreen; font-weight:bold;">Rp 6.000/Tahun</small>
       </div>
+      <div class="service-box" onclick="selectService(this, 'Rp 35.000/Tahun')">
+        <h3>xyz</h3>
+        <small>Rp 35.000/Tahun</small>
+      </d>
     </div>
     <div id="error-service" class="error"></div>
   </section>
