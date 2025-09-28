@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MerjiHost - Hosting Minecraft</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #101820;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      background: #112240;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .logo { 
+      font-weight: 600; 
+      font-size: 24px; 
+      color: white; 
+      animation: float 2s ease-in-out infinite; 
+    }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+    .menu-button {
+      width: 40px; 
+      height: 40px; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px; 
+      color: white; 
+      background: transparent; 
+      border: 2px solid white;
+      border-radius: 8px; 
+      cursor: pointer; 
+      transition: 0.3s;
+    }
+    .menu-button:hover { 
+      background: rgba(255,255,255,0.2); 
+      transform: scale(1.1); }
+
+    /* Notifikasi */
+    .notif {
+      position: fixed; 
+      top: 10px; 
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(45deg, #ff6600, #cc0000); color: #fff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600; 
+      font-size: 14px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      opacity: 0; 
+      transition: opacity 0.4s ease;
+      z-index: 2000;
+    }
+    .notif.show {
+      opacity: 1; }
+    @keyframes shake {
+      0% { transform: translateX(-50%) translateX(0); }
+      25% { transform: translateX(-50%) translateX(-5px); }
+      50% { transform: translateX(-50%) translateX(5px); }
+      75% { transform: translateX(-50%) translateX(-5px); }
+      100% { transform: translateX(-50%) translateX(0); }
+    }
+    .notif.shake {
+      animation: shake 0.4s; }
+
+    /* Banner */
+    .banner { 
+      position: relative;
+      width: 100%;
+      aspect-ratio: 64/25; 
+      overflow: hidden;
+      margin-top: 60px; }
+    .banner img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; }
+    .banner-text { 
+      position: absolute; 
+      bottom: 15px; 
+      left: 20px; 
+      color: white; 
+      font-size: 24px; 
+      font-weight: 700;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.7); }
+
+    /* Label */
+    .input-label, .select-label, .services-label {
+      display: flex;
+      align-items: center;
+      font-size: 18px; 
+      font-weight: 600;
+      color: #FFD700;
+      margin-bottom: 4px;
+    }
+    .input-label::before, .select-label::before, .services-label::before {
+      content: "";
+      width: 3px;
+      height: 20px; 
+      background: #FFD700;
+      margin-right: 10px;
+    }
+
+    /* Input Section */
+    .input-section {
+      margin: 20px; }
+    .input-section small { 
+      font-size: 14px; 
+      color: #aaa; 
+      margin-bottom: 6px; 
+      display: block; }
+    .input-section input {
+      width: 100%; 
+      padding: 12px;
+      border: 2px solid #FFD700; 
+      border-radius: 6px;
+      font-size: 16px;
+      background: #1a1a1a;
+      color: white;
+      outline: none;
+    }
+    .error { 
+      color: red; 
+      margin-top: 5px; 
+      font-size: 13px; }
+
+    /* Select Section */
+    .select-section { 
+      margin: 20px; }
+    .select-section .description { 
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 10px; }
+    .custom-select {
+      position: relative;
+      width: 100%; }
+    .select-btn {
+      width: 100%;
+      padding: 12px; 
+      border: 2px solid #FFD700; 
+      border-radius: 6px;
+      font-size: 16px;
+      background: #1a1a1a; 
+      color: white; 
+      cursor: pointer; 
+      text-align: left;
+    }
+    .select-options {
+      position: absolute; 
+      top: 100%;
+      left: 0; 
+      right: 0; background: #1a1a1a;
+      border: 2px solid #FFD700; 
+      border-radius: 6px; 
+      margin-top: 5px;
+      max-height: 0;
+      overflow: hidden; 
+      transition: all 0.3s ease; 
+      opacity: 0; 
+      z-index: 10;
+    }
+    .select-options.show { 
+      max-height: 200px;
+      opacity: 1; }
+    .select-options div {
+      padding: 10px; 
+      cursor: pointer; 
+      color: white; }
+    .select-options div:hover { 
+      background: #333; }
+
+    /* Services */
+    .services-section { 
+      margin: 20px; }
+    .services-section .description { 
+      font-size: 14px; 
+      color: #aaa; 
+      margin-bottom: 12px; }
+    .services-grid { 
+      display: grid; 
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px; }
+    .service-box {
+      border: 2px solid #666;
+      border-radius: 8px; 
+      padding: 15px; 
+      text-align: center;
+      background: #1a1a1a;
+      cursor: pointer;
+      position: relative;
+      transition: 0.3s;
+    }
+    .service-box h3 { 
+      color: white; 
+      font-size: 18px; 
+      font-weight: 700; 
+      margin-bottom: 6px; }
+    .service-box small {
+      color: #FFD700; 
+      font-size: 14px; }
+    .service-box.active { 
+      border: 3px solid #FFD700; 
+      box-shadow: 0 0 12px rgba(255,215,0,0.5); }
+
+    /* Benefit */
+    .benefit-box { 
+      margin: 20px;
+      border-radius: 10px; 
+      padding: 20px; 
+      background: #222; }
+    .benefit-box h3 { 
+      text-align: center;
+      color: #FFD700; 
+      font-size: 20px;
+      margin-bottom: 15px; }
+    .benefit-item { 
+      font-size: 16px; 
+      color: #ddd;
+      margin-bottom: 8px; }
+
+    /* WA Button */
+    .btn-wa {
+      display: block;
+      width: 90%; 
+      margin: 30px auto; 
+      padding: 15px; 
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center; 
+      color: #fff; 
+      background: transparent;
+      border: 2px solid #FFD700; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      position: relative; 
+      overflow: hidden;
+    }
+    .btn-wa::before {
+      content: ""; 
+      position: absolute; 
+      top: 0; left: -100%; 
+      width: 100%; 
+      height: 100%;
+      background: rgba(255, 215, 0, 0.5);
+      transition: 
+      left 0.5s ease; 
+      z-index: 0;
+    }
+    .btn-wa:active::before { 
+      left: 100%; }
+    .btn-wa span { 
+      position: relative; 
+      z-index: 1; }
+
+    /* Slide Panel */
+    .overlay {
+      position: fixed;
+      top: 60px; left: 0;
+      width: 100%;
+      height: calc(100% - 60px);
+      background: rgba(0,0,0,0.5); 
+      backdrop-filter: blur(5px);
+      opacity: 0; 
+      pointer-events: none;
+      transition: 0.3s; 
+      z-index: 1000;
+    }
+    .overlay.active {
+      opacity: 1; 
+      pointer-events: auto; }
+    .slide-panel {
+      position: fixed;
+      top: 0; right: -100%;
+      height: 100%; 
+      width: 180px; 
+      background: #111;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.5); 
+      padding: 70px 10px 20px;
+      transition: 0.4s;
+      z-index: 1001;
+    }
+    .slide-panel.open { 
+      right: 0; }
+    .close-button {
+      position: absolute; 
+      top: 10px; 
+      right: 10px; 
+      font-size: 40px; 
+      background: none;
+      border: none; 
+      color: white; 
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+    .close-button:hover {
+      transform: scale(1.2); }
+    .slide-panel button.menu-item {
+      display: block; 
+      width: 100%;
+      margin: 20px 0; 
+      padding: 12px;
+      background: linear-gradient(to 
+      right, #333, #222); 
+      color: #fff; 
+      font-size: 16px;
+      border: none;
+      border-radius: 8px; 
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(255,255,255,0.15);
+    }
+    .slide-panel button.menu-item:hover {
+      background: #444;
+      transform: scale(1.05); }
+
+    /* Footer */
+    footer { 
+      text-align: center; 
+      font-size: 14px; 
+      padding: 20px 0; 
+      color: #ccc; 
+      margin-top: 30px; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .banner-text { font-size: 18px; }
+      .slide-panel { width: 70%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">MerjiHost</div>
+    <div class="menu-button" id="menuBtn">&#9776;</div>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <img src="https://i.postimg.cc/gj5bDYp2/20250927-030243.jpg" alt="Hosting Minecraft">
+    <div class="banner-text">Hosting Minecraft Basic</div>
+  </section>
+
+  <!-- Input Nama -->
+  <section class="input-section">
+    <div class="input-label">Masukan Nama Anda</div>
+    <small>Nama wajib di isi!</small>
+    <input type="text" id="nama" placeholder="Nama">
+    <div id="error-nama" class="error"></div>
+  </section>
+  
+  <!-- Input Username -->
+  <section class="input-section">
+    <div class="input-label">Masukan Username Hosting</div>
+    <small>Wajib isi username hosting sesuka anda!</small>
+    <input type="text" id="username" placeholder="contoh: merjiganteng">
+    <div id="error-username" class="error"></div>
+  </section>
+  
+  <!-- Input Password -->
+  <section class="input-section">
+    <div class="input-label">Masukan Password Hosting</div>
+    <small>Wajib isi password hosting sesuka anda!</small>
+    <input type="text" id="password" placeholder="contoh: merjiganteng666">
+    <div id="error-password" class="error"></div>
+  </section>
+
+  <!-- Select Software -->
+  <section class="select-section">
+    <div class="select-label">Pilih Software Minecraft</div>
+    <p class="description">Pilih software Minecraft yang ingin anda gunakan!</p>
+    <div class="custom-select">
+      <div class="select-btn" id="selectBtnHosting">Pilih software</div>
+      <div class="select-options" id="selectOptionsHosting">
+        <div data-value="Vanilla Bedrock">Vanilla Bedrock</div>
+        <div data-value="Paper">Paper</div>
+        <div data-value="PocketmineMP">PocketmineMP</div>
+      </div>
+    </div>
+    <div id="error-hosting" class="error"></div>
+  </section>
+  
+  <!-- Select Payment -->
+  <section class="select-section">
+    <div class="select-label">Pilih Metode Pembayaran</div>
+    <p class="description">Pilih metode pembayaran anda!</p>
+    <div class="custom-select">
+      <div class="select-btn" id="selectBtnPayment">Pilih pembayaran</div>
+      <div class="select-options" id="selectOptionsPayment">
+        <div data-value="Dana">Dana</div>
+        <div data-value="Gopay">Gopay</div>
+        <div data-value="Qris">Qris (All Payment)</div>
+      </div>
+    </div>
+    <div id="error-payment" class="error"></div>
+  </section>
+
+  <!-- Services -->
+  <section class="services-section">
+    <div class="services-label">Pilih Paket Hosting</div>
+    <p class="description">Pilih paket hosting yang ingin anda beli!</p>
+    <div class="services-grid" id="servicesGrid"></div>
+    <div id="error-service" class="error"></div>
+  </section>
+
+  <!-- Benefit -->
+  <section class="benefit-box" id="benefitBox">
+    <h3>Benefit Hosting Minecraft Basic</h3>
+    <div id="benefitList"></div>
+  </section>
+
+  <!-- WhatsApp -->
+  <button class="btn-wa" onclick="sendToWhatsApp()"><span>Pesan via WhatsApp</span></button>
+
+  <!-- Overlay + Slide Panel -->
+  <div class="overlay" id="overlay"></div>
+  <div class="slide-panel" id="slidePanel">
+    <button class="close-button" id="closeBtn">&times;</button>
+    <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
+    <button class="menu-item" onclick="location.href='produk.html'">Produk</button>
+    <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>© 2025 MerjiHost. All Rights Reserved</footer>
+
+  <!-- Notifikasi -->
+  <div id="notifBox" class="notif"></div>
+
+  <!-- Script -->
+  <script>
+    /* Slide Panel */
+    const menuBtn = document.getElementById('menuBtn');
+    const slidePanel = document.getElementById('slidePanel');
+    const closeBtn = document.getElementById('closeBtn');
+    const overlay = document.getElementById('overlay');
+    const notifBox = document.getElementById('notifBox');
+
+    menuBtn.addEventListener('click', () => { slidePanel.classList.add('open'); overlay.classList.add('active'); });
+    function closePanel() { slidePanel.classList.remove('open'); overlay.classList.remove('active'); }
+    closeBtn.addEventListener('click', closePanel);
+    overlay.addEventListener('click', closePanel);
+
+    /* Data Paket (selalu muncul) */
+    const paketHosting = [
+      { name: "Basic 1GB", price: "Rp 4.000/Bulan" },
+      { name: "Basic 2GB", price: "Rp 8.000/Bulan" },
+      { name: "Basic 3GB", price: "Rp 12.000/Bulan" },
+      { name: "Basic 4GB", price: "Rp 16.000/Bulan" },
+      { name: "Basic 5GB", price: "Rp 20.000/Bulan" },
+      { name: "Basic 6GB", price: "Rp 24.000/Bulan" },
+      { name: "Basic 7GB", price: "Rp 28.000/Bulan" },
+      { name: "Basic 8GB", price: "Rp 32.000/Bulan" }
+    ];
+    const benefitDefault = [
+      "Server Online 24Jam"
+    ];
+
+    let selectedHosting = "";
+    let selectedPayment = "";
+    let selectedService = "";
+    let selectedPrice = "";
+
+    /* Select Hosting */
+    const selectBtnHosting = document.getElementById("selectBtnHosting");
+    const selectOptionsHosting = document.getElementById("selectOptionsHosting");
+    selectBtnHosting.addEventListener("click", () => { selectOptionsHosting.classList.toggle("show"); });
+    selectOptionsHosting.querySelectorAll("div").forEach(opt => {
+      opt.addEventListener("click", () => {
+        selectedHosting = opt.getAttribute("data-value");
+        selectBtnHosting.textContent = opt.textContent;
+        selectOptionsHosting.classList.remove("show");
+      });
+    });
+
+    /* Select Payment */
+    const selectBtnPayment = document.getElementById("selectBtnPayment");
+    const selectOptionsPayment = document.getElementById("selectOptionsPayment");
+    selectBtnPayment.addEventListener("click", () => { selectOptionsPayment.classList.toggle("show"); });
+    selectOptionsPayment.querySelectorAll("div").forEach(opt => {
+      opt.addEventListener("click", () => {
+        selectedPayment = opt.getAttribute("data-value");
+        selectBtnPayment.textContent = opt.textContent;
+        selectOptionsPayment.classList.remove("show");
+      });
+    });
+
+    /* Render Services & Benefits (selalu tampil) */
+    function renderServicesAndBenefits() {
+      const servicesGrid = document.getElementById("servicesGrid");
+      const benefitList = document.getElementById("benefitList");
+
+      servicesGrid.innerHTML = "";
+      benefitList.innerHTML = "";
+      selectedService = "";
+      selectedPrice = "";
+
+      paketHosting.forEach(s => {
+        const box = document.createElement("div");
+        box.className = "service-box";
+        box.innerHTML = `<h3>${s.name}</h3><small>${s.price}</small>`;
+        box.addEventListener("click", () => {
+          document.querySelectorAll(".service-box").forEach(b => b.classList.remove("active"));
+          box.classList.add("active");
+          selectedService = s.name;
+          selectedPrice = s.price;
+        });
+        servicesGrid.appendChild(box);
+      });
+
+      benefitDefault.forEach(b => {
+        const item = document.createElement("div");
+        item.className = "benefit-item";
+        item.textContent = b;
+        benefitList.appendChild(item);
+      });
+    }
+
+    /* Jalankan render awal (selalu tampil) */
+    renderServicesAndBenefits();
+
+    /* Notifikasi */
+    function showNotif(msg) {
+      notifBox.innerText = msg;
+      notifBox.classList.add('show', 'shake');
+      setTimeout(() => notifBox.classList.remove('shake'), 400);
+      setTimeout(() => notifBox.classList.remove('show'), 2500);
+    }
+
+    /* Kirim ke WhatsApp */
+    function sendToWhatsApp() {
+      const nama = document.getElementById("nama").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      let valid = true;
+      let upperCaseError = false;
+
+      // Reset error
+      document.getElementById("error-nama").textContent = "";
+      document.getElementById("error-username").textContent = "";
+      document.getElementById("error-password").textContent = "";
+      document.getElementById("error-hosting").textContent = "";
+      document.getElementById("error-payment").textContent = "";
+      document.getElementById("error-service").textContent = "";
+
+      // Validasi Nama
+      if (nama === "") {
+        document.getElementById("error-nama").textContent = "Wajib isi nama anda";
+        valid = false;
+      }
+
+      // Validasi Username
+      if (username === "") {
+        document.getElementById("error-username").textContent = "Wajib isi username";
+        valid = false;
+      } else if (/[A-Z]/.test(username)) {
+        document.getElementById("error-username").textContent = "Username wajib huruf kecil!";
+        upperCaseError = true;
+        valid = false;
+      }
+
+      // Validasi Password
+      if (password === "") {
+        document.getElementById("error-password").textContent = "Wajib isi password";
+        valid = false;
+      } else if (/[A-Z]/.test(password)) {
+        document.getElementById("error-password").textContent = "Password wajib huruf kecil!";
+        upperCaseError = true;
+        valid = false;
+      }
+
+      // Validasi Hosting
+      if (selectedHosting === "") {
+        document.getElementById("error-hosting").textContent = "Wajib pilih salah satu software";
+        valid = false;
+      }
+
+      // Validasi Payment
+      if (selectedPayment === "") {
+        document.getElementById("error-payment").textContent = "Wajib pilih salah satu metode pembayaran";
+        valid = false;
+      }
+
+      // Validasi Service
+      if (selectedService === "") {
+        document.getElementById("error-service").textContent = "Wajib pilih salah satu paket hosting";
+        valid = false;
+      }
+
+      // Notifikasi
+      if (!valid) {
+        if (
+          upperCaseError &&
+          nama !== "" && username !== "" && password !== "" &&
+          selectedHosting !== "" && selectedPayment !== "" && selectedService !== ""
+        ) {
+          showNotif("Username/Password wajib huruf kecil!");
+        } else {
+          showNotif("Wajib isi semua data di bawah!");
+        }
+        return;
+      }
+
+      // Kirim pesan WA
+      const nomor = "628979687563";
+      const pesan =
+        `*ORDER HOSTING MINECRAFT BASIC*\n` +
+        `Nama : ${nama}\n` +
+        `Username : ${username}\n` +
+        `Password : ${password}\n` +
+        `Software : ${selectedHosting}\n` +
+        `Paket : ${selectedService}\n` +
+        `Metode Pembayaran : ${selectedPayment}\n` +
+        `Harga : ${selectedPrice}`;
+
+      const url = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
