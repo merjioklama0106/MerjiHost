@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MerjiHost</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #101820, #101820);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 60px; 
+      left:0;
+      width:100%; 
+      height:calc(100% - 60px);
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity 0.3s ease;
+      z-index:1000;
+     }
+    .overlay.active {
+      opacity:1;
+      pointer-events:auto;
+     }
+
+    header {
+      background-color: #112240;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 24px;
+      color: white;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .menu-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .menu-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .slide-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100%;
+      width: 180px;
+      background: #111;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+      padding: 70px 10px 20px;
+      transition: right 0.4s ease;
+      z-index: 1000;
+    }
+
+    .slide-panel.open {
+      right: 0;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 40px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+
+    .close-button:hover {
+      transform: scale(1.2);
+    }
+
+    .slide-panel button.menu-item {
+      width: 100%;
+      margin: 20px 0;
+      display: block;
+      padding: 12px;
+      background: linear-gradient(to right, #333, #222);
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      transition: 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255,255,255,0.15);
+    }
+
+    .slide-panel button.menu-item:hover {
+      background: #444;
+      transform: scale(1.05);
+    }
+
+    #mainContent {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      padding-top: 100px;
+      text-align: center;
+      flex: 1;
+    }
+
+    .intro-text h1 {
+      font-size: 42px;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .intro-text p {
+      font-size: 16px;
+      color: #cccccc;
+      max-width: 90%;
+      margin: 0 auto 30px;
+      font-weight: 400;
+    }
+
+    /* Kotak Contact Admin dengan stroke kuning */
+    .sampul-card {
+      background: #222;
+      border-radius: 16px;
+      padding: 20px;
+      margin: 30px auto 20px;
+      width: 90%;
+      max-width: 400px;
+      transition: 0.3s;
+      border: 2px solid #882929;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+    }
+
+    .sampul-card:hover {
+      background: #2e2e2e;
+      border-color: #FFD700;
+      box-shadow: 0 0 18px rgba(255, 215, 0, 0.6);
+    }
+
+    .sampul-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .wa-icon, .tg-icon {
+      width: 35px;
+      height: 35px;
+      filter: grayscale(1);
+    }
+
+    .copy-btn {
+      background: #555;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-left: auto;
+    }
+
+    .copy-btn:hover {
+      background: #777;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Button Komunitas hanya stroke */
+    .wa-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      padding: 14px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+      background: transparent;
+    }
+
+    .wa-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Hijau */
+    .wa-btn.green {
+      border: 2px solid #25D366;
+      color: #25D366;
+      box-shadow: 0 0 10px rgba(37,211,102,0.6);
+    }
+    .wa-btn.green:hover {
+      background: rgba(37,211,102,0.1);
+      box-shadow: 0 0 20px rgba(37,211,102,1);
+    }
+
+    /* Biru */
+    .wa-btn.blue {
+      border: 2px solid #007BFF;
+      color: #007BFF;
+      box-shadow: 0 0 10px rgba(0,123,255,0.6);
+    }
+    .wa-btn.blue:hover {
+      background: rgba(0,123,255,0.1);
+      box-shadow: 0 0 20px rgba(0,123,255,1);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 20px 0;
+      color: #ccc;
+      margin-top: auto;
+    }
+
+    .social-section {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .social-section h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #ccc;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      align-items: center;
+    }
+    .social-icons a img {
+      width: 30px;
+      height: 30px;
+      filter: grayscale(100%);
+      transition: filter 0.3s;
+    }
+    .social-icons a img:hover {
+      filter: grayscale(0%);
+    }
+
+    @media screen and (max-width: 600px) {
+      .slide-panel {
+        width: 70%;
+      }
+
+      .intro-text h1 {
+        font-size: 30px;
+      }
+
+      .sampul-card {
+        width: 90%;
+      }
+
+      .wa-btn {
+        width: 90%;
+        justify-content: center;
+      }
+
+      .btn-row {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">MerjiHost</div>
+    <div class="menu-button" id="menuBtn">&#9776;</div>
+  </header>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="slide-panel" id="slidePanel">
+    <button class="close-button" id="closeBtn">&times;</button>
+    <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
+    <button class="menu-item" onclick="location.href='produk.html'">Produk</button>
+    <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
+  </div>
+
+  <div id="mainContent">
+    <main>
+      <div class="intro-text">
+        <h1>Hubungi Admin</h1>
+        <p>Jangan ragu ragu untuk menghubungi admin!.</p>
+      </div>
+
+      <div class="sampul-card">
+        <div class="sampul-content">
+          <img src="https://i.postimg.cc/pT6G7vdq/20250917-160942.png" class="wa-icon" alt="WA">
+          <span id="waNumber">08979687563</span>
+          <button class="copy-btn" onclick="copyToClipboard('waNumber')">Salin</button>
+        </div>
+        <div class="sampul-content">
+          <img src="https://i.postimg.cc/tJP7jMmH/20250916-184252.png" class="tg-icon" alt="Telegram">
+          <span id="tgUser">@merjihost</span>
+          <button class="copy-btn" onclick="copyToClipboard('tgUser')">Salin</button>
+        </div>
+        <div class="sampul-content">
+          <img src="https://i.postimg.cc/NjZVyCdn/20250916-184158.png" class="tg-icon" alt="Telegram">
+          <span id="tgUser">merjihost@gmail.com</span>
+          <button class="copy-btn" onclick="copyToClipboard('tgUser')">Salin</button>
+        </div>
+      </div>
+      
+      <div class="intro-text">
+        <h1>Gabung Komunitas</h1>
+        <p>Jangan lupa join Komunitas kami juga untuk mengetahui info tentang kami.</p>
+      </div>
+
+      <div class="btn-row">
+        <a href="https://chat.whatsapp.com/FoZbfSbZd2x6uUAMc2u49J?mode=ac_t" target="_blank" class="wa-btn green">
+          Grup MerjiHost
+        </a>
+        <a href="https://chat.whatsapp.com/CA45wVtvLFwKRSPZZB2HFy?mode=ac_t" target="_blank" class="wa-btn green">
+          Grup Bebas Promosi
+          </a>
+        <a href="https://whatsapp.com/channel/0029Vb6BUd31NCrPHSlVUs0i" target="_blank" class="wa-btn blue">
+          Saluran MerjiHost
+          </a>
+      </div>
+    </main>
+
+    <div class="social-section">
+      <h3>Media Sosial Kami</h3>
+      <div class="social-icons">
+        <a href=""><img src="https://i.postimg.cc/5NnYmkqB/20250815-185032.png" alt="YouTube"></a>
+        <a href=""><img src="https://i.postimg.cc/QMjQMWbm/20250815-184728.png" alt="TikTok"></a>
+        <a href=""><img src="https://i.postimg.cc/SRKqQV24/20250815-185246.png" alt="Instagram"></a>
+      </div>
+    </div>
+
+    <footer>© 2025 MerjiHost. All Rights Reserved</footer>
+  </div>
+
+  <script>
+  const menuBtn = document.getElementById('menuBtn');
+  const slidePanel = document.getElementById('slidePanel');
+  const closeBtn = document.getElementById('closeBtn');
+  const overlay = document.getElementById('overlay');
+
+  menuBtn.addEventListener('click', () => {
+    slidePanel.classList.add('open');
+    overlay.classList.add('active');
+  });
+
+  function closePanel(){
+    slidePanel.classList.remove('open');
+    overlay.classList.remove('active');
+  }
+  closeBtn.addEventListener('click', closePanel);
+  overlay.addEventListener('click', closePanel);
+
+  function copyToClipboard(elementId) {
+    const text = document.getElementById(elementId).innerText;
+    navigator.clipboard.writeText(text);
+    alert("Disalin: " + text);
+  }
+</script>
+</body>
+</html>

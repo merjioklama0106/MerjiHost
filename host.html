@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MerjiHost</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Style -->
+  <style>
+    /* RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #101820;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      background-color: #112240;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 24px;
+      color: white;
+      animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .menu-button {
+      width: 40px;
+      height: 40px;
+      display:flex; 
+      align-items:center; 
+      justify-content:center;
+      font-size:20px;
+      color:white;
+      background:transparent;
+      border:2px solid white;
+      border-radius:8px; 
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .menu-button:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.1);
+    }
+
+    /* SLIDE PANEL */
+    .overlay {
+      position: fixed;
+      top: 60px; left: 0;
+      width: 100%; height: calc(100% - 60px);
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      opacity: 0; pointer-events: none;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+    .overlay.active { 
+      opacity: 1; 
+      pointer-events: auto; 
+    }
+    
+    .slide-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100%; 
+      width: 180px;
+      background: #111;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+      padding: 70px 10px 20px;
+      transition: 0.4s;
+      z-index: 1001;
+    }
+    .slide-panel.open { 
+      right: 0; 
+    }
+    .close-button {
+      position:absolute; 
+      top:10px; 
+      right:10px;
+      font-size:40px; 
+      background:none;
+      border:none;
+      color:white;
+      cursor:pointer; 
+      font-weight:bold;
+      transition:0.2s;
+    }
+    .close-button:hover {
+      transform: scale(1.2); 
+    }
+    .slide-panel button.menu-item {
+      display:block; 
+      width:100%;
+      margin:20px 0; 
+      padding:12px;
+      background: linear-gradient(to right, #333, #222);
+      color:#fff; 
+      font-size:16px; 
+      border:none;
+      border-radius:8px; 
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 0 10px rgba(255,255,255,0.15);
+    }
+    .slide-panel button.menu-item:hover {
+      background:#444;
+      transform:scale(1.05); 
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .slide-panel { width: 70%; }
+    }
+
+    /* MAIN */
+    main {
+      padding: 90px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    /* TITLE SECTION */
+    .section-title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .section-title h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffcc00;
+      margin-bottom: 6px;
+    }
+    .section-title p {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    /* PACKAGE BOX */
+    .pkg-card {
+      position: relative;
+      border-radius: 16px;
+      border: 2px solid #ffcc00;
+      max-width: 400px;
+      width: 100%;
+      background: linear-gradient(#0d0d0d, #1a1a1a);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+    .pkg-card.disabled {
+      border: none; opacity: 0.6; }
+
+    .pkg-header { 
+      text-align: center; }
+    .pkg-header img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 64/25;
+      object-fit: cover;
+      display: block;
+    }
+    .pkg-header h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 8px 0 6px;
+    }
+    .pkg-header p { 
+      font-size: 13px; color: #aaa; }
+
+    .pkg-price {
+      text-align: center;
+      padding: 16px;
+    }
+    .pkg-price span { 
+      font-size: 28px; font-weight: 700; }
+    .pkg-price small { 
+      font-size: 12px; }
+
+    .pkg-features {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .feat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .feat-item img {
+      width: 20px; height: 20px;
+    }
+    .feat-item span { 
+      font-size: 14px; }
+
+    .pkg-action { 
+      padding: 16px; }
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn-outline {
+      border: 2px solid #ffcc00;
+      background: transparent;
+      color: #fff;
+    }
+    .btn-outline:hover {
+      background: #ffcc00;
+      color: #101820;
+    }
+    .btn-disabled {
+      border: 2px solid #555;
+      background: #222;
+      color: #777;
+      cursor: not-allowed;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 20px 0;
+      color: #ccc;
+      margin-top: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">MerjiHost</div>
+    <div class="menu-button" id="menuBtn">&#9776;</div>
+  </header>
+
+  <!-- SLIDE PANEL -->
+  <div class="overlay" id="overlay"></div>
+  <div class="slide-panel" id="slidePanel">
+    <button class="close-button" id="closeBtn">&times;</button>
+    <button class="menu-item" onclick="location.href='index.html'">Beranda</button>
+    <button class="menu-item" onclick="location.href='produk.html'">Produk</button>
+    <button class="menu-item" onclick="location.href='contact.html'">Contact</button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- Title Section -->
+    <div class="section-title">
+      <h1>Pilih Paket Hosting</h1>
+      <p>Pilih paket hosting sesuai budget anda di bawah ini</p>
+    </div>
+
+    <!-- Basic Package -->
+    <div class="pkg-card">
+      <div class="pkg-header">
+        <img src="https://i.postimg.cc/gj5bDYp2/20250927-030243.jpg" alt="Logo Paket Basic">
+        <h2>Basic</h2>
+        <p>Cocok buat kaum kalangan bawah <br>Mulai Dari</p>
+      </div>
+      <div class="pkg-price">
+        <span>Rp4.000</span> <small>/GB</small>
+      </div>
+      <div class="pkg-features">
+        <div class="feat-item"><img src="https://i.postimg.cc/kGZ19bj1/20250927-174311.png" alt=""><span>CPU AMD Intel</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/pXs89vRN/20250927-174735.png" alt=""><span>Uptime 24/7</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/fLvFmyHn/20250927-180005.png" alt=""><span>Anti Down 85%</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/XNHdq3VS/20250927-175538.png" alt=""><span>Anti DDoS</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/yxFMfn6P/20250927-175243.png" alt=""><span>Region Singapore</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/mksZ5D9m/20250927-180326.png" alt=""><span>Garansi 20 Hari</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/y8BQ8zmM/20250927-180913.png" alt=""><span>Full Pengajaran(Jika Tidak Tahu Cara Pakainya)</span></div>
+      </div>
+      <div class="pkg-action">
+        <a href="hostbasic.html" class="btn btn-outline">Lihat Daftar Paket</a>
+      </div>
+    </div>
+
+    <!-- Premium Package -->
+    <div class="pkg-card disabled">
+      <div class="pkg-header">
+        <img src="https://i.postimg.cc/3rqszxMR/20250927-030216.jpg" alt="Logo Paket Premium">
+        <h2>Premium</h2>
+        <p>Cocok buat kaum kalangan atas<br>Mulai Dari</p>
+      </div>
+      <div class="pkg-price">
+        <span>Rp8.000</span> <small>/GB</small>
+      </div>
+      <div class="pkg-features">
+        <div class="feat-item"><img src="https://i.postimg.cc/kGZ19bj1/20250927-174311.png" alt=""><span>CPU AMD Ryzen</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/pXs89vRN/20250927-174735.png" alt=""><span>Uptime 24/7</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/rp4208XT/20250927-175854.png" alt=""><span>Auto Backup 1x/24jam</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/yxFMfn6P/20250927-175243.png" alt=""><span>Region Indonesia</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/fLvFmyHn/20250927-180005.png" alt=""><span>Anti Down 100%</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/XNHdq3VS/20250927-175538.png" alt=""><span>Anti DDoS</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/LXBFhVqw/20250927-180425.png" alt=""><span>Aktif 30 Hari</span></div>
+        <div class="feat-item"><img src="https://i.postimg.cc/y8BQ8zmM/20250927-180913.png" alt=""><span>Full Pengajaran(Jika Tidak Tahu Cara Pakainya)</span></div>
+      </div>
+      <div class="pkg-action">
+        <span class="btn btn-disabled">Lihat Daftar Paket</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>© 2025 MerjiHost. All Rights Reserved</footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const slidePanel = document.getElementById('slidePanel');
+    const closeBtn = document.getElementById('closeBtn');
+    const overlay = document.getElementById('overlay');
+
+    menuBtn.addEventListener('click', () => {
+      slidePanel.classList.add('open');
+      overlay.classList.add('active');
+    });
+    function closePanel() {
+      slidePanel.classList.remove('open');
+      overlay.classList.remove('active');
+    }
+    closeBtn.addEventListener('click', closePanel);
+    overlay.addEventListener('click', closePanel);
+  </script>
+</body>
+</html>
